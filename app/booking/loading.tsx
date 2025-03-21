@@ -1,7 +1,9 @@
+"use client";
+
 const Loading = () => {
   return (
     <div>
-      <p>Loading..</p>
+      <p className="text-2xl">Loading..</p>
     </div>
   );
 };
