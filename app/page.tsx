@@ -16,7 +16,7 @@ export default function Page() {
             <Banner />
             <h1 className="mt-6 text-5xl font-bold">
               Your Car Deserves <br />
-              <span className="bg-gradient-to-r from-blue-600 to-orange-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 to-orange-400 bg-clip-text text-transparent">
                 Premium Detailing
               </span>
             </h1>
@@ -28,7 +28,7 @@ export default function Page() {
             <div className="mt-6 flex w-sm">
               <Link
                 href={"/booking"}
-                className="text-md mr-2 flex cursor-pointer rounded-xl border bg-gradient-to-t from-orange-300 to-blue-600 px-3 py-2 font-bold text-white transition duration-200 hover:bg-gradient-to-t hover:from-orange-500 hover:to-blue-700"
+                className="text-md mr-2 flex cursor-pointer rounded-xl border bg-gradient-to-t from-orange-400 to-blue-600 px-3 py-2 font-bold text-white transition duration-200 hover:bg-gradient-to-t hover:from-orange-500 hover:to-blue-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
