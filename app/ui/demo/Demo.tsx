@@ -59,10 +59,10 @@ const Demo = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <video controls width="600">
+                  {/* <video controls width="600">
                     <source src="/video-1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
-                  </video>
+                  </video> */}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

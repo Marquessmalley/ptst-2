@@ -46,7 +46,7 @@ export default function Page() {
                 </svg>
                 Schedule now
               </Link>
-              <Demo />
+              {/* <Demo /> */}
             </div>
           </div>
 
