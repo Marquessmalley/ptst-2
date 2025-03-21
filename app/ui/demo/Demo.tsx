@@ -60,7 +60,7 @@ const Demo = () => {
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
                   <video controls width="600">
-                    <source src="/video-1.mp4" type="video/mp4" />
+                    <source src="/Video-1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </Dialog.Panel>
