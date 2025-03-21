@@ -3,7 +3,6 @@ import "@/app/ui/global.css";
 import { HeroUIProvider } from "@heroui/react";
 import SplashScreen from "@/app/ui/splashscreen/SplashScreen";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -15,7 +14,7 @@ export default function RootLayout({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

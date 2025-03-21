@@ -1,7 +1,28 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import SplashScreen from "@/app/ui/splashscreen/SplashScreen";
 
 const BookingLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="bg-red-100">{children}</div>;
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+  return (
+    <div className="">
+      {isLoading ? (
+        <>
+          <SplashScreen />
+        </>
+      ) : (
+        <>{children}</>
+      )}
+    </div>
+  );
 };
 
 export default BookingLayout;
