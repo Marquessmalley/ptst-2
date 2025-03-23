@@ -4,7 +4,7 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
   return (
     <div
       key={plan.id}
-      className="border-slate-30 m-5 max-w-md cursor-pointer rounded-3xl border bg-slate-100 p-4 shadow transition duration-200 hover:scale-105 hover:transform hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-800 dark:shadow-md dark:shadow-teal-600"
+      className="border-slate-30 m-5 max-w-md cursor-pointer rounded-3xl border bg-slate-100 p-4 shadow transition duration-200 hover:scale-105 hover:transform hover:bg-slate-50 "
     >
       {/* CARD HEADER */}
       <div className="flex items-center">
@@ -14,14 +14,14 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
             alt="car"
             className={
               plan.packageName === "Gold Package"
-                ? "h-12 w-12 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-3 shadow dark:bg-gradient-to-br dark:from-teal-600 dark:via-pink-500 dark:to-teal-600"
+                ? "h-12 w-12 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-3 shadow"
                 : "h-12 w-12 rounded-full border bg-gradient-to-br from-blue-600 via-orange-600 to-orange-300 p-3 shadow "
             }
           />
           <p className="ml-4 text-xl font-semibold">{plan.packageName}</p>
         </div>
 
-        <div className="w-18 flex items-center justify-center rounded-full border bg-white p-2 text-center shadow dark:bg-inherit dark:shadow-md dark:shadow-teal-600">
+        <div className="w-18 flex items-center justify-center rounded-full border bg-white p-2 text-center shadow">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -71,14 +71,14 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
                       />
                     </svg>
 
-                    <p className="ml-2 w-full text-sm text-gray-600 dark:text-gray-400">
+                    <p className="ml-2 w-full text-sm text-gray-600 ">
                       {service}
                     </p>
                   </li>
                 );
               })
             ) : (
-              <p className="ml-2 w-full text-sm font-bold dark:text-slate-600">
+              <p className="ml-2 w-full text-sm font-bold">
                 Interior not included.
               </p>
             )}
@@ -119,14 +119,14 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
                       </svg>
                     )}
 
-                    <p className="ml-2 w-full text-sm text-gray-600 dark:text-gray-400">
+                    <p className="ml-2 w-full text-sm text-gray-600 ">
                       {service}
                     </p>
                   </li>
                 );
               })
             ) : (
-              <p className="ml-2 w-full text-sm font-bold dark:text-slate-600">
+              <p className="ml-2 w-full text-sm font-bold ">
                 Exterior not included.
               </p>
             )}
