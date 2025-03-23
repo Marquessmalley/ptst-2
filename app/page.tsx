@@ -5,6 +5,9 @@ import Menu from "@/app/ui/navbar/Menu";
 import Banner from "@/app/ui/banner/Banner";
 import Demo from "@/app/ui/demo/Demo";
 import ServiceCard from "@/app/ui/cards/ServiceCard";
+import Pricing from "@/app/sections/Pricing";
+import Faq from "@/app/sections/Faq";
+import Footer from "@/app/ui/footer";
 
 export default function Page() {
   return (
@@ -14,7 +17,7 @@ export default function Page() {
         <div className="mt-4 grid grid-cols-1 gap-y-10 sm:mt-22 lg:grid-cols-2">
           <div className="ml-2 ">
             <Banner />
-            <h1 className="mt-6 text-5xl font-bold">
+            <h1 className="mt-6 text-4xl sm:text-5xl font-bold">
               Your Car Deserves <br />
               <span className="bg-gradient-to-r from-blue-600 to-orange-400 bg-clip-text text-transparent">
                 Premium Detailing
@@ -84,6 +87,9 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <Pricing />
+      <Faq />
+      <Footer />
     </div>
   );
 }
