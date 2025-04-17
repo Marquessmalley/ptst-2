@@ -1,7 +1,7 @@
 "use client";
-import "@/app/ui/global.css";
+import "@/components/ui/global.css";
 import { HeroUIProvider } from "@heroui/react";
-import SplashScreen from "@/app/ui/splashscreen/SplashScreen";
+import SplashScreen from "@/components/ui/splashscreen/SplashScreen";
 import { useState, useEffect } from "react";
 
 export default function RootLayout({

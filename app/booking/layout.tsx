@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import SplashScreen from "@/app/ui/splashscreen/SplashScreen";
+import SplashScreen from "@/components/ui/splashscreen/SplashScreen";
 
 const BookingLayout = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);

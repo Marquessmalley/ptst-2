@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import { services } from "@/app/lib/placeholder-data";
-import Menu from "@/app/ui/navbar/Menu";
-import Banner from "@/app/ui/banner/Banner";
-import Demo from "@/app/ui/demo/Demo";
-import ServiceCard from "@/app/ui/cards/ServiceCard";
+import { services } from "@/lib/placeholder-data";
+import Menu from "@/components/ui/navbar/Menu";
+import Banner from "@/components/ui/banner/Banner";
+import Demo from "@/components/ui/demo/Demo";
+import ServiceCard from "@/components/ui/cards/ServiceCard";
 import Pricing from "@/app/sections/Pricing";
 import Faq from "@/app/sections/Faq";
-import Footer from "@/app/ui/footer";
+import Footer from "@/components/ui/footer";
 
 export default function Page() {
   return (
