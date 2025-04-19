@@ -1,26 +1,11 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import SplashScreen from "@/components/ui/splashscreen/SplashScreen";
+// "use client";
+// import React, { useState, useEffect } from "react";
+import StepperProvider from "@/context/StepperContext";
 
 const BookingLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
   return (
     <div className="">
-      {isLoading ? (
-        <>
-          <SplashScreen />
-        </>
-      ) : (
-        <>{children}</>
-      )}
+      <StepperProvider>{children}</StepperProvider>
     </div>
   );
 };

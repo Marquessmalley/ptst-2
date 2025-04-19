@@ -1,9 +1,10 @@
-import React from "react";
+import { BookingStepper, StepperProgress } from "@/components/booking";
 
 const page = () => {
   return (
     <div>
-      <h1>Under Construction</h1>
+      <StepperProgress />
+      <BookingStepper />
     </div>
   );
 };

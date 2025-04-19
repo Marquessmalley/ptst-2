@@ -1,18 +1,14 @@
 "use client";
 import Link from "next/link";
 import { services } from "@/lib/placeholder-data";
-import Menu from "@/components/ui/navbar/Menu";
-import Banner from "@/components/ui/banner/Banner";
-import Demo from "@/components/ui/demo/Demo";
-import ServiceCard from "@/components/ui/cards/ServiceCard";
+import { Banner, Demo, ServiceCard } from "@/components/ui";
 import Pricing from "@/app/sections/Pricing";
 import Faq from "@/app/sections/Faq";
 import Footer from "@/components/ui/footer";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
-      <Menu />
+    <div className="">
       <div className="mx-auto grid max-w-6xl">
         <div className="mt-4 grid grid-cols-1 gap-y-10 sm:mt-22 lg:grid-cols-2">
           <div className="ml-2 ">
