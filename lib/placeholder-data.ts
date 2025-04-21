@@ -293,3 +293,10 @@ export const detailMenu = [
     },
   },
 ];
+
+export const bookingSteps = [
+  "Select Vehicle",
+  "Select Service",
+  "Date & Time",
+  "Customer Contact",
+];

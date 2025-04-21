@@ -28,7 +28,7 @@ export default function RootLayout({
               <SplashScreen />
             </>
           ) : (
-            <main className=" bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
+            <main className="bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
               <Menu />
               {children}
             </main>
