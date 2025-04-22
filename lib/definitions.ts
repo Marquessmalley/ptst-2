@@ -16,3 +16,8 @@ export type DetailMenuItem = {
   };
   vehicleType: VehicleType;
 };
+
+export type BookingInfo = {
+  selectedVehicle: string;
+  selectedService: string;
+};

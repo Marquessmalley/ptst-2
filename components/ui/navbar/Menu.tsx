@@ -7,7 +7,9 @@ const Menu = () => {
   return (
     <Navbar className="w-full">
       <NavbarBrand className="mt-2 px-6">
-        <Image src="/logo.png" alt="logo" height={120} width={120} />
+        <Link href="/">
+          <Image src="/logo.png" alt="logo" height={120} width={120} />
+        </Link>
       </NavbarBrand>
       <NavbarContent className="flex w-full justify-between px-2">
         <div className="flex gap-4"></div>

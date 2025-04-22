@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 export type StepperContextType = {
   step: number;
-  setStep: (step: number) => void;
+  setStep: (step: any) => void;
 };
 
 export const StepperContext = createContext<StepperContextType | undefined>(

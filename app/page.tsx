@@ -4,7 +4,6 @@ import { services } from "@/lib/placeholder-data";
 import { Banner, Demo, ServiceCard } from "@/components/ui";
 import Pricing from "@/app/sections/Pricing";
 import Faq from "@/app/sections/Faq";
-import Footer from "@/components/ui/footer";
 
 export default function Page() {
   return (
@@ -85,7 +84,6 @@ export default function Page() {
       </div>
       <Pricing />
       <Faq />
-      <Footer />
     </div>
   );
 }

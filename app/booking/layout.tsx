@@ -1,11 +1,16 @@
-// "use client";
-// import React, { useState, useEffect } from "react";
 import StepperProvider from "@/context/StepperContext";
+import { BookingProvider } from "@/context/BookingContext";
+import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
 
 const BookingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="">
-      <StepperProvider>{children}</StepperProvider>
+      <BookingProvider>
+        <StepperProvider>
+          <DisclaimerBanner />
+          {children}
+        </StepperProvider>
+      </BookingProvider>
     </div>
   );
 };
