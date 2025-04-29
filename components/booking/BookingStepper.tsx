@@ -45,27 +45,30 @@ const BookingStepper = () => {
     <div className="">
       <form className="p-2">
         <div className="flex items-center justify-around">
-          <button
-            type="button"
-            className="font-bold p-1 bg-blue-400 hover:bg-blue-500 transition duration-200 text-white rounded-2xl cursor-pointer"
-            disabled={step === 0 ? true : false}
-            onClick={handleBack}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="white"
-              className="size-6"
+          {step !== 0 && (
+            <button
+              type="button"
+              className="font-bold p-1 bg-slate-700 hover:bg-slate-900 transition duration-200 text-white rounded-2xl cursor-pointer"
+              disabled={step === 0 ? true : false}
+              onClick={handleBack}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="white"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
+                />
+              </svg>
+            </button>
+          )}
+
           <DisclaimerBanner />
         </div>
         {step === 0 && (
@@ -82,7 +85,7 @@ const BookingStepper = () => {
         <div className="p-2 flex justify-end">
           <button
             type="button"
-            className="font-bold p-2 bg-gradient-to-b from-blue-400 to-orange-400 text-white w-36 rounded-2xl"
+            className="font-bold p-2 bg-slate-700 hover:bg-slate-900 transition duration-200 text-white w-36 rounded-2xl my-2"
             disabled={step === 3 ? true : false}
             onClick={handleNext}
           >
