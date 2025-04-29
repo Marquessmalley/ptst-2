@@ -296,7 +296,7 @@ export const detailMenu = [
 
 export const bookingSteps = [
   "Select Vehicle",
-  "Select Service",
+  "Select Package",
   "Date & Time",
   "Customer Contact",
 ];

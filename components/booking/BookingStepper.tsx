@@ -1,8 +1,9 @@
 "use client";
 import { useStepper } from "@/hooks/useStepper";
 import SelectVehicle from "./SelectVehicle";
-import SelectService from "./SelectService";
+import SelectPackage from "./SelectPackage";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
+import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
 
 const BookingStepper = () => {
   const { step, setStep } = useStepper();
@@ -43,27 +44,30 @@ const BookingStepper = () => {
   return (
     <div className="">
       <form className="p-2">
-        <button
-          type="button"
-          className="font-bold p-1 bg-blue-400 hover:bg-blue-500 transition duration-200 text-white rounded-2xl cursor-pointer"
-          disabled={step === 0 ? true : false}
-          onClick={handleBack}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="white"
-            className="size-6"
+        <div className="flex items-center justify-around">
+          <button
+            type="button"
+            className="font-bold p-1 bg-blue-400 hover:bg-blue-500 transition duration-200 text-white rounded-2xl cursor-pointer"
+            disabled={step === 0 ? true : false}
+            onClick={handleBack}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
-            />
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="white"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
+              />
+            </svg>
+          </button>
+          <DisclaimerBanner />
+        </div>
         {step === 0 && (
           <div>
             <SelectVehicle />
@@ -71,7 +75,7 @@ const BookingStepper = () => {
         )}
         {step === 1 && (
           <div>
-            <SelectService />
+            <SelectPackage />
           </div>
         )}
 

@@ -1,5 +1,5 @@
 import { detailMenu } from "@/lib/placeholder-data";
-import PriceCard from "@/components/ui/cards/PricingCards";
+import { PriceCard } from "@/components/ui";
 
 const Pricing: React.FC = () => {
   const specialPackages = detailMenu.slice(0, 3);
