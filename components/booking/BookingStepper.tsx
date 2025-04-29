@@ -44,7 +44,7 @@ const BookingStepper = () => {
   return (
     <div className="">
       <form className="p-2">
-        <div className="flex items-center justify-around">
+        <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-around">
           {step !== 0 && (
             <button
               type="button"
