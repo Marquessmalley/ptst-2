@@ -6,24 +6,34 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Button,
   useDisclosure,
 } from "@heroui/react";
+import { useBookingInfo } from "@/hooks/useBookingInfo";
 
 const PackageCard = ({ item }: { item: DetailMenuItem }) => {
   const { packageName, startingPrice, estimatedTime, services } = item;
 
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
+  const { bookingInfo, setBookingInfo } = useBookingInfo();
+  const { selectedPackage } = bookingInfo;
 
-  console.log(services);
+  const handlePackageSelect = (event: any) => {
+    setBookingInfo((prevState: any) => ({
+      ...prevState,
+      selectedPackage: event.target.value,
+    }));
+  };
 
   return (
     <>
       <Card
         isBlurred
         shadow="lg"
-        className="py-4 max-w-[300px] rounded-xl shadow-lg  border bg-slate-50"
+        className={`py-4 max-w-[300px] rounded-xl shadow-lg  border  ${
+          selectedPackage === packageName
+            ? "bg-slate-200 border-blue-500"
+            : "bg-slate-50"
+        }`}
       >
         <CardHeader className="overflow-visible py-2">
           <Image
@@ -71,6 +81,8 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
           <button
             type="button"
             className="bg-slate-700 hover:bg-slate-900 transition duration-200 p-2 border text-md font-bold text-white w-full rounded-lg shadow-lg"
+            onClick={handlePackageSelect}
+            value={packageName}
           >
             Select
           </button>

@@ -2,6 +2,7 @@
 import { useStepper } from "@/hooks/useStepper";
 import SelectVehicle from "./SelectVehicle";
 import SelectPackage from "./SelectPackage";
+import SelectDateTime from "./SelectDateTime";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
 
@@ -14,9 +15,14 @@ const BookingStepper = () => {
     if (selectedVehicle === "") return false;
     return true;
   };
-  const serviceSelected = () => {
-    const { selectedService } = bookingInfo;
-    if (selectedService === "") return false;
+  const packageSelected = () => {
+    const { selectedPackage } = bookingInfo;
+    if (selectedPackage === "") return false;
+    return true;
+  };
+  const dateTimeSelected = () => {
+    const { selectedDateTime } = bookingInfo;
+    if (selectedDateTime === "") return false;
     return true;
   };
 
@@ -28,7 +34,12 @@ const BookingStepper = () => {
         }
         break;
       case 1:
-        if (serviceSelected()) {
+        if (packageSelected()) {
+          setStep((prevState: number) => prevState + 1);
+        }
+        break;
+      case 1:
+        if (dateTimeSelected()) {
           setStep((prevState: number) => prevState + 1);
         }
         break;
@@ -79,6 +90,11 @@ const BookingStepper = () => {
         {step === 1 && (
           <div>
             <SelectPackage />
+          </div>
+        )}
+        {step === 2 && (
+          <div>
+            <SelectDateTime />
           </div>
         )}
 

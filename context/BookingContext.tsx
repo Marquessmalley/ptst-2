@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useState } from "react";
 import { BookingInfo } from "@/lib/definitions";
+import SelectDateTime from "@/components/booking/SelectDateTime";
 
 export type BookingContextType = {
   bookingInfo: BookingInfo;
@@ -18,7 +19,8 @@ export const BookingProvider = ({
 }) => {
   const [bookingInfo, setBookingInfo] = useState({
     selectedVehicle: "",
-    selectedService: "",
+    selectedPackage: "",
+    selectedDateTime: "",
   });
   return (
     <BookingContext.Provider value={{ bookingInfo, setBookingInfo }}>
