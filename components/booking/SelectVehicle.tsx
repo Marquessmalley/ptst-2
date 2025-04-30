@@ -12,8 +12,6 @@ const SelectVehicle = () => {
     }));
   };
 
-  console.log(bookingInfo);
-
   return (
     <div className="p-4">
       {selectedVehicle !== "" ? (
