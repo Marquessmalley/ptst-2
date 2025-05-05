@@ -7,11 +7,12 @@ import Faq from "@/app/sections/Faq";
 
 export default function Page() {
   return (
-    <div className="">
+    <div className="mt-20">
       <div className="mx-auto grid max-w-6xl">
         <div className="mt-4 grid grid-cols-1 gap-y-10 sm:mt-22 lg:grid-cols-2">
           <div className="ml-2 ">
             <Banner />
+
             <h1 className="mt-6 text-4xl sm:text-5xl font-bold">
               Your Car Deserves <br />
               <span className="bg-gradient-to-r from-blue-600 to-orange-400 bg-clip-text text-transparent">
