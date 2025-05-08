@@ -20,5 +20,6 @@ export type DetailMenuItem = {
 export type BookingInfo = {
   selectedVehicle: string;
   selectedPackage: string;
-  selectedDateTime: string;
+  selectedDate: string;
+  selectedTime: string;
 };

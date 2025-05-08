@@ -298,5 +298,5 @@ export const bookingSteps = [
   "Select Vehicle",
   "Select Package",
   "Date & Time",
-  "Customer Contact",
+  "Booking Summary",
 ];

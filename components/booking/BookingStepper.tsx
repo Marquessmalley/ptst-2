@@ -1,9 +1,10 @@
 "use client";
 import { useStepper } from "@/hooks/useStepper";
+import { useBookingInfo } from "@/hooks/useBookingInfo";
 import SelectVehicle from "./SelectVehicle";
 import SelectPackage from "./SelectPackage";
 import SelectDateTime from "./SelectDateTime";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
+import BookingSummary from "./BookingSummary";
 import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
 
 const BookingStepper = () => {
@@ -21,8 +22,8 @@ const BookingStepper = () => {
     return true;
   };
   const dateTimeSelected = () => {
-    const { selectedDateTime } = bookingInfo;
-    if (selectedDateTime === "") return false;
+    const { selectedDate, selectedTime } = bookingInfo;
+    if (selectedDate && selectedTime === "") return false;
     return true;
   };
 
@@ -38,7 +39,7 @@ const BookingStepper = () => {
           setStep((prevState: number) => prevState + 1);
         }
         break;
-      case 1:
+      case 2:
         if (dateTimeSelected()) {
           setStep((prevState: number) => prevState + 1);
         }
@@ -95,6 +96,11 @@ const BookingStepper = () => {
         {step === 2 && (
           <div>
             <SelectDateTime />
+          </div>
+        )}
+        {step === 3 && (
+          <div>
+            <BookingSummary />
           </div>
         )}
 

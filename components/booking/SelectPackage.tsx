@@ -4,7 +4,7 @@ import { useBookingInfo } from "@/hooks/useBookingInfo";
 
 const SelectPackage = () => {
   const { bookingInfo, setBookingInfo } = useBookingInfo();
-  const { selectedService } = bookingInfo;
+
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">

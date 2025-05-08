@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Calendar } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
+import { useBookingInfo } from "@/hooks/useBookingInfo";
+import { BookingInfo } from "@/lib/definitions";
 
 const times = [
   "12:00 am",
@@ -19,17 +21,31 @@ const times = [
 
 const SelectDateTime = () => {
   let [value, setValue] = useState<any>(parseDate("2025-05-07"));
-  const handleChange = (value: any) => {
+  const { bookingInfo, setBookingInfo } = useBookingInfo();
+  const { selectedDate, selectedTime } = bookingInfo;
+
+  const handleDateChange = (value: any) => {
+    setBookingInfo((prevState: BookingInfo) => ({
+      ...prevState,
+      SelectDate: value,
+    }));
     setValue(value);
   };
 
+  const handleSelectTime = (e: any) => {
+    setBookingInfo((prevState: BookingInfo) => ({
+      ...prevState,
+      selectedTime: e.target.value,
+    }));
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 ">
+    <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">
         <Calendar
           aria-label="Date (Controlled)"
           value={value}
-          onChange={handleChange}
+          onChange={handleDateChange}
           classNames={{
             base: "!bg-transparent rounded-none shadow-none",
             title: "font-semibold text-small text-default-700",
@@ -46,8 +62,8 @@ const SelectDateTime = () => {
         />
       </div>
       <div className="flex flex-col justify-center items-center w-full">
-        <div className="my-1 mx-2 p-2">
-          <p className="text-sm text-default-700 font-semibold">Sun 26</p>
+        <div className="my-1 mx-2 p-2 text-left w-full max-w-[370px] ">
+          <p className="text-sm text-default-700 font-semibold ">Sun 26</p>
         </div>
         {/* TIMES CONTAINER */}
         <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll max-w-[370px] w-full">
@@ -55,9 +71,13 @@ const SelectDateTime = () => {
             <button
               key={time}
               type="button"
-              className="w-full bg-default-100 hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-2 rounded-xl transition duration-300"
+              value={time}
+              onClick={handleSelectTime}
+              className={`w-full   text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
+                selectedTime === time ? "bg-default-200 " : "bg-default-100"
+              }`}
             >
-              <p className="p-2 text-center cursor-pointer">{time}</p>
+              {time}
             </button>
           ))}
         </div>
