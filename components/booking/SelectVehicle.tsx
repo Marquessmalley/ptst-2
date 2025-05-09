@@ -11,14 +11,14 @@ const SelectVehicle = () => {
       selectedVehicle: event.target.value,
     }));
   };
-
+  console.log(selectedVehicle);
   return (
     <div className="p-4">
       {selectedVehicle !== "" ? (
         <>
           <div className=" flex justify-center items-center my-2 p-10 rounded-lg">
             <Image
-              src={`/vehicles/${selectedVehicle}.png`}
+              src={`/vehicles/${selectedVehicle.toLocaleLowerCase()}.png`}
               alt=""
               width={500}
               height={500}
