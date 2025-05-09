@@ -106,14 +106,14 @@ const BookingStepper = () => {
           </div>
         )}
 
-        <div className="p-2 flex justify-end">
+        <div className="p-2 sm:flex sm:justify-end">
           <button
             type="button"
-            className="font-bold p-2 bg-slate-700 hover:bg-slate-900 transition duration-200 text-white w-36 rounded-2xl my-2"
+            className="font-bold p-2 bg-slate-800 hover:bg-slate-900 transition duration-200 text-white w-full sm:w-44 rounded-2xl my-2 cursor-pointer text-nowrap"
             disabled={step === 3 ? true : false}
             onClick={handleNext}
           >
-            Continue
+            {step == 3 ? <>Book Appointment</> : <>Continue</>}
           </button>
         </div>
       </form>
