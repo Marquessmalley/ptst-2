@@ -18,7 +18,7 @@ const BookingStepper = () => {
   };
   const packageSelected = () => {
     const { selectedPackage } = bookingInfo;
-    if (selectedPackage === "") return false;
+    if (selectedPackage.packageName === "") return false;
     return true;
   };
   const dateTimeSelected = () => {
@@ -52,6 +52,8 @@ const BookingStepper = () => {
   const handleBack = () => {
     setStep((prevState: number) => prevState - 1);
   };
+
+  console.log(bookingInfo);
 
   return (
     <div className="">

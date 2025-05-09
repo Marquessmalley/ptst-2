@@ -20,7 +20,11 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
   const handlePackageSelect = (event: any) => {
     setBookingInfo((prevState: any) => ({
       ...prevState,
-      selectedPackage: event.target.value,
+      selectedPackage: {
+        packageName,
+        startingPrice,
+        estimatedTime,
+      },
     }));
   };
 
@@ -30,7 +34,7 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
         isBlurred
         shadow="lg"
         className={`py-4 max-w-[300px] rounded-xl shadow-lg  border  ${
-          selectedPackage === packageName
+          selectedPackage.packageName === packageName
             ? "bg-slate-200 border-blue-500"
             : "bg-slate-50"
         }`}

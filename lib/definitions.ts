@@ -6,7 +6,7 @@ export type VehicleType = {
 };
 
 export type DetailMenuItem = {
-  id: number;
+  id?: number;
   packageName: string;
   startingPrice: string;
   estimatedTime: string;
@@ -19,7 +19,7 @@ export type DetailMenuItem = {
 
 export type BookingInfo = {
   selectedVehicle: string;
-  selectedPackage: string;
+  selectedPackage: Partial<DetailMenuItem>;
   selectedDate: string;
   selectedTime: string;
 };

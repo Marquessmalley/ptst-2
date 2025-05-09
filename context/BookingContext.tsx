@@ -18,7 +18,7 @@ export const BookingProvider = ({
 }) => {
   const [bookingInfo, setBookingInfo] = useState({
     selectedVehicle: "",
-    selectedPackage: "",
+    selectedPackage: {},
     selectedDate: "",
     selectedTime: "",
   });
