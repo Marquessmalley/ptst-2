@@ -11,7 +11,7 @@ const SelectVehicle = () => {
       selectedVehicle: event.target.value,
     }));
   };
-  console.log(selectedVehicle);
+
   return (
     <div className="p-4">
       {selectedVehicle !== "" ? (
@@ -48,9 +48,9 @@ const SelectVehicle = () => {
         >
           <option value="">-- Select a vehicle type --</option>
           <option value="sedan">Sedan</option>
-          <option value="SUV(2 Rows)">SUV(2 Rows)</option>
-          <option value="SUV(3 Rows)">SUV(3 Rows)</option>
-          <option value="Truck">Truck</option>
+          <option value="suv-2-rows">SUV(2 Rows)</option>
+          <option value="suv-3-rows">SUV(3 Rows)</option>
+          <option value="truck">Truck</option>
         </select>
       </div>
     </div>
