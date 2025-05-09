@@ -18,7 +18,7 @@ const SelectVehicle = () => {
         <>
           <div className=" flex justify-center items-center my-2 p-10 rounded-lg">
             <Image
-              src={`/vehicles/${selectedVehicle.toLocaleLowerCase()}.png`}
+              src={`/vehicles/${selectedVehicle}.png`}
               alt=""
               width={500}
               height={500}
@@ -47,7 +47,7 @@ const SelectVehicle = () => {
           value={selectedVehicle}
         >
           <option value="">-- Select a vehicle type --</option>
-          <option value="Sedan">Sedan</option>
+          <option value="sedan">Sedan</option>
           <option value="SUV(2 Rows)">SUV(2 Rows)</option>
           <option value="SUV(3 Rows)">SUV(3 Rows)</option>
           <option value="Truck">Truck</option>
