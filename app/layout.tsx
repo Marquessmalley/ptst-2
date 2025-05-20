@@ -21,22 +21,22 @@ export default function RootLayout({
     return () => clearTimeout(timer);
   }, []);
   return (
-    <html lang="en">
-      <body>
-        <HeroUIProvider>
-          {isLoading ? (
-            <>
-              <SplashScreen />
-            </>
-          ) : (
-            <main className="bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
-              <Menu />
-              {children}
-              <Footer />
-            </main>
-          )}
-        </HeroUIProvider>
-      </body>
-    </html>
+<html lang="en">
+  <body className="min-h-screen flex flex-col">
+    <HeroUIProvider>
+      {isLoading ? (
+        <SplashScreen />
+      ) : (
+        <div className="flex flex-col min-h-screen bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
+          <Menu />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      )}
+    </HeroUIProvider>
+  </body>
+</html>
   );
 }
