@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { services } from "@/lib/placeholder-data";
 import { Banner, Demo, ServiceCard, PackageCard } from "@/components/ui";
-import Pricing from "@/app/sections/Pricing";
-import Faq from "@/app/sections/Faq";
+import Pricing from "@/components/sections/Pricing";
+import Faq from "@/components/sections/Faq";
 
 export default function Page() {
   return (
