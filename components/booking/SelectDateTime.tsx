@@ -27,7 +27,7 @@ const SelectDateTime = () => {
   const handleDateChange = (value: any) => {
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      SelectDate: value,
+      selectedDate: value.toString(),
     }));
     setValue(value);
   };
@@ -39,6 +39,8 @@ const SelectDateTime = () => {
     }));
   };
 
+  // console.log(selectedDate.toString());
+  // console.log(value.toString());
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">

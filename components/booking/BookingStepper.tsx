@@ -6,42 +6,34 @@ import SelectPackage from "./SelectPackage";
 import SelectDateTime from "./SelectDateTime";
 import BookingSummary from "./BookingSummary";
 import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
+import {
+  vehicleTypeSelected,
+  packageSelected,
+  dateTimeSelected,
+} from "@/lib/bookingValidations";
 
 const BookingStepper = () => {
   const { step, setStep } = useStepper();
   const { bookingInfo } = useBookingInfo();
 
-  const vehicleTypeSelected = () => {
-    const { selectedVehicle } = bookingInfo;
-    if (selectedVehicle === "") return false;
-    return true;
-  };
-  const packageSelected = () => {
-    const { selectedPackage } = bookingInfo;
-    if (selectedPackage.packageName === "") return false;
-    return true;
-  };
-  const dateTimeSelected = () => {
-    const { selectedDate, selectedTime } = bookingInfo;
-    if (selectedDate && selectedTime === "") return false;
-    return true;
-  };
-
+  // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
   const handleNext = () => {
     switch (step) {
       case 0:
-        if (vehicleTypeSelected()) {
+        if (vehicleTypeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
         }
         break;
       case 1:
-        if (packageSelected()) {
+        if (packageSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
         }
         break;
       case 2:
-        if (dateTimeSelected()) {
+        if (dateTimeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+        } else {
+          console.log(dateTimeSelected(bookingInfo));
         }
         break;
       default:
