@@ -183,7 +183,7 @@ export const detailMenu = [
       },
       suvThreeRows: {
         price: 205,
-        estimatedTime: "1h 40m",
+        estimatedTime: "3h 40m",
       },
     },
   },
@@ -206,15 +206,15 @@ export const detailMenu = [
     vehicleType: {
       sedan: {
         price: 60,
-        estimatedTime: "3h 20m",
+        estimatedTime: "1h",
       },
       truck: {
-        price: 60,
-        estimatedTime: "3h 40m",
+        price: 65,
+        estimatedTime: "1h",
       },
       suvTwoRows: {
-        price: 60,
-        estimatedTime: "3h 40m",
+        price: 65,
+        estimatedTime: "1h",
       },
       suvThreeRows: {
         price: 70,
