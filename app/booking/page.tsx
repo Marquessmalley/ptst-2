@@ -1,6 +1,9 @@
 import { BookingStepper, StepperProgress } from "@/components/booking";
+import { fetchServices } from "@/lib/data";
 
 const page = () => {
+  const selectedVehicle = "sedan";
+  const servicesPromie = fetchServices(selectedVehicle);
   return (
     <div>
       <div className="flex justify-center items-start">
@@ -9,7 +12,7 @@ const page = () => {
             <StepperProgress />
           </div>
           <div className="bg-white/10 backdrop-blur-lg col-span-12 md:col-span-9 rounded-xl shadow-2xl border m-3 md:m-0">
-            <BookingStepper />
+            <BookingStepper servicesPromise={servicesPromie} />
           </div>
         </div>
       </div>

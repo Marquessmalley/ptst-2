@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Calendar } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
