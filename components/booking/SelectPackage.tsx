@@ -26,7 +26,11 @@ const SelectPackage = () => {
   };
 
   useEffect(() => {
-    fetchServices().then((data) => setServices(data.data));
+    fetchServices().then((data) => {
+      console.log(data);
+      // confiure data to only show vehicle prices based on selected vehicle
+      setServices(data.data);
+    });
   }, []);
 
   return (
