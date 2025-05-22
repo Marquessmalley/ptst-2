@@ -1,7 +1,11 @@
+"use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
+import VehicleImageSkeleton from "../ui/skeletons/VehicleImageSkeleton";
 
 const SelectVehicle = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedVehicle } = bookingInfo;
 
@@ -11,6 +15,12 @@ const SelectVehicle = () => {
       selectedVehicle: event.target.value,
     }));
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   return (
     <div className="p-4">
@@ -27,11 +37,19 @@ const SelectVehicle = () => {
         </>
       ) : (
         <>
-          <div className=" flex justify-center items-center my-2 p-28 rounded-lg bg-slate-100">
-            <p className="font-bold text-lg sm:text-2xl text-black">
-              Vehicle Preview
-            </p>
-          </div>
+          {loading ? (
+            <>
+              <VehicleImageSkeleton />
+            </>
+          ) : (
+            <>
+              <div className=" flex justify-center items-center my-2 p-28 rounded-lg bg-slate-200/50">
+                <p className="font-bold text-lg sm:text-2xl text-black">
+                  Vehicle Preview
+                </p>
+              </div>
+            </>
+          )}
         </>
       )}
 

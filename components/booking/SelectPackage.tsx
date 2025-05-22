@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { PackageCard } from "@/components/ui";
 import { detailMenu } from "@/lib/placeholder-data";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
-import { vehicleBasedPricing } from "@/lib/vehicleBasedPricing";
+import PackageCardSkeleton from "@component/ui/skeletons/PackageCardSkeleton";
 
 const SelectPackage = () => {
   const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedVehicle } = bookingInfo;
 
-  // FETCH SERVICES - this could be listed above component
   const fetchServices = async () => {
     const { selectedVehicle } = bookingInfo;
     const response = await fetch("/api/square/listServices", {
@@ -21,23 +21,34 @@ const SelectPackage = () => {
       body: JSON.stringify({ selectedVehicle }),
     });
     const data = response.json();
+    setLoading(false);
     return data;
   };
 
   useEffect(() => {
-    // vehicleBasedPricing(selectedVehicle);
-    fetchServices().then((data) => console.log(data));
+    fetchServices().then((data) => setServices(data.data));
   }, []);
-  console.log(selectedVehicle);
 
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {detailMenu.map((item, index) => (
-          <div key={index}>
-            <PackageCard item={item} />
-          </div>
-        ))}
+        {loading ? (
+          <>
+            {detailMenu.map((item, index) => (
+              <div key={index}>
+                <PackageCardSkeleton />
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            {detailMenu.map((item, index) => (
+              <div key={index}>
+                <PackageCard item={item} />
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
