@@ -10,7 +10,7 @@ import {
   vehicleTypeSelected,
   packageSelected,
   dateTimeSelected,
-} from "@/lib/bookingValidations";
+} from "@/lib/utils/bookingValidations";
 
 const BookingStepper = () => {
   const { step, setStep } = useStepper();

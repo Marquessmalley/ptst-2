@@ -19,7 +19,7 @@ export type DetailMenuItem = {
 
 export type BookingInfo = {
   selectedVehicle: string;
-  selectedPackage: Partial<DetailMenuItem>;
+  selectedPackage: any;
   selectedDate: string;
   selectedTime: string;
 };

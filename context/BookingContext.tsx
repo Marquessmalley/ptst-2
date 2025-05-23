@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState } from "react";
-import { BookingInfo } from "@/lib/definitions";
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 export type BookingContextType = {
   bookingInfo: BookingInfo;

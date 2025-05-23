@@ -1,4 +1,4 @@
-import { client } from "@/lib/sqaure";
+import { client } from "@/lib/api/sqaure";
 
 // Converts BigInt data type to a string.
 function replacer(key: string, value: any) {

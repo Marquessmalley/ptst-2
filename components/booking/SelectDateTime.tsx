@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar } from "@heroui/react";
 import { parseDate } from "@internationalized/date";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
-import { BookingInfo } from "@/lib/definitions";
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 const times = [
   "12:00 am",

@@ -4,7 +4,7 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { faq } from "@/lib/placeholder-data";
+import { faq } from "@/lib/data/placeholder-data";
 
 const Faq = () => {
   return (

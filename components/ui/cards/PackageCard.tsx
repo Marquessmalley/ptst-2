@@ -1,6 +1,5 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/react";
 import Image from "next/image";
-import { DetailMenuItem } from "@/lib/definitions";
 import {
   Modal,
   ModalContent,
@@ -10,8 +9,10 @@ import {
 } from "@heroui/react";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 
-const PackageCard = ({ item }: { item: DetailMenuItem }) => {
-  const { packageName, startingPrice, estimatedTime, services } = item;
+const PackageCard = ({ item }: { item: any }) => {
+  // const { packageName, startingPrice, estimatedTime, services } = item;
+  const { name, descriptionHtml } = item;
+  const { priceMoney, serviceDuration } = item.variations.itemVariationData;
 
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
@@ -21,12 +22,13 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
     setBookingInfo((prevState: any) => ({
       ...prevState,
       selectedPackage: {
-        packageName,
-        startingPrice,
-        estimatedTime,
+        name,
+        price: priceMoney.amount,
+        serviceDuration,
       },
     }));
   };
+  console.log(descriptionHtml);
 
   return (
     <>
@@ -34,7 +36,7 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
         isBlurred
         shadow="lg"
         className={`py-4 max-w-[300px] rounded-xl shadow-lg  border  ${
-          selectedPackage.packageName === packageName
+          selectedPackage.name === name
             ? "bg-slate-200 border-blue-500"
             : "bg-slate-50"
         }`}
@@ -50,9 +52,9 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
         </CardHeader>
         <CardBody className="">
           <div className="flex justify-between">
-            <p className="text-md font-bold">{packageName}</p>
+            <p className="text-md font-bold">{name}</p>
             <p className="text-md font-semibold text-blue-500">
-              {startingPrice}
+              {priceMoney.amount}
             </p>
           </div>
 
@@ -71,7 +73,7 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <p className="text-sm font-bold ml-1">{estimatedTime}</p>
+            <p className="text-sm font-bold ml-1">{serviceDuration}</p>
           </div>
 
           <p
@@ -86,7 +88,7 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
             type="button"
             className="bg-slate-700 hover:bg-slate-900 transition duration-200 p-2 border text-md font-bold text-white w-full rounded-lg shadow-lg"
             onClick={handlePackageSelect}
-            value={packageName}
+            value={name}
           >
             Select
           </button>
@@ -106,12 +108,12 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
                 <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-600 via-orange-600 to-orange-300 p-3">
                   <Image src="/wash.png" alt="" width={20} height={26} />
                 </div>
-                <p className="ml-1">{packageName} Services</p>
+                <p className="ml-1">{name} Services</p>
               </ModalHeader>
               <ModalBody className="">
                 <div className="">
                   <h3 className="font-bold text-lg sm:my-2">Interior: </h3>
-                  {services.interior?.map((service) => (
+                  {/* {services.interior?.map((service) => (
                     <div key={service} className="flex items-center sm:my-1">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -127,11 +129,11 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
                       </svg>
                       <p className="font-semibold text-md ml-1">{service}</p>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
                 <div className="">
                   <h3 className="font-bold text-lg sm:my-2">Exterior: </h3>
-                  {services.exterior?.map((service) => (
+                  {/* {services.exterior?.map((service) => (
                     <div key={service} className="flex items-center my-1">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +149,7 @@ const PackageCard = ({ item }: { item: DetailMenuItem }) => {
                       </svg>
                       <p className="font-semibold text-md ml-1">{service}</p>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </ModalBody>
             </>

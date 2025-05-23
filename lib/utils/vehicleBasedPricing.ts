@@ -12,7 +12,7 @@ export const vehicleBasedPricing = (selectedVehicle: string, data: any) => {
 
     return {
       ...item.itemData,
-      variations: filteredVariation,
+      variations: filteredVariation[0],
     };
   });
 

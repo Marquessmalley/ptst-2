@@ -1,4 +1,4 @@
-import { detailMenu } from "@/lib/placeholder-data";
+import { detailMenu } from "@/lib/data/placeholder-data";
 import { PriceCard } from "@/components/ui";
 
 const Pricing: React.FC = () => {

@@ -1,4 +1,4 @@
-import { BookingInfo } from "@/lib/definitions";
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 // FUNCTIONS THAT CHECK IF SELECTIONS ARE VALID
 export const vehicleTypeSelected = (bookingInfo: BookingInfo) => {

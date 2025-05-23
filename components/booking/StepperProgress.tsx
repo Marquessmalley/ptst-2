@@ -1,5 +1,5 @@
 "use client";
-import { bookingSteps } from "@/lib/placeholder-data";
+import { bookingSteps } from "@/lib/data/placeholder-data";
 import { useStepper } from "@/hooks/useStepper";
 
 const StepperProgress = () => {

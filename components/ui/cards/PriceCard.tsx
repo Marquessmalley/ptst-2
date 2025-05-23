@@ -1,4 +1,4 @@
-import { DetailMenuItem } from "@/lib/definitions";
+import { DetailMenuItem } from "@/lib/definitions/definitions";
 
 const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
   return (

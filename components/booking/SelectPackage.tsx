@@ -1,20 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 import { PackageCard } from "@/components/ui";
-import { detailMenu } from "@/lib/placeholder-data";
+import { detailMenu } from "@/lib/data/placeholder-data";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import PackageCardSkeleton from "@component/ui/skeletons/PackageCardSkeleton";
-import { vehicleBasedPricing } from "@/lib/vehicleBasedPricing";
+import { vehicleBasedPricing } from "@/lib/utils/vehicleBasedPricing";
 
 const SelectPackage = () => {
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState([1, 2, 3, 4, 5, 6]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedVehicle } = bookingInfo;
 
   const fetchServices = async () => {
-    const { selectedVehicle } = bookingInfo;
     const response = await fetch("/api/square/listServices", {
       method: "GET",
       headers: {
@@ -36,13 +35,13 @@ const SelectPackage = () => {
       })
       .finally(() => setLoading(false));
   }, []);
-
+  console.log(services);
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {loading ? (
           <>
-            {detailMenu.map((item, index) => (
+            {services?.map((item, index) => (
               <div key={index}>
                 <PackageCardSkeleton />
               </div>
@@ -50,7 +49,7 @@ const SelectPackage = () => {
           </>
         ) : (
           <>
-            {detailMenu.map((item, index) => (
+            {services.map((item, index) => (
               <div key={index}>
                 <PackageCard item={item} />
               </div>
