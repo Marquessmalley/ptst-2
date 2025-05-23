@@ -8,10 +8,11 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
+import { currencyFormatter } from "@/lib/utils/currencyFormatter";
+import { durationFormatter } from "@/lib/utils/durationFormatter";
 
 const PackageCard = ({ item }: { item: any }) => {
-  // const { packageName, startingPrice, estimatedTime, services } = item;
-  const { name, descriptionHtml } = item;
+  const { name, description } = item;
   const { priceMoney, serviceDuration } = item.variations.itemVariationData;
 
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
@@ -28,7 +29,9 @@ const PackageCard = ({ item }: { item: any }) => {
       },
     }));
   };
-  console.log(descriptionHtml);
+  const serviceList = description.split("\n");
+
+  // const x = currencyFormatter(priceMoney.amount);
 
   return (
     <>
@@ -52,9 +55,9 @@ const PackageCard = ({ item }: { item: any }) => {
         </CardHeader>
         <CardBody className="">
           <div className="flex justify-between">
-            <p className="text-md font-bold">{name}</p>
+            <p className="text-sm font-bold">{name}</p>
             <p className="text-md font-semibold text-blue-500">
-              {priceMoney.amount}
+              {currencyFormatter(priceMoney.amount)}
             </p>
           </div>
 
@@ -73,7 +76,9 @@ const PackageCard = ({ item }: { item: any }) => {
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <p className="text-sm font-bold ml-1">{serviceDuration}</p>
+            <p className="text-sm font-bold ml-1">
+              {durationFormatter(serviceDuration)}
+            </p>
           </div>
 
           <p
@@ -112,28 +117,42 @@ const PackageCard = ({ item }: { item: any }) => {
               </ModalHeader>
               <ModalBody className="">
                 <div className="">
-                  <h3 className="font-bold text-lg sm:my-2">Interior: </h3>
-                  {/* {services.interior?.map((service) => (
-                    <div key={service} className="flex items-center sm:my-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="size-5 text-blue-500"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <p className="font-semibold text-md ml-1">{service}</p>
+                  {serviceList.map((service: any) => (
+                    <div key={service}>
+                      {(service.trim() === "Interior:" ||
+                        service.trim() === "Exterior:") && (
+                        <h3 className="font-bold text-lg sm:my-2">{service}</h3>
+                      )}
+
+                      {service.trim() !== "Interior:" &&
+                        service.trim() !== "Exterior:" && (
+                          <div
+                            key={service}
+                            className="flex items-center sm:my-1"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="size-5 text-blue-500"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <p className="font-semibold text-md ml-1">
+                              {service}
+                            </p>
+                          </div>
+                        )}
                     </div>
-                  ))} */}
+                  ))}
                 </div>
-                <div className="">
+                {/* <div className="">
                   <h3 className="font-bold text-lg sm:my-2">Exterior: </h3>
-                  {/* {services.exterior?.map((service) => (
+                  {services.exterior?.map((service) => (
                     <div key={service} className="flex items-center my-1">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -149,8 +168,8 @@ const PackageCard = ({ item }: { item: any }) => {
                       </svg>
                       <p className="font-semibold text-md ml-1">{service}</p>
                     </div>
-                  ))} */}
-                </div>
+                  ))}
+                </div> */}
               </ModalBody>
             </>
           )}

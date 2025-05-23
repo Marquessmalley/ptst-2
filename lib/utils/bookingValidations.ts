@@ -9,7 +9,7 @@ export const vehicleTypeSelected = (bookingInfo: BookingInfo) => {
 };
 export const packageSelected = (bookingInfo: BookingInfo) => {
   const { selectedPackage } = bookingInfo;
-  if (selectedPackage.packageName === undefined) return false;
+  if (selectedPackage.name === undefined) return false;
   return true;
 };
 export const dateTimeSelected = (bookingInfo: BookingInfo) => {

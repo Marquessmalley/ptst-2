@@ -32,8 +32,6 @@ const BookingStepper = () => {
       case 2:
         if (dateTimeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
-        } else {
-          console.log(dateTimeSelected(bookingInfo));
         }
         break;
       default:

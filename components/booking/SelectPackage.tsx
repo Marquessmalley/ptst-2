@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { PackageCard } from "@/components/ui";
-import { detailMenu } from "@/lib/data/placeholder-data";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import PackageCardSkeleton from "@component/ui/skeletons/PackageCardSkeleton";
 import { vehicleBasedPricing } from "@/lib/utils/vehicleBasedPricing";
@@ -35,6 +34,7 @@ const SelectPackage = () => {
       })
       .finally(() => setLoading(false));
   }, []);
+
   console.log(services);
   return (
     <div>
