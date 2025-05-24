@@ -1,1 +1,1 @@
-export async function Put(request: Request) {}
+export async function PUT(request: Request) {}
