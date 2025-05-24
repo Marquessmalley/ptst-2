@@ -43,7 +43,7 @@ const SelectVehicle = () => {
             </>
           ) : (
             <div className=" flex justify-center items-center my-2 p-28 rounded-lg bg-slate-200/50">
-              <p className="font-bold text-lg sm:text-2xl text-black">
+              <p className="font-bold text-md sm:text-2xl text-black whitespace-nowrap">
                 Vehicle Preview
               </p>
             </div>
