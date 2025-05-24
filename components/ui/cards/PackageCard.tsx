@@ -38,7 +38,7 @@ const PackageCard = ({ item }: { item: any }) => {
         shadow="lg"
         className={`py-4 max-w-[300px] rounded-xl shadow-lg  border  ${
           selectedPackage.name === name
-            ? "!bg-slate-300 border-blue-500"
+            ? "!bg-slate-200 border-blue-500"
             : "bg-slate-50"
         }`}
       >
