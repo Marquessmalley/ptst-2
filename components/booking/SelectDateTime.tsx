@@ -4,20 +4,7 @@ import { parseDate } from "@internationalized/date";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import { BookingInfo } from "@/lib/definitions/definitions";
 
-const times = [
-  "12:00 am",
-  "1:00 am",
-  "2:00 am",
-  "3:00 am",
-  "4:00 am",
-  "5:00 am",
-  "6:00 am",
-  "7:00 am",
-  "8:00 am",
-  "9:00 am",
-  "10:00 am",
-  "11:00 am",
-];
+const today = new Date().toISOString().split("T")[0];
 
 interface SelectDateTimeProps {
   availableDates: any[];
@@ -28,7 +15,7 @@ const SelectDateTime = ({
   availableDates,
   setAvailableDates,
 }: SelectDateTimeProps) => {
-  let [value, setValue] = useState<any>(parseDate("2025-05-07"));
+  let [value, setValue] = useState<any>(parseDate(today));
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedDate, selectedTime } = bookingInfo;
 
@@ -45,6 +32,15 @@ const SelectDateTime = ({
       ...prevState,
       selectedTime: e.target.value,
     }));
+  };
+
+  const getFormattedDayAndDate = () => {
+    const x = new Date(value.year, value.month - 1, value.day)
+      .toString()
+      .split(" ");
+    const day = x[0];
+    const date = x[2];
+    return `${day} ${date}`;
   };
 
   return (
@@ -71,7 +67,9 @@ const SelectDateTime = ({
       </div>
       <div className="flex flex-col justify-start items-center w-full">
         <div className="my-1 mx-2 p-2 text-left w-full max-w-[370px] ">
-          <p className="text-sm text-default-700 font-semibold ">Sun 26</p>
+          <p className="text-sm text-default-700 font-semibold ">
+            {getFormattedDayAndDate()}
+          </p>
         </div>
         {/* TIMES CONTAINER */}
         <div className="max-w-[370px] w-full">
