@@ -23,7 +23,7 @@ export async function POST(request: Request) {
           ],
           startAtRange: {
             startAt: `${selectedDate}Z`,
-            endAt: `${endAt}T17:00:00.000Z`,
+            endAt: `${endAt}T24:00:00.000Z`,
           },
         },
       },
