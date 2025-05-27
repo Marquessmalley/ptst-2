@@ -44,15 +44,15 @@ const BookingStepper = () => {
           // Fetch availabilities
           fecthAvailabilities()
             .then((data) => {
-              console.log(data);
               const formattedTime =
-                data.length > 0 &&
+                data.availabilities.length > 0 &&
                 data.availabilities.map((date: any) => {
                   return {
                     ...date,
                     startAt: formatTimeFromRFC3339(date.startAt),
                   };
                 });
+
               setAvailableDates(formattedTime);
             })
             .catch((err) => {

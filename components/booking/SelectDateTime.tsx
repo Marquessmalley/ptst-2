@@ -47,9 +47,6 @@ const SelectDateTime = ({
     }));
   };
 
-  console.log(bookingInfo.selectedTime);
-  console.log("Available dates", availableDates);
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">
@@ -72,30 +69,30 @@ const SelectDateTime = ({
           calendarWidth={370}
         />
       </div>
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-start items-center w-full">
         <div className="my-1 mx-2 p-2 text-left w-full max-w-[370px] ">
           <p className="text-sm text-default-700 font-semibold ">Sun 26</p>
         </div>
         {/* TIMES CONTAINER */}
-        <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll max-w-[370px] w-full">
+        <div className="max-w-[370px] w-full">
           {availableDates.length !== 0 ? (
-            <>
+            <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll ">
               {availableDates.map((time: any) => (
                 <button
                   key={time.startAt}
                   type="button"
                   value={time.startAt}
                   onClick={handleSelectTime}
-                  className={`w-full   text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
+                  className={`w-full text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
                     selectedTime === time ? "bg-default-200 " : "bg-default-100"
                   }`}
                 >
                   {time.startAt}
                 </button>
               ))}
-            </>
+            </div>
           ) : (
-            <p>No available dates.</p>
+            <p className="text-md font-semibold">No available dates.</p>
           )}
         </div>
       </div>
