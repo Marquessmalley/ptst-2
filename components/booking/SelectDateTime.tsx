@@ -19,7 +19,15 @@ const times = [
   "11:00 am",
 ];
 
-const SelectDateTime = () => {
+interface SelectDateTimeProps {
+  availableDates: any[];
+  setAvailableDates: (dates: any) => void;
+}
+
+const SelectDateTime = ({
+  availableDates,
+  setAvailableDates,
+}: SelectDateTimeProps) => {
   let [value, setValue] = useState<any>(parseDate("2025-05-07"));
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedDate, selectedTime } = bookingInfo;
@@ -39,8 +47,9 @@ const SelectDateTime = () => {
     }));
   };
 
-  // console.log(selectedDate.toString());
-  // console.log(value.toString());
+  console.log(bookingInfo.selectedTime);
+  console.log("Available dates", availableDates);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">
@@ -69,19 +78,25 @@ const SelectDateTime = () => {
         </div>
         {/* TIMES CONTAINER */}
         <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll max-w-[370px] w-full">
-          {times.map((time) => (
-            <button
-              key={time}
-              type="button"
-              value={time}
-              onClick={handleSelectTime}
-              className={`w-full   text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
-                selectedTime === time ? "bg-default-200 " : "bg-default-100"
-              }`}
-            >
-              {time}
-            </button>
-          ))}
+          {availableDates.length !== 0 ? (
+            <>
+              {availableDates.map((time: any) => (
+                <button
+                  key={time.startAt}
+                  type="button"
+                  value={time.startAt}
+                  onClick={handleSelectTime}
+                  className={`w-full   text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
+                    selectedTime === time ? "bg-default-200 " : "bg-default-100"
+                  }`}
+                >
+                  {time.startAt}
+                </button>
+              ))}
+            </>
+          ) : (
+            <p>No available dates.</p>
+          )}
         </div>
       </div>
     </div>

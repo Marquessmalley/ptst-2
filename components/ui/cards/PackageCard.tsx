@@ -13,7 +13,9 @@ import { durationFormatter } from "@/lib/utils/durationFormatter";
 
 const PackageCard = ({ item }: { item: any }) => {
   const { name, description } = item;
-  const { priceMoney, serviceDuration } = item.variations.itemVariationData;
+  const { id } = item.variations;
+  const { priceMoney, serviceDuration, teamMemberIds } =
+    item.variations.itemVariationData;
 
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
@@ -26,6 +28,8 @@ const PackageCard = ({ item }: { item: any }) => {
         name,
         price: priceMoney.amount,
         serviceDuration,
+        variationId: id,
+        teamMembers: teamMemberIds,
       },
     }));
   };

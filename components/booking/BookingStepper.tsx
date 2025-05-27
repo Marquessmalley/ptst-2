@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useStepper } from "@/hooks/useStepper";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import SelectVehicle from "./SelectVehicle";
@@ -11,10 +12,23 @@ import {
   packageSelected,
   dateTimeSelected,
 } from "@/lib/utils/bookingValidations";
+import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 
 const BookingStepper = () => {
+  const [availableDates, setAvailableDates] = useState([]);
   const { step, setStep } = useStepper();
   const { bookingInfo } = useBookingInfo();
+
+  const fecthAvailabilities = async () => {
+    const response = await fetch("api/square/searchAvailabilities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bookingInfo),
+    });
+
+    const data = response.json();
+    return data;
+  };
 
   // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
   const handleNext = () => {
@@ -27,6 +41,23 @@ const BookingStepper = () => {
       case 1:
         if (packageSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+          // Fetch availabilities
+          fecthAvailabilities()
+            .then((data) => {
+              console.log(data);
+              const formattedTime =
+                data.length > 0 &&
+                data.availabilities.map((date: any) => {
+                  return {
+                    ...date,
+                    startAt: formatTimeFromRFC3339(date.startAt),
+                  };
+                });
+              setAvailableDates(formattedTime);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
         break;
       case 2:
@@ -85,7 +116,10 @@ const BookingStepper = () => {
         )}
         {step === 2 && (
           <div>
-            <SelectDateTime />
+            <SelectDateTime
+              availableDates={availableDates}
+              setAvailableDates={setAvailableDates}
+            />
           </div>
         )}
         {step === 3 && (
