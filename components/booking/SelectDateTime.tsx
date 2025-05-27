@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calendar } from "@heroui/react";
-import { parseDate } from "@internationalized/date";
+import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import { BookingInfo } from "@/lib/definitions/definitions";
+import dayjs from "dayjs";
+import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import TimeSlotsSkeleton from "../ui/skeletons/TimeSlotsSkeleton";
 
-const today = new Date().toISOString().split("T")[0];
+const todaysDate = new Date().toISOString().split("T")[0];
 
 interface SelectDateTimeProps {
   availableDates: any[];
@@ -15,14 +18,18 @@ const SelectDateTime = ({
   availableDates,
   setAvailableDates,
 }: SelectDateTimeProps) => {
-  let [value, setValue] = useState<any>(parseDate(today));
+  let [value, setValue] = useState<any>(parseDate(todaysDate));
+  let [minDate, setMinDate] = useState<any>(today(getLocalTimeZone()));
+  const [loading, setLoading] = useState(true);
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedDate, selectedTime } = bookingInfo;
 
   const handleDateChange = (value: any) => {
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      selectedDate: value.toString(),
+      selectedDate: dayjs(
+        `${value.year}-${value.month}-${value.day}T09:00:00.000`
+      ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
     }));
     setValue(value);
   };
@@ -43,6 +50,41 @@ const SelectDateTime = ({
     return `${day} ${date}`;
   };
 
+  const fecthAvailabilities = async () => {
+    const response = await fetch("api/square/searchAvailabilities", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingInfo),
+    });
+
+    const data = response.json();
+    return data;
+  };
+
+  useEffect(() => {
+    if (selectedDate === "") return;
+    setLoading(true);
+    fecthAvailabilities()
+      .then((data) => {
+        const formattedTime =
+          data.availabilities.length > 0 &&
+          data.availabilities.map((date: any) => {
+            return {
+              ...date,
+              startAt: formatTimeFromRFC3339(date.startAt),
+            };
+          });
+
+        setAvailableDates(formattedTime);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setLoading(false));
+  }, [selectedDate]);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">
@@ -50,6 +92,7 @@ const SelectDateTime = ({
           aria-label="Date (Controlled)"
           value={value}
           onChange={handleDateChange}
+          minValue={minDate}
           classNames={{
             base: "!bg-transparent rounded-none shadow-none",
             title: "font-semibold text-small text-default-700",
@@ -73,7 +116,9 @@ const SelectDateTime = ({
         </div>
         {/* TIMES CONTAINER */}
         <div className="max-w-[370px] w-full">
-          {availableDates.length !== 0 ? (
+          {loading === true ? (
+            <TimeSlotsSkeleton />
+          ) : availableDates.length !== 0 ? (
             <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll ">
               {availableDates.map((time: any) => (
                 <button

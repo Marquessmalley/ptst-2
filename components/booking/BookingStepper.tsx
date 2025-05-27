@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useStepper } from "@/hooks/useStepper";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
+import dayjs from "dayjs";
 import SelectVehicle from "./SelectVehicle";
 import SelectPackage from "./SelectPackage";
 import SelectDateTime from "./SelectDateTime";
@@ -13,17 +14,26 @@ import {
   dateTimeSelected,
 } from "@/lib/utils/bookingValidations";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 const BookingStepper = () => {
   const [availableDates, setAvailableDates] = useState([]);
   const { step, setStep } = useStepper();
-  const { bookingInfo } = useBookingInfo();
+  const { bookingInfo, setBookingInfo } = useBookingInfo();
 
   const fecthAvailabilities = async () => {
     const response = await fetch("api/square/searchAvailabilities", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookingInfo),
+      body: JSON.stringify({
+        ...bookingInfo,
+        selectedDate: dayjs()
+          .hour(9)
+          .minute(0)
+          .second(0)
+          .millisecond(0)
+          .format("YYYY-MM-DDTHH:mm:ss.SSS"),
+      }),
     });
 
     const data = response.json();
@@ -41,6 +51,15 @@ const BookingStepper = () => {
       case 1:
         if (packageSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+          setBookingInfo((prevState: BookingInfo) => ({
+            ...prevState,
+            selectedDate: dayjs()
+              .hour(9)
+              .minute(0)
+              .second(0)
+              .millisecond(0)
+              .format("YYYY-MM-DDTHH:mm:ss.SSS"),
+          }));
           // Fetch availabilities
           fecthAvailabilities()
             .then((data) => {

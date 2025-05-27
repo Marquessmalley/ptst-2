@@ -4,9 +4,9 @@ import { headers } from "next/headers";
 
 export async function POST(request: Request) {
   const body = await request.json();
+  const { selectedDate } = body;
   const { teamMmebers, variationId } = body.selectedPackage;
-
-  console.log(body);
+  const endAt = selectedDate.split("T")[0];
 
   try {
     const availabilites = await client.bookings.searchAvailability({
@@ -22,8 +22,8 @@ export async function POST(request: Request) {
             },
           ],
           startAtRange: {
-            startAt: "2025-05-28T13:28:04.882Z",
-            endAt: "2025-05-28T18:28:09.456Z",
+            startAt: `${selectedDate}Z`,
+            endAt: `${endAt}T17:00:00.000Z`,
           },
         },
       },
