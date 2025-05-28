@@ -13,7 +13,7 @@ import { durationFormatter } from "@/lib/utils/durationFormatter";
 
 const PackageCard = ({ item }: { item: any }) => {
   const { name, description } = item;
-  const { id } = item.variations;
+  const { id, version } = item.variations;
   const { priceMoney, serviceDuration, teamMemberIds } =
     item.variations.itemVariationData;
 
@@ -29,6 +29,7 @@ const PackageCard = ({ item }: { item: any }) => {
         price: priceMoney.amount,
         serviceDuration,
         variationId: id,
+        variationVersion: version,
         teamMembers: teamMemberIds,
       },
     }));
