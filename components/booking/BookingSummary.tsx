@@ -2,12 +2,15 @@ import React from "react";
 import Image from "next/image";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import { Input, Divider, Textarea } from "@heroui/react";
+import { currencyFormatter } from "@/lib/utils/currencyFormatter";
+import { durationFormatter } from "@/lib/utils/durationFormatter";
+import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 
 const BookingSummary = () => {
   const { bookingInfo } = useBookingInfo();
   const { selectedVehicle, selectedDate, selectedPackage, selectedTime } =
     bookingInfo;
-  const { packageName, startingPrice, estimatedTime } = selectedPackage;
+  const { name, price, serviceDuration } = selectedPackage;
 
   return (
     <div className=" p-2 grid grid-cols-1 lg:grid-cols-12 lg:gap-x-10">
@@ -83,7 +86,7 @@ const BookingSummary = () => {
         <div className="w-full">
           <Textarea
             label="Additonal Comments"
-            placeholder="Enter your additional comments"
+            placeholder="Enter any additional comments"
             classNames={{
               label: "!text-default-700 text-sm font-medium",
               inputWrapper:
@@ -101,7 +104,13 @@ const BookingSummary = () => {
         <div className="grid grid-cols-2 items-center mb-4">
           <p className="text-small text-default-500">Appointment Date</p>
           <p className="text-small text-default-800 font-semibold text-right">
-            {selectedDate} {selectedTime}
+            {new Date(selectedDate).toDateString()}
+          </p>
+        </div>
+        <div className="grid grid-cols-2 items-center mb-4">
+          <p className="text-small text-default-500">Appointment Time</p>
+          <p className="text-small text-default-800 font-semibold text-right">
+            {selectedTime}
           </p>
         </div>
         <div className="grid grid-cols-2 items-center mb-4 gap-x-4">
@@ -118,20 +127,20 @@ const BookingSummary = () => {
         <div className="grid grid-cols-2 items-center mb-4 gap-x-4">
           <p className="text-small text-default-500">Service</p>
           <p className="text-small text-default-800 font-semibold text-right">
-            {packageName}
+            {name}
           </p>
         </div>
         <div className="grid grid-cols-2 items-center mb-4 gap-x-4">
           <p className="text-small text-default-500">Estimated Time</p>
           <p className="text-small text-default-800 font-semibold text-right">
-            {estimatedTime}
+            {durationFormatter(serviceDuration)}
           </p>
         </div>
         <Divider className="my-4" />
         <div className="grid grid-cols-2 items-center mb-4 gap-x-4">
           <p className="text-small text-default-500">Estimated Price</p>
           <p className="text-small text-blue-500 font-semibold text-right">
-            {startingPrice}
+            {currencyFormatter(price)}
           </p>
         </div>
       </div>

@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { Calendar } from "@heroui/react";
 import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
@@ -6,6 +7,9 @@ import { BookingInfo } from "@/lib/definitions/definitions";
 import dayjs from "dayjs";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 import TimeSlotsSkeleton from "../ui/skeletons/TimeSlotsSkeleton";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 const todaysDate = new Date().toISOString().split("T")[0];
 
@@ -35,8 +39,16 @@ const SelectDateTime = ({
   };
 
   const handleSelectTime = (e: any) => {
+    // tells daysjs our value & input type,  & how to format its output
+    const formattedTime = dayjs(e.target.value, "H:mm A").format(
+      "HH:mm:ss.SSS"
+    );
+
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
+      selectedDate: dayjs(
+        `${value.year}-${value.month}-${value.day}T${formattedTime}`
+      ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
       selectedTime: e.target.value,
     }));
   };
@@ -85,8 +97,6 @@ const SelectDateTime = ({
       .finally(() => setLoading(false));
   }, [selectedDate]);
 
-  console.log(availableDates);
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">
@@ -129,7 +139,9 @@ const SelectDateTime = ({
                   value={time.startAt}
                   onClick={handleSelectTime}
                   className={`w-full text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
-                    selectedTime === time ? "bg-default-200 " : "bg-default-100"
+                    selectedTime === time.startAt
+                      ? "bg-default-200 "
+                      : "bg-default-100"
                   }`}
                 >
                   {time.startAt}
