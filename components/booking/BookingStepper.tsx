@@ -93,6 +93,8 @@ const BookingStepper = () => {
     setStep((prevState: number) => prevState - 1);
   };
 
+  console.log(bookingInfo);
+
   return (
     <div className="">
       <form className="p-2">

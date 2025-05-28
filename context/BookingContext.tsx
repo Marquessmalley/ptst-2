@@ -21,6 +21,13 @@ export const BookingProvider = ({
     selectedPackage: {},
     selectedDate: "",
     selectedTime: "",
+    userInfo: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
+      additionalComments: "",
+    },
   });
   return (
     <BookingContext.Provider value={{ bookingInfo, setBookingInfo }}>

@@ -4,13 +4,23 @@ import { useBookingInfo } from "@/hooks/useBookingInfo";
 import { Input, Divider, Textarea } from "@heroui/react";
 import { currencyFormatter } from "@/lib/utils/currencyFormatter";
 import { durationFormatter } from "@/lib/utils/durationFormatter";
-import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 const BookingSummary = () => {
-  const { bookingInfo } = useBookingInfo();
+  const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedVehicle, selectedDate, selectedPackage, selectedTime } =
     bookingInfo;
   const { name, price, serviceDuration } = selectedPackage;
+
+  const handleUserForm = (e: any) => {
+    setBookingInfo((prevState: BookingInfo) => ({
+      ...prevState,
+      userInfo: {
+        ...prevState.userInfo,
+        [e.target.name]: e.target.value,
+      },
+    }));
+  };
 
   return (
     <div className=" p-2 grid grid-cols-1 lg:grid-cols-12 lg:gap-x-10">
@@ -22,10 +32,12 @@ const BookingSummary = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 mb-10">
           <Input
             isRequired
+            name="firstName"
             label="First Name"
             labelPlacement="outside"
             placeholder="Enter your first name"
             type="text"
+            onChange={handleUserForm}
             classNames={{
               label: "!text-default-700 text-sm font-medium",
 
@@ -36,10 +48,12 @@ const BookingSummary = () => {
           />
           <Input
             isRequired
+            name="lastName"
             label="Last Name"
             labelPlacement="outside"
             placeholder="Enter your last name"
             type="text"
+            onChange={handleUserForm}
             classNames={{
               label: "!text-default-700 text-sm font-medium",
               inputWrapper:
@@ -52,12 +66,13 @@ const BookingSummary = () => {
         <div className="mb-10">
           <Input
             isRequired
+            name="email"
             errorMessage="Please enter a valid email"
             label="Email"
             labelPlacement="outside"
-            name="email"
             placeholder="Enter your email"
             type="email"
+            onChange={handleUserForm}
             classNames={{
               label: "!text-default-700 text-sm font-medium",
               inputWrapper:
@@ -69,12 +84,13 @@ const BookingSummary = () => {
         <div className="mb-10">
           <Input
             isRequired
+            name="address"
             errorMessage="Please enter a valid address"
             label="Address"
             labelPlacement="outside"
-            name="address"
             placeholder="Enter your address"
             type="text"
+            onChange={handleUserForm}
             classNames={{
               label: "!text-default-700 text-sm font-medium",
               inputWrapper:
@@ -85,8 +101,10 @@ const BookingSummary = () => {
         </div>
         <div className="w-full">
           <Textarea
+            name="additionalComments"
             label="Additonal Comments"
             placeholder="Enter any additional comments"
+            onChange={handleUserForm}
             classNames={{
               label: "!text-default-700 text-sm font-medium",
               inputWrapper:
