@@ -17,3 +17,11 @@ export const dateTimeSelected = (bookingInfo: BookingInfo) => {
   if (selectedDate === "" || selectedTime === "") return false;
   return true;
 };
+
+export const userInfoSubmitted = (bookingInfo: BookingInfo) => {
+  const { firstName, lastName, email, address } = bookingInfo.userInfo;
+
+  if (firstName === "" || lastName === "" || email === "" || address === "")
+    return false;
+  return true;
+};

@@ -12,6 +12,7 @@ import {
   vehicleTypeSelected,
   packageSelected,
   dateTimeSelected,
+  userInfoSubmitted,
 } from "@/lib/utils/bookingValidations";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 import { BookingInfo } from "@/lib/definitions/definitions";
@@ -38,6 +39,14 @@ const BookingStepper = () => {
 
     const data = response.json();
     return data;
+  };
+
+  const createBooking = async () => {
+    const response = await fetch("/api/square/createBooking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bookingInfo),
+    });
   };
 
   // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
@@ -82,6 +91,12 @@ const BookingStepper = () => {
       case 2:
         if (dateTimeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+        }
+        break;
+      case 3:
+        // create booking
+        if (userInfoSubmitted(bookingInfo)) {
+          createBooking();
         }
         break;
       default:
@@ -153,7 +168,7 @@ const BookingStepper = () => {
           <button
             type="button"
             className="font-bold p-2 bg-slate-800 hover:bg-slate-900 transition duration-200 text-white w-full sm:w-44 rounded-2xl my-2 cursor-pointer text-nowrap"
-            disabled={step === 3 ? true : false}
+            // disabled={step === 3 ? true : false}
             onClick={handleNext}
           >
             {step == 3 ? <>Book Appointment</> : <>Continue</>}

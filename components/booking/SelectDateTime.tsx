@@ -80,6 +80,9 @@ const SelectDateTime = ({
     setLoading(true);
     fecthAvailabilities()
       .then((data) => {
+        //FETCH LIST BOOKINGS AND SEE IF BOOKED SLOT === AVAILABILITY SLOT
+        //IF SO REMOVE THAT SLOT
+
         const formattedTime =
           data.availabilities.length > 0 &&
           data.availabilities.map((date: any) => {
