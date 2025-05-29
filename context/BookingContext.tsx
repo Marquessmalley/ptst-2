@@ -26,6 +26,10 @@ export const BookingProvider = ({
       lastName: "",
       email: "",
       address: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
       additionalComments: "",
     },
   });

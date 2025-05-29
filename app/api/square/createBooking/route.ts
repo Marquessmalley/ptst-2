@@ -5,16 +5,32 @@ export async function POST(request: Request) {
   const body = await request.json();
 
   const { selectedDate } = body;
-  const { firstName, lastName, email, address, additionalComments } =
-    body.userInfo;
+  const {
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    state,
+    postalCode,
+    country,
+  } = body.userInfo;
   const { variationId, variationVersion, teamMembers } = body.selectedPackage;
 
   try {
+    // Waterfall method because first request is dependant on the second
     // Create customer first
     const customer = await client.customers.create({
       givenName: firstName,
       familyName: lastName,
       emailAddress: email,
+      address: {
+        addressLine1: address,
+        locality: city,
+        administrativeDistrictLevel1: state,
+        postalCode: postalCode,
+        country: country.toUpperCase(),
+      },
     });
 
     // create booking

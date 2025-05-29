@@ -16,8 +16,10 @@ import {
 } from "@/lib/utils/bookingValidations";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 import { BookingInfo } from "@/lib/definitions/definitions";
+import { useRouter } from "next/navigation";
 
 const BookingStepper = () => {
+  const router = useRouter();
   const [availableDates, setAvailableDates] = useState([]);
   const { step, setStep } = useStepper();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
@@ -47,6 +49,8 @@ const BookingStepper = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookingInfo),
     });
+    const data = response.json();
+    return data;
   };
 
   // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
@@ -96,7 +100,14 @@ const BookingStepper = () => {
       case 3:
         // create booking
         if (userInfoSubmitted(bookingInfo)) {
-          createBooking();
+          createBooking()
+            .then((data) => {
+              const { id } = data.booking.booking;
+              router.push(`/booking/confirmation/${id}`);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
         break;
       default:
@@ -107,8 +118,6 @@ const BookingStepper = () => {
   const handleBack = () => {
     setStep((prevState: number) => prevState - 1);
   };
-
-  console.log(bookingInfo);
 
   return (
     <div className="">
