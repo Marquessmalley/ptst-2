@@ -1,46 +1,158 @@
-import { useState } from "react";
+"use client";
+import { useState, useEffect } from "react";
 import { Calendar } from "@heroui/react";
-import { parseDate } from "@internationalized/date";
+import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
 import { useBookingInfo } from "@/hooks/useBookingInfo";
 import { BookingInfo } from "@/lib/definitions/definitions";
+import dayjs from "dayjs";
+import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import TimeSlotsSkeleton from "../ui/skeletons/TimeSlotsSkeleton";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
-const times = [
-  "12:00 am",
-  "1:00 am",
-  "2:00 am",
-  "3:00 am",
-  "4:00 am",
-  "5:00 am",
-  "6:00 am",
-  "7:00 am",
-  "8:00 am",
-  "9:00 am",
-  "10:00 am",
-  "11:00 am",
-];
+dayjs.extend(customParseFormat);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
-const SelectDateTime = () => {
-  let [value, setValue] = useState<any>(parseDate("2025-05-07"));
+const todaysDate = new Date().toISOString().split("T")[0];
+
+interface SelectDateTimeProps {
+  availableDates: any[];
+  setAvailableDates: (dates: any) => void;
+}
+
+const SelectDateTime = ({
+  availableDates,
+  setAvailableDates,
+}: SelectDateTimeProps) => {
+  let [value, setValue] = useState<any>(parseDate(todaysDate));
+  let [minDate, setMinDate] = useState<any>(today(getLocalTimeZone()));
+  const [selectedDayOnly, setSelectedDayOnly] = useState(""); // YYYY-MM-DD
+  const [loading, setLoading] = useState(availableDates.length === 0);
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedDate, selectedTime } = bookingInfo;
 
   const handleDateChange = (value: any) => {
+    const dayOnly = dayjs(`${value.year}-${value.month}-${value.day}`).format(
+      "YYYY-MM-DD"
+    );
+
+    setSelectedDayOnly(dayOnly);
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      selectedDate: value.toString(),
+      selectedDate: dayjs(`${dayOnly}T09:00:00.000`).format(
+        "YYYY-MM-DDTHH:mm:ss.SSSZ"
+      ),
     }));
     setValue(value);
   };
 
+  // const handleSelectTime = (e: any) => {
+  //   // tells daysjs our value & input type,  & how to format its output
+  //   const formattedTime = dayjs(e.target.value, "H:mm A").format(
+  //     "HH:mm:ss.SSS"
+  //   );
+
+  //   setBookingInfo((prevState: BookingInfo) => ({
+  //     ...prevState,
+  //     selectedDate: dayjs(
+  //       `${value.year}-${value.month}-${value.day}T${formattedTime}`
+  //     ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
+  //     selectedTime: e.target.value,
+  //   }));
+  // };
+
   const handleSelectTime = (e: any) => {
+    const rawTime = e.target.value?.trim();
+
+    if (!rawTime || !value?.year || !value?.month || !value?.day) {
+      console.error("Missing input values");
+      return;
+    }
+
+    const timeString = rawTime
+      .toUpperCase()
+      .replace(/\s+/g, "") // remove accidental spaces
+      .replace(/^(\d{1,2}:\d{2})(AM|PM)$/, "$1 $2");
+
+    const dateTimeString = `${value.year}-${String(value.month).padStart(
+      2,
+      "0"
+    )}-${String(value.day).padStart(2, "0")} ${timeString}`;
+
+    const localTime = dayjs.tz(
+      dateTimeString,
+      "YYYY-MM-DD h:mm A",
+      "America/New_York"
+    );
+
+    if (!localTime.isValid()) {
+      console.error("Invalid date-time parsed:", dateTimeString);
+      return;
+    }
+
+    const utcTime = localTime.utc();
+
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      selectedTime: e.target.value,
+      selectedDate: utcTime.format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
+      selectedTime: rawTime,
     }));
   };
 
-  // console.log(selectedDate.toString());
-  // console.log(value.toString());
+  const getFormattedDayAndDate = () => {
+    const x = new Date(value.year, value.month - 1, value.day)
+      .toString()
+      .split(" ");
+    const day = x[0];
+    const date = x[2];
+    return `${day} ${date}`;
+  };
+
+  const fecthAvailabilities = async () => {
+    setLoading(true);
+    const response = await fetch("api/square/searchAvailabilities", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingInfo),
+    });
+
+    const data = response.json();
+
+    return data;
+  };
+
+  useEffect(() => {
+    // if (selectedDayOnly === "") return;
+    if (availableDates.length > 0) {
+      setLoading(false);
+    }
+    // setLoading(true);
+    fecthAvailabilities()
+      .then((data) => {
+        //FETCH LIST BOOKINGS AND SEE IF BOOKED SLOT === AVAILABILITY SLOT
+        //IF SO REMOVE THAT SLOT
+
+        const formattedTime =
+          data.availabilities.length > 0 &&
+          data.availabilities.map((date: any) => {
+            return {
+              ...date,
+              startAt: formatTimeFromRFC3339(date.startAt),
+            };
+          });
+
+        setAvailableDates(formattedTime);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setLoading(false));
+  }, [selectedDayOnly]);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex justify-center ">
@@ -48,6 +160,7 @@ const SelectDateTime = () => {
           aria-label="Date (Controlled)"
           value={value}
           onChange={handleDateChange}
+          minValue={minDate}
           classNames={{
             base: "!bg-transparent rounded-none shadow-none",
             title: "font-semibold text-small text-default-700",
@@ -63,25 +176,37 @@ const SelectDateTime = () => {
           calendarWidth={370}
         />
       </div>
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-start items-center w-full">
         <div className="my-1 mx-2 p-2 text-left w-full max-w-[370px] ">
-          <p className="text-sm text-default-700 font-semibold ">Sun 26</p>
+          <p className="text-sm text-default-700 font-semibold ">
+            {getFormattedDayAndDate()}
+          </p>
         </div>
         {/* TIMES CONTAINER */}
-        <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll max-w-[370px] w-full">
-          {times.map((time) => (
-            <button
-              key={time}
-              type="button"
-              value={time}
-              onClick={handleSelectTime}
-              className={`w-full   text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
-                selectedTime === time ? "bg-default-200 " : "bg-default-100"
-              }`}
-            >
-              {time}
-            </button>
-          ))}
+        <div className="max-w-[370px] w-full">
+          {loading === true ? (
+            <TimeSlotsSkeleton />
+          ) : availableDates.length !== 0 ? (
+            <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll ">
+              {availableDates.map((time: any) => (
+                <button
+                  key={time.startAt}
+                  type="button"
+                  value={time.startAt}
+                  onClick={handleSelectTime}
+                  className={`w-full text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
+                    selectedTime === time.startAt
+                      ? "bg-default-200 "
+                      : "bg-default-100"
+                  }`}
+                >
+                  {time.startAt}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className="text-md font-semibold">No available dates.</p>
+          )}
         </div>
       </div>
     </div>
