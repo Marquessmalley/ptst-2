@@ -46,7 +46,7 @@ export async function POST(request: Request) {
         locationId: process.env.LOCATION_ID,
         locationType: "BUSINESS_LOCATION",
         customerId: customer.customer?.id,
-        startAt: `${selectedDate}Z`,
+        startAt: `${selectedDate}`,
       },
     });
 

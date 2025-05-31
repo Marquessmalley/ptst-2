@@ -8,8 +8,12 @@ import dayjs from "dayjs";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 import TimeSlotsSkeleton from "../ui/skeletons/TimeSlotsSkeleton";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
 dayjs.extend(customParseFormat);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const todaysDate = new Date().toISOString().split("T")[0];
 
@@ -38,18 +42,56 @@ const SelectDateTime = ({
     setValue(value);
   };
 
+  // const handleSelectTime = (e: any) => {
+  //   // tells daysjs our value & input type,  & how to format its output
+  //   const formattedTime = dayjs(e.target.value, "H:mm A").format(
+  //     "HH:mm:ss.SSS"
+  //   );
+
+  //   setBookingInfo((prevState: BookingInfo) => ({
+  //     ...prevState,
+  //     selectedDate: dayjs(
+  //       `${value.year}-${value.month}-${value.day}T${formattedTime}`
+  //     ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
+  //     selectedTime: e.target.value,
+  //   }));
+  // };
+
   const handleSelectTime = (e: any) => {
-    // tells daysjs our value & input type,  & how to format its output
-    const formattedTime = dayjs(e.target.value, "H:mm A").format(
-      "HH:mm:ss.SSS"
+    const rawTime = e.target.value?.trim();
+
+    if (!rawTime || !value?.year || !value?.month || !value?.day) {
+      console.error("Missing input values");
+      return;
+    }
+
+    const timeString = rawTime
+      .toUpperCase()
+      .replace(/\s+/g, "") // remove accidental spaces
+      .replace(/^(\d{1,2}:\d{2})(AM|PM)$/, "$1 $2");
+
+    const dateTimeString = `${value.year}-${String(value.month).padStart(
+      2,
+      "0"
+    )}-${String(value.day).padStart(2, "0")} ${timeString}`;
+
+    const localTime = dayjs.tz(
+      dateTimeString,
+      "YYYY-MM-DD h:mm A",
+      "America/New_York"
     );
+
+    if (!localTime.isValid()) {
+      console.error("Invalid date-time parsed:", dateTimeString);
+      return;
+    }
+
+    const utcTime = localTime.utc();
 
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      selectedDate: dayjs(
-        `${value.year}-${value.month}-${value.day}T${formattedTime}`
-      ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
-      selectedTime: e.target.value,
+      selectedDate: utcTime.format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
+      selectedTime: rawTime,
     }));
   };
 
@@ -77,11 +119,13 @@ const SelectDateTime = ({
 
   useEffect(() => {
     if (selectedDate === "") return;
-    setLoading(true);
+    // setLoading(true);
     fecthAvailabilities()
       .then((data) => {
         //FETCH LIST BOOKINGS AND SEE IF BOOKED SLOT === AVAILABILITY SLOT
         //IF SO REMOVE THAT SLOT
+
+        console.log("raw data", data);
 
         const formattedTime =
           data.availabilities.length > 0 &&
@@ -99,6 +143,8 @@ const SelectDateTime = ({
       })
       .finally(() => setLoading(false));
   }, [selectedDate]);
+
+  console.log("formatted data", availableDates);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">

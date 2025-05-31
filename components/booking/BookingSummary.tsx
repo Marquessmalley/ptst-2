@@ -24,8 +24,6 @@ const BookingSummary = () => {
     }));
   };
 
-  console.log(bookingInfo.userInfo.address);
-
   return (
     <div className=" p-2 grid grid-cols-1 lg:grid-cols-12 lg:gap-x-10">
       <div className=" p-2 col-span-7">

@@ -22,13 +22,12 @@ export async function POST(request: Request) {
             },
           ],
           startAtRange: {
-            startAt: `${selectedDate}Z`,
+            startAt: `${selectedDate}`,
             endAt: `${endAt}T24:00:00.000Z`,
           },
         },
       },
     });
-
     const newAva = JSON.stringify(availabilites, replace);
 
     return new Response(newAva, {

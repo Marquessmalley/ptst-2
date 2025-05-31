@@ -30,12 +30,12 @@ const BookingStepper = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...bookingInfo,
-        selectedDate: dayjs()
+        selectedDate: `${dayjs()
           .hour(9)
           .minute(0)
           .second(0)
           .millisecond(0)
-          .format("YYYY-MM-DDTHH:mm:ss.SSS"),
+          .format("YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
       }),
     });
 
@@ -66,12 +66,12 @@ const BookingStepper = () => {
           setStep((prevState: number) => prevState + 1);
           setBookingInfo((prevState: BookingInfo) => ({
             ...prevState,
-            selectedDate: dayjs()
+            selectedDate: ` ${dayjs()
               .hour(9)
               .minute(0)
               .second(0)
               .millisecond(0)
-              .format("YYYY-MM-DDTHH:mm:ss.SSS"),
+              .format("YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
           }));
           // Fetch availabilities
           fecthAvailabilities()
@@ -84,7 +84,6 @@ const BookingStepper = () => {
                     startAt: formatTimeFromRFC3339(date.startAt),
                   };
                 });
-
               setAvailableDates(formattedTime);
             })
             .catch((err) => {
@@ -103,6 +102,7 @@ const BookingStepper = () => {
           createBooking()
             .then((data) => {
               const { id } = data.booking.booking;
+              // this takes too long, maybe setup a fallback ui
               router.push(`/booking/confirmation/${id}`);
             })
             .catch((err) => {

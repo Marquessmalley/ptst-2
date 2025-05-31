@@ -9,8 +9,7 @@ export default async function ConfirmationDetails({
   const { id } = await params;
 
   return (
-    <div>
-      <h3>Welcome to the Confirmation page</h3>
+    <div className="">
       <Suspense fallback={<p>Loading...</p>}>
         <BookingDetails id={id} />
       </Suspense>
