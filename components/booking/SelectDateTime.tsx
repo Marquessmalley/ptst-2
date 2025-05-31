@@ -28,16 +28,22 @@ const SelectDateTime = ({
 }: SelectDateTimeProps) => {
   let [value, setValue] = useState<any>(parseDate(todaysDate));
   let [minDate, setMinDate] = useState<any>(today(getLocalTimeZone()));
-  const [loading, setLoading] = useState(true);
+  const [selectedDayOnly, setSelectedDayOnly] = useState(""); // YYYY-MM-DD
+  const [loading, setLoading] = useState(availableDates.length === 0);
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedDate, selectedTime } = bookingInfo;
 
   const handleDateChange = (value: any) => {
+    const dayOnly = dayjs(`${value.year}-${value.month}-${value.day}`).format(
+      "YYYY-MM-DD"
+    );
+
+    setSelectedDayOnly(dayOnly);
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      selectedDate: dayjs(
-        `${value.year}-${value.month}-${value.day}T09:00:00.000`
-      ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
+      selectedDate: dayjs(`${dayOnly}T09:00:00.000`).format(
+        "YYYY-MM-DDTHH:mm:ss.SSSZ"
+      ),
     }));
     setValue(value);
   };
@@ -105,6 +111,7 @@ const SelectDateTime = ({
   };
 
   const fecthAvailabilities = async () => {
+    setLoading(true);
     const response = await fetch("api/square/searchAvailabilities", {
       method: "POST",
       headers: {
@@ -114,18 +121,20 @@ const SelectDateTime = ({
     });
 
     const data = response.json();
+
     return data;
   };
 
   useEffect(() => {
-    if (selectedDate === "") return;
+    // if (selectedDayOnly === "") return;
+    if (availableDates.length > 0) {
+      setLoading(false);
+    }
     // setLoading(true);
     fecthAvailabilities()
       .then((data) => {
         //FETCH LIST BOOKINGS AND SEE IF BOOKED SLOT === AVAILABILITY SLOT
         //IF SO REMOVE THAT SLOT
-
-        console.log("raw data", data);
 
         const formattedTime =
           data.availabilities.length > 0 &&
@@ -142,9 +151,7 @@ const SelectDateTime = ({
         console.log(err);
       })
       .finally(() => setLoading(false));
-  }, [selectedDate]);
-
-  console.log("formatted data", availableDates);
+  }, [selectedDayOnly]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 ">
