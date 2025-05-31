@@ -3,6 +3,10 @@ import { Divider } from "@heroui/react";
 import Image from "next/image";
 import { replace } from "@/lib/utils/bigIntHandler";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
 
 export default async function BookingDetails({ id }: { id: string }) {
   const bookingData = await client.bookings.get({ bookingId: id });
@@ -12,8 +16,6 @@ export default async function BookingDetails({ id }: { id: string }) {
   }
   const { status, customerId, startAt } = bookingData.booking;
 
-  console.log(startAt);
-
   if (!startAt) {
     throw new Error("startAt date is missing");
   }
@@ -21,13 +23,21 @@ export default async function BookingDetails({ id }: { id: string }) {
   if (!bookingData.booking.appointmentSegments) {
     throw new Error("Appointment is missing in the booking data.");
   }
-  const { serviceVariationId } = bookingData.booking.appointmentSegments[0];
+  const { serviceVariationId, durationMinutes } =
+    bookingData.booking.appointmentSegments[0];
 
   if (!customerId) {
     throw new Error("Customer ID is missing in the booking data.");
   }
 
   const customerData = await client.customers.get({ customerId });
+
+  if (!customerData.customer) {
+    throw new Error("No customer data");
+  }
+
+  const { givenName, familyName, emailAddress, address } =
+    customerData.customer;
 
   if (!serviceVariationId) {
     throw new Error("Service variation id is missing");
@@ -51,6 +61,9 @@ export default async function BookingDetails({ id }: { id: string }) {
 
   const { name } = parseDServiceData.itemData;
 
+  console.log(bookingData);
+  console.log(customerData);
+  console.log(parseDServiceData);
   return (
     <div className="">
       {/* Top */}
@@ -107,8 +120,8 @@ export default async function BookingDetails({ id }: { id: string }) {
 
         <div className="grid grid-cols-2 ">
           <div className="mx-6 my-2">
-            <p className="font-semibold">Service Details</p>
-            <div className="flex items-center my-2">
+            <p className="font-semibold mb-2 text-lg">Service Details</p>
+            <div className="flex items-center my-4">
               <Image
                 src="/wash.png"
                 alt=""
@@ -117,10 +130,13 @@ export default async function BookingDetails({ id }: { id: string }) {
                 className="bg-blue-400 p-1 rounded-full"
               />
               <div>
-                <p className="font-normal text-sm text-gray-700 ml-1">{name}</p>
+                <p className="font-semibold text-md text-gray-900 ml-2">
+                  Package Selected
+                </p>
+                <p className="font-normal text-sm text-gray-900 ml-2">{name}</p>
               </div>
             </div>
-            <div className="flex items-center my-2">
+            <div className="flex items-center my-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -137,14 +153,129 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-normal text-sm text-gray-700 ml-1">
+                <p className="font-semibold text-md text-gray-900 ml-2">
+                  {new Date(startAt).toDateString()}
+                </p>
+                <p className="font-normal text-sm text-gray-700 ml-2">
                   {formatTimeFromRFC3339(startAt)}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center my-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="size-7 text-white bg-blue-400 rounded-full p-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+
+              <div>
+                <p className="font-semibold text-md text-gray-900 ml-2">
+                  Estimated Duration
+                </p>
+                <p className="font-normal text-sm text-gray-700 ml-2">
+                  {durationMinutes &&
+                    dayjs
+                      .duration(durationMinutes, "minutes")
+                      .format("H[h] m[min]")}
                 </p>
               </div>
             </div>
           </div>
           <div className="mx-6 my-2">
-            <p className="font-semibold">Contact Information</p>
+            <p className="font-semibold mb-2 text-lg">Contact Information</p>
+            <div className="flex items-center my-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="size-7 text-white bg-blue-400 rounded-full p-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+
+              <div>
+                <p className="font-semibold text-md text-gray-900 ml-2">
+                  Customer Name
+                </p>
+                <p className="font-normal text-sm text-gray-900 ml-2">
+                  {givenName} {familyName}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center my-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="size-7 text-white bg-blue-400 rounded-full p-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 3.75H6.912a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859M12 3v8.25m0 0-3-3m3 3 3-3"
+                />
+              </svg>
+
+              <div>
+                <p className="font-semibold text-md text-gray-900 ml-2">
+                  Email
+                </p>
+                <p className="font-normal text-sm text-gray-900 ml-2">
+                  {emailAddress}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center my-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="size-7 text-white bg-blue-400 rounded-full p-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                />
+              </svg>
+
+              <div>
+                <p className="font-semibold text-md text-gray-900 ml-2">
+                  Location
+                </p>
+                <p className="font-normal text-sm text-gray-900 ml-2">
+                  {address?.addressLine1}
+                </p>
+                <p className="font-normal text-sm text-gray-900 ml-2">
+                  {address?.locality}, {address?.administrativeDistrictLevel1},{" "}
+                  {address?.postalCode}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
