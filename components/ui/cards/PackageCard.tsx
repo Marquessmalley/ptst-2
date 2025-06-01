@@ -41,7 +41,7 @@ const PackageCard = ({ item }: { item: any }) => {
       <Card
         isBlurred
         shadow="lg"
-        className={`py-4 max-w-[300px] rounded-xl shadow-lg  border  ${
+        className={`py-4 max-w-[300px] rounded-xl shadow-lg  border whitespace-  ${
           selectedPackage.name === name
             ? "!bg-slate-200 border-blue-500"
             : "bg-slate-50"
@@ -58,7 +58,9 @@ const PackageCard = ({ item }: { item: any }) => {
         </CardHeader>
         <CardBody className="">
           <div className="flex justify-between">
-            <p className="text-sm font-bold">{name}</p>
+            <p className="text-sm font-bold  break-words whitespace-normal max-w-[125px]">
+              {name}
+            </p>
             <p className="text-md font-semibold text-blue-500">
               {currencyFormatter(priceMoney.amount)}
             </p>
