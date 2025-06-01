@@ -17,10 +17,13 @@ import {
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
 import { BookingInfo } from "@/lib/definitions/definitions";
 import { useRouter } from "next/navigation";
+import ErrorAlert from "../ui/alert/ErrorAlert";
 
 const BookingStepper = () => {
   const router = useRouter();
   const [availableDates, setAvailableDates] = useState([]);
+  const [error, setError] = useState({ errorType: "", description: "" });
+
   const { step, setStep } = useStepper();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
 
@@ -59,11 +62,24 @@ const BookingStepper = () => {
       case 0:
         if (vehicleTypeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+          setError({
+            errorType: "",
+            description: "",
+          });
+        } else {
+          setError({
+            errorType: "Vehicle Selection",
+            description: "Please select a vehicle!",
+          });
         }
         break;
       case 1:
         if (packageSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+          setError({
+            errorType: "",
+            description: "",
+          });
           setBookingInfo((prevState: BookingInfo) => ({
             ...prevState,
             selectedDate: ` ${dayjs()
@@ -89,11 +105,25 @@ const BookingStepper = () => {
             .catch((err) => {
               console.log(err);
             });
+        } else {
+          setError({
+            errorType: "Package Selection",
+            description: "Please select a package!",
+          });
         }
         break;
       case 2:
         if (dateTimeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
+          setError({
+            errorType: "",
+            description: "",
+          });
+        } else {
+          setError({
+            errorType: "Date & Time Selection",
+            description: "Please select a date & time!",
+          });
         }
         break;
       case 3:
@@ -118,6 +148,8 @@ const BookingStepper = () => {
   const handleBack = () => {
     setStep((prevState: number) => prevState - 1);
   };
+
+  console.log(error);
 
   return (
     <div className="">
@@ -151,16 +183,34 @@ const BookingStepper = () => {
         </div>
         {step === 0 && (
           <div>
+            {error.errorType === "Vehicle Selection" && (
+              <ErrorAlert
+                errorType={error.errorType}
+                errorDescription={error.description}
+              />
+            )}
             <SelectVehicle />
           </div>
         )}
         {step === 1 && (
           <div>
+            {error.errorType === "Package Selection" && (
+              <ErrorAlert
+                errorType={error.errorType}
+                errorDescription={error.description}
+              />
+            )}
             <SelectPackage />
           </div>
         )}
         {step === 2 && (
           <div>
+            {error.errorType === "Date & Time Selection" && (
+              <ErrorAlert
+                errorType={error.errorType}
+                errorDescription={error.description}
+              />
+            )}
             <SelectDateTime
               availableDates={availableDates}
               setAvailableDates={setAvailableDates}
