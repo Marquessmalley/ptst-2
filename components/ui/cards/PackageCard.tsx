@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/react";
 import Image from "next/image";
 import {

@@ -8,7 +8,6 @@ import { vehicleBasedPricing } from "@/lib/utils/vehicleBasedPricing";
 const SelectPackage = () => {
   const [services, setServices] = useState([1, 2, 3, 4, 5, 6]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedVehicle } = bookingInfo;
 
@@ -30,7 +29,7 @@ const SelectPackage = () => {
         setServices(vehicleBasedPricing(selectedVehicle, data));
       })
       .catch((err) => {
-        setError(err);
+        console.log(err);
       })
       .finally(() => setLoading(false));
   }, []);
