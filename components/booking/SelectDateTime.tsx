@@ -48,21 +48,6 @@ const SelectDateTime = ({
     setValue(value);
   };
 
-  // const handleSelectTime = (e: any) => {
-  //   // tells daysjs our value & input type,  & how to format its output
-  //   const formattedTime = dayjs(e.target.value, "H:mm A").format(
-  //     "HH:mm:ss.SSS"
-  //   );
-
-  //   setBookingInfo((prevState: BookingInfo) => ({
-  //     ...prevState,
-  //     selectedDate: dayjs(
-  //       `${value.year}-${value.month}-${value.day}T${formattedTime}`
-  //     ).format("YYYY-MM-DDTHH:mm:ss.SSS"),
-  //     selectedTime: e.target.value,
-  //   }));
-  // };
-
   const handleSelectTime = (e: any) => {
     const rawTime = e.target.value?.trim();
 

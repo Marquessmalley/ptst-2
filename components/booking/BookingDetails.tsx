@@ -3,6 +3,7 @@ import { Divider } from "@heroui/react";
 import Image from "next/image";
 import { replace } from "@/lib/utils/bigIntHandler";
 import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import { currencyFormatter } from "@/lib/utils/currencyFormatter";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
@@ -30,6 +31,8 @@ export default async function BookingDetails({ id }: { id: string }) {
     throw new Error("Customer ID is missing in the booking data.");
   }
 
+  // CUSTOMER INFO
+
   const customerData = await client.customers.get({ customerId });
 
   if (!customerData.customer) {
@@ -39,6 +42,7 @@ export default async function BookingDetails({ id }: { id: string }) {
   const { givenName, familyName, emailAddress, address } =
     customerData.customer;
 
+  // SERVICE INFO
   if (!serviceVariationId) {
     throw new Error("Service variation id is missing");
   }
@@ -61,11 +65,24 @@ export default async function BookingDetails({ id }: { id: string }) {
 
   const { name } = parseDServiceData.itemData;
 
+  const serviceVariant = await client.catalog.object.get({
+    objectId: serviceVariationId,
+  });
+
+  const stringifyServiceVariant = JSON.stringify(serviceVariant, replace);
+  const parseDServiceVariant = JSON.parse(stringifyServiceVariant);
+
+  const servicePrice = currencyFormatter(
+    parseDServiceVariant.object.itemVariationData.priceMoney.amount
+  );
+
+  const vehicleType = parseDServiceVariant.object.itemVariationData.name;
+
   return (
     <div className="">
       {/* Top */}
       <div className="grid grid-cols-1 place-items-center mb-10">
-        <div className="flex items-center my-2">
+        <div className="flex items-center my-2 ">
           <h2 className="font-bold text-4xl text-gray-700">
             Appointment{" "}
             {status &&
@@ -80,7 +97,7 @@ export default async function BookingDetails({ id }: { id: string }) {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="green"
-            className="size-6 bg-white border rounded-full h-10 w-10 ml-2"
+            className="size-12 p-1 bg-white border rounded-full  ml-2"
           >
             <path
               strokeLinecap="round"
@@ -97,14 +114,14 @@ export default async function BookingDetails({ id }: { id: string }) {
       {/* MIDDLE */}
       <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl shadow-lg border">
         <div className="grid grid-cols-2">
-          <div className="col-span-1 mx-6 my-1">
+          <div className="col-span-1 mx-6 my-4">
             <h3 className="font-bold text-xl text-gray-700">Booking Summary</h3>
             <p className="font-normal text-md text-gray-700">
               Booking ID: #{id}{" "}
             </p>
           </div>
 
-          <p className="justify-self-end mx-6 my-2 bg-green-200 text-green-500 font-semibold rounded-3xl w-24 text-center h-7">
+          <p className="justify-self-end mx-6 my-4 bg-green-200 text-green-500 font-semibold rounded-3xl w-24 text-center h-7">
             {status &&
               status
                 .charAt(0)
@@ -114,10 +131,41 @@ export default async function BookingDetails({ id }: { id: string }) {
         </div>
 
         <Divider className="my-4" />
+        <div className="mx-6 my-4 flex justify-between">
+          <div className="">
+            <p className="text-sm font-semibold text-gray-600">Total Amount:</p>
+            <p className="text-2xl font-bold">{servicePrice}</p>
+          </div>
+          <div
+            className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-1 flex items-center max-w-xs"
+            role="alert"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.75"
+              stroke="currentColor"
+              className="size-12"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+              />
+            </svg>
 
-        <div className="grid grid-cols-2 ">
+            <p className="font-normal text-xs ml-2">
+              Please remove all personal belongings from your vehicle before
+              your appointment
+            </p>
+          </div>
+        </div>
+        <Divider className="my-4" />
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 ">
           <div className="mx-6 my-2">
-            <p className="font-semibold mb-2 text-lg">Service Details</p>
+            <p className="font-bold mb-2 text-lg">Service Details</p>
             <div className="flex items-center my-4">
               <Image
                 src="/wash.png"
@@ -127,10 +175,10 @@ export default async function BookingDetails({ id }: { id: string }) {
                 className="bg-blue-400 p-1 rounded-full"
               />
               <div>
-                <p className="font-semibold text-md text-gray-900 ml-2">
+                <p className="font-semibold text-sm text-gray-900 ml-2">
                   Package Selected
                 </p>
-                <p className="font-normal text-sm text-gray-900 ml-2">{name}</p>
+                <p className="font-normal text-xs text-gray-900 ml-2">{name}</p>
               </div>
             </div>
             <div className="flex items-center my-4">
@@ -150,10 +198,10 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-md text-gray-900 ml-2">
+                <p className="font-semibold text-sm text-gray-900 ml-2">
                   {new Date(startAt).toDateString()}
                 </p>
-                <p className="font-normal text-sm text-gray-700 ml-2">
+                <p className="font-normal text-xs text-gray-700 ml-2">
                   {formatTimeFromRFC3339(startAt)}
                 </p>
               </div>
@@ -175,10 +223,10 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-md text-gray-900 ml-2">
+                <p className="font-semibold text-sm text-gray-900 ml-2">
                   Estimated Duration
                 </p>
-                <p className="font-normal text-sm text-gray-700 ml-2">
+                <p className="font-normal text-xs text-gray-700 ml-2">
                   {durationMinutes &&
                     dayjs
                       .duration(durationMinutes, "minutes")
@@ -188,7 +236,7 @@ export default async function BookingDetails({ id }: { id: string }) {
             </div>
           </div>
           <div className="mx-6 my-2">
-            <p className="font-semibold mb-2 text-lg">Contact Information</p>
+            <p className="font-bold mb-2 text-lg">Contact Information</p>
             <div className="flex items-center my-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -206,10 +254,10 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-md text-gray-900 ml-2">
+                <p className="font-semibold text-sm text-gray-900 ml-2">
                   Customer Name
                 </p>
-                <p className="font-normal text-sm text-gray-900 ml-2">
+                <p className="font-normal text-xs text-gray-900 ml-2">
                   {givenName} {familyName}
                 </p>
               </div>
@@ -231,10 +279,10 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-md text-gray-900 ml-2">
+                <p className="font-semibold text-sm text-gray-900 ml-2">
                   Email
                 </p>
-                <p className="font-normal text-sm text-gray-900 ml-2">
+                <p className="font-normal text-xs text-gray-900 ml-2">
                   {emailAddress}
                 </p>
               </div>
@@ -261,20 +309,40 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-md text-gray-900 ml-2">
+                <p className="font-semibold text-sm text-gray-900 ml-2">
                   Location
                 </p>
-                <p className="font-normal text-sm text-gray-900 ml-2">
+                <p className="font-normal text-xs text-gray-900 ml-2">
                   {address?.addressLine1}
                 </p>
-                <p className="font-normal text-sm text-gray-900 ml-2">
+                <p className="font-normal text-xs text-gray-900 ml-2">
                   {address?.locality}, {address?.administrativeDistrictLevel1},{" "}
                   {address?.postalCode}
                 </p>
               </div>
             </div>
           </div>
+          <div className="mx-6 my-2">
+            <p className="font-bold mb-2 text-lg">
+              Vehicle Type Selected
+              {/* <span className="font-semibold text-md">{vehicleType}</span> */}
+            </p>
+            <Image
+              src={`/vehicles/${vehicleType}.png`}
+              alt=""
+              width={500}
+              height={500}
+            />
+          </div>
         </div>
+      </div>
+      <div className="flex justify-center my-4">
+        <p className="text-sm font-normal text-gray-900">
+          If you have any questions, please contact us at{" "}
+          <span className="text-blue-400 font-bold">
+            paultevshinetime@gmail.com
+          </span>
+        </p>
       </div>
     </div>
   );
