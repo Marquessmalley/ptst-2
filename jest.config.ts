@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 });
 
 const config: Config = {
+  setupFilesAfterEnv: ["./jest.setup.ts"],
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
