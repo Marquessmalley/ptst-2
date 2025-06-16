@@ -1,12 +1,14 @@
 import { renderHook } from "@testing-library/react";
 import { useStepper } from "@/hooks/useStepper";
 import StepperProvider from "@/context/StepperContext";
+
 describe("useStepper hook", () => {
   it("Throws a error when hook used outside provider", () => {
     expect(() => renderHook(() => useStepper())).toThrow("No Stepper Context");
   });
 
   it("Returns the stepper context when wrapped by a provider", () => {
+    // Mimics the booking/layout.tsx
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <StepperProvider>{children}</StepperProvider>
     );
