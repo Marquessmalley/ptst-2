@@ -111,24 +111,24 @@ const SelectDateTime = ({
   };
 
   useEffect(() => {
-    // if (selectedDayOnly === "") return;
     if (availableDates.length > 0) {
       setLoading(false);
     }
-    // setLoading(true);
+
     fecthAvailabilities()
       .then((data) => {
         //FETCH LIST BOOKINGS AND SEE IF BOOKED SLOT === AVAILABILITY SLOT
         //IF SO REMOVE THAT SLOT
 
         const formattedTime =
-          data.availabilities.length > 0 &&
-          data.availabilities.map((date: any) => {
-            return {
-              ...date,
-              startAt: formatTimeFromRFC3339(date.startAt),
-            };
-          });
+          data.length > 0
+            ? data.map((date: any) => {
+                return {
+                  ...date,
+                  startAt: formatTimeFromRFC3339(date.startAt),
+                };
+              })
+            : [];
 
         setAvailableDates(formattedTime);
       })
