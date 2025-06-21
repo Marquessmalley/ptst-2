@@ -159,6 +159,7 @@ const BookingStepper = () => {
               className="font-bold p-1 bg-slate-700 hover:bg-slate-900 transition duration-200 text-white rounded-2xl cursor-pointer"
               disabled={step === 0 ? true : false}
               onClick={handleBack}
+              data-testid="previousBtn"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +181,7 @@ const BookingStepper = () => {
           <DisclaimerBanner />
         </div>
         {step === 0 && (
-          <div>
+          <div data-testid="selectVehicle">
             {error.errorType === "Vehicle Selection" && (
               <ErrorAlert
                 errorType={error.errorType}

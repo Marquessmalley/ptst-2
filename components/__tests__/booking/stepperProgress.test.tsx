@@ -5,16 +5,16 @@ import StepperProvider from "@/context/StepperContext";
 import { useStepper } from "@/hooks/useStepper";
 
 /* 
-I can mock my step context in my unit test bc I am testing this component in isolation
+I can mock my step hook in my unit test bc I am testing this component in isolation
  so I won't need app full mock steup
 */
 
-// Mocking out stepper context
+// Mocking out stepper hook
 jest.mock("../../../hooks/useStepper", () => ({
   useStepper: () => ({ step: 0 }),
 }));
 
-describe("Stepper progress component component", () => {
+describe("Stepper progress component", () => {
   it("Checks that all booking steps are rendered", () => {
     const { getByText } = render(
       <StepperProvider>
