@@ -1,10 +1,11 @@
 // Chnage to remove UnavailableTimeSlots
-const removeExistingTimeSlot = (
+const removeUnavailableSlot = (
   bookings: any,
   availabilities: any,
   serviceDuration: string
 ) => {
   const allSlots = availabilities;
+
   //   Converting service duration to a number
   const durationMs = Number(serviceDuration);
 
@@ -18,11 +19,16 @@ const removeExistingTimeSlot = (
     const slotStartTime = new Date(slot.startAt).getTime();
     const slotEndTime = slotStartTime + durationMs;
 
-    // .some loop and test that atleast one of the conditions return true
+    // .some loop and test that atleast one of the conditions return true else false
     const isTaken = bookings.data.some((booking: any) => {
       // Booking startTime in date format
       const bookingStartTime = new Date(booking.startAt).getTime();
-      const bookingEndTime = bookingStartTime + durationMs;
+      const bookingSegment = booking.appointmentSegments[0];
+
+      if (!bookingSegment) return false;
+
+      const bookingDurationMs = bookingSegment.durationMinutes * 60 * 1000;
+      const bookingEndTime = bookingStartTime + bookingDurationMs;
 
       //   return checks if the slot doesn't start during booking end time
       // and checks that slot doesn't start when booking start or during
@@ -34,4 +40,4 @@ const removeExistingTimeSlot = (
   return openSlots;
 };
 
-export default removeExistingTimeSlot;
+export default removeUnavailableSlot;

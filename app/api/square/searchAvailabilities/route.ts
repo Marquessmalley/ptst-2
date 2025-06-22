@@ -1,6 +1,6 @@
 import { client } from "@/lib/api/sqaure";
 import { replace } from "@/lib/utils/bigIntHandler";
-import removeExistingTimeSlot from "@/lib/utils/removeExistingTimeSlot";
+import removeUnavailableSlot from "@/lib/utils/removeUnavailableSlot";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -33,13 +33,11 @@ export async function POST(request: Request) {
       locationId: process.env.LOCATION_ID,
     });
 
-    const openSlots = removeExistingTimeSlot(
+    const openSlots = removeUnavailableSlot(
       existingBookings,
       memberAvailabilites,
       serviceDuration
     );
-
-    console.log(openSlots);
 
     const availabilites = JSON.stringify(openSlots, replace);
 
