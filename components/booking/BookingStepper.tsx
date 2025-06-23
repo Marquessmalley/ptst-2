@@ -92,7 +92,6 @@ const BookingStepper = () => {
           // Fetch availabilities
           fecthAvailabilities()
             .then((data) => {
-              console.log(data);
               const formattedTime =
                 data.length > 0
                   ? data.map((date: any) => {
