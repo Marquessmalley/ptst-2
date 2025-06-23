@@ -43,7 +43,7 @@ export async function POST(request: Request) {
             serviceVariationVersion: BigInt(variationVersion),
           },
         ],
-        locationId: process.env.LOCATION_ID,
+        locationId: process.env.SQUARE_LOCATION_ID,
         locationType: "BUSINESS_LOCATION",
         customerId: customer.customer?.id,
         startAt: `${selectedDate}`,

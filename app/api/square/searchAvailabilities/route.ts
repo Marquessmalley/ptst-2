@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const memberAvailabilites = await client.bookings.searchAvailability({
       query: {
         filter: {
-          locationId: process.env.LOCATION_ID,
+          locationId: process.env.SQUARE_LOCATION_ID,
           segmentFilters: [
             {
               serviceVariationId: variationId,
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     });
 
     const existingBookings = await client.bookings.list({
-      locationId: process.env.LOCATION_ID,
+      locationId: process.env.SQUARE_LOCATION_ID,
     });
 
     const openSlots = removeUnavailableSlot(
