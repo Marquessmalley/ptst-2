@@ -15,7 +15,6 @@ export async function POST(request: Request) {
       "x-square-hmacsha256-signature"
     );
 
-    const body = await request.json();
     const rawBody = await request.text();
 
     if (!sqaure_signature) {
@@ -33,7 +32,7 @@ export async function POST(request: Request) {
     if (!isSignatureValid) {
       return new Response("Unauthorized", { status: 401 });
     } else {
-      console.log("Body: ", body);
+      // console.log("Body: ", body);
       console.log("Raw Body: ", rawBody);
     }
 
