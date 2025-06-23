@@ -3,6 +3,7 @@ import EmailTemplate from "@/components/booking/EmailTemplate";
 
 export async function POST(request: Request) {
   const body = await request.json();
+  console.log("Route has been hit.");
 
   try {
     if (body?.type === "booking.created") {
