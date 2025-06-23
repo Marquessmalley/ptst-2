@@ -13,6 +13,11 @@ export async function POST(request: Request) {
 
     const rawBody = await request.text();
 
+    console.log("🔒 Signature Header:", square_signature);
+    console.log("📦 Raw Body:", rawBody);
+    console.log("🔑 Signature Key:", signature_key);
+    console.log("🌐 Notification URL:", notification_url);
+
     if (!square_signature) {
       return new Response("Unauthorized", { status: 401 });
     }
