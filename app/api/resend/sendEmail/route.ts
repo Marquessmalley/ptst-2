@@ -1,4 +1,5 @@
 import { resend } from "@/lib/api/resend";
+import { client } from "@/lib/api/sqaure";
 import { WebhooksHelper } from "square";
 import EmailTemplate from "@/components/booking/EmailTemplate";
 
@@ -37,9 +38,11 @@ export async function POST(request: Request) {
 
     if (body?.type === "booking.created") {
       const booking = body.data?.object?.booking;
+      const customer_id = body.data?.customer_id;
+
       // const email = booking?.customer_details?.email_address;
 
-      console.log("📅 Booking received:", booking);
+      console.log("📅 Customer id:", customer_id);
 
       //   const { data, error } = await resend.emails.send({
       //     from: "marquessmalley@gmail.com",
