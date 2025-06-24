@@ -14,11 +14,6 @@ export async function POST(request: Request) {
 
     const rawBody = await request.text();
 
-    console.log("🔒 Signature Header:", square_signature);
-    console.log("📦 Raw Body:", rawBody);
-    console.log("🔑 Signature Key:", signature_key);
-    console.log("🌐 Notification URL:", notification_url);
-
     if (!square_signature) {
       return new Response("Unauthorized", { status: 401 });
     }
@@ -37,7 +32,6 @@ export async function POST(request: Request) {
     const body = JSON.parse(rawBody);
 
     if (body?.type === "booking.created") {
-      const booking = body.data?.object?.booking;
       const customer_id = body.data?.object?.booking?.customer_id;
 
       const customer = await client.customers.get({ customerId: customer_id });
@@ -52,6 +46,7 @@ export async function POST(request: Request) {
       });
 
       if (error) {
+        console.log(error);
         return Response.json({ error }, { status: 500 });
       }
 
