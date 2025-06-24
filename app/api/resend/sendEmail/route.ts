@@ -32,31 +32,28 @@ export async function POST(request: Request) {
     if (!isSignatureValid) {
       return new Response("Unauthorized", { status: 401 });
     }
-    if (isSignatureValid) {
-      console.log("data", rawBody);
+
+    const body = JSON.parse(rawBody);
+
+    if (body?.type === "booking.created") {
+      const booking = body.data?.object?.booking;
+      // const email = booking?.customer_details?.email_address;
+
+      console.log("📅 Booking received:", booking);
+
+      //   const { data, error } = await resend.emails.send({
+      //     from: "marquessmalley@gmail.com",
+      //     to: [email || "ksmalley77@gmail.com"], // fallback if email is missing
+      //     subject: "Paul & Tev Shine Time Confirmation",
+      //     react: EmailTemplate(),
+      //   });
+
+      //   if (error) {
+      //     return Response.json({ error }, { status: 500 });
+      //   }
+
+      //   return Response.json(data);
     }
-
-    // const body = JSON.parse(rawBody);
-
-    // if (body?.type === "booking.created") {
-    //   const booking = body.data?.object?.booking;
-    //   const email = booking?.customer_details?.email_address;
-
-    //   console.log("📅 Booking received:", booking);
-
-    //   const { data, error } = await resend.emails.send({
-    //     from: "marquessmalley@gmail.com",
-    //     to: [email || "ksmalley77@gmail.com"], // fallback if email is missing
-    //     subject: "Paul & Tev Shine Time Confirmation",
-    //     react: EmailTemplate(),
-    //   });
-
-    //   if (error) {
-    //     return Response.json({ error }, { status: 500 });
-    //   }
-
-    //   return Response.json(data);
-    // }
 
     return new Response("Event not handled", { status: 200 });
   } catch (err) {

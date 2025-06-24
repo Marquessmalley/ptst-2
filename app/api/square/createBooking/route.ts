@@ -33,8 +33,6 @@ export async function POST(request: Request) {
       },
     });
 
-    console.log("yooo");
-
     // create booking
     const booking = await client.bookings.create({
       booking: {
