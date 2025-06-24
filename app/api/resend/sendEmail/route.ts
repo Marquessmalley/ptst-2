@@ -38,24 +38,24 @@ export async function POST(request: Request) {
 
     if (body?.type === "booking.created") {
       const booking = body.data?.object?.booking;
-      const customer_id = body.data?.customer_id;
+      const customer_id = body.data?.object?.booking?.customer_id;
 
-      // const email = booking?.customer_details?.email_address;
+      const customer = await client.customers.get({ customerId: customer_id });
 
-      console.log("📅 Customer id:", customer_id);
+      console.log("📅 Customer:", customer);
 
-      //   const { data, error } = await resend.emails.send({
-      //     from: "marquessmalley@gmail.com",
-      //     to: [email || "ksmalley77@gmail.com"], // fallback if email is missing
-      //     subject: "Paul & Tev Shine Time Confirmation",
-      //     react: EmailTemplate(),
-      //   });
+      const { data, error } = await resend.emails.send({
+        from: "marquessmalley@gmail.com",
+        to: `${customer.customer?.emailAddress}`, // fallback if email is missing
+        subject: "Paul & Tev Shine Time Confirmation",
+        react: EmailTemplate(),
+      });
 
-      //   if (error) {
-      //     return Response.json({ error }, { status: 500 });
-      //   }
+      if (error) {
+        return Response.json({ error }, { status: 500 });
+      }
 
-      //   return Response.json(data);
+      return Response.json(data);
     }
 
     return new Response("Event not handled", { status: 200 });
