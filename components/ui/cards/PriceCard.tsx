@@ -1,4 +1,4 @@
-import { DetailMenuItem } from "@/lib/definitions/definitions";
+import { DetailMenuItem } from '@/lib/definitions/definitions';
 
 const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
   return (
@@ -10,12 +10,12 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
       <div className="flex items-center">
         <div className="flex flex-1 items-center">
           <img
-            src={"/wash.png"}
+            src={'/wash.png'}
             alt="car"
             className={
-              plan.packageName === "Gold Package"
-                ? "h-12 w-12 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-3 shadow"
-                : "h-12 w-12 rounded-full border bg-gradient-to-br from-blue-600 via-orange-600 to-orange-300 p-3 shadow "
+              plan.packageName === 'Gold Package'
+                ? 'h-12 w-12 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-3 shadow'
+                : 'h-12 w-12 rounded-full border bg-gradient-to-br from-blue-600 via-orange-600 to-orange-300 p-3 shadow '
             }
           />
           <p className="ml-4 text-xl font-semibold">{plan.packageName}</p>
@@ -39,9 +39,9 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
 
       <div
         className={
-          plan.packageName === "Gold Package"
-            ? "mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-2 text-center shadow"
-            : "mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-br from-orange-400 via-blue-600 to-orange-400 p-2 text-center shadow "
+          plan.packageName === 'Gold Package'
+            ? 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-2 text-center shadow'
+            : 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-br from-orange-400 via-blue-600 to-orange-400 p-2 text-center shadow '
         }
       >
         <p className="text-sm font-bold text-white">
@@ -91,7 +91,7 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
               plan.services.exterior.map((service) => {
                 return (
                   <li key={service} className="mb-2 mt-2 flex">
-                    {plan.packageName === "Gold Package" ? (
+                    {plan.packageName === 'Gold Package' ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
