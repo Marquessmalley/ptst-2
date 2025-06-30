@@ -1,36 +1,36 @@
-"use client";
-import { useState } from "react";
-import { useStepper } from "@/hooks/useStepper";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import dayjs from "dayjs";
-import SelectVehicle from "./SelectVehicle";
-import SelectPackage from "./SelectPackage";
-import SelectDateTime from "./SelectDateTime";
-import BookingSummary from "./BookingSummary";
-import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
+'use client';
+import { useState } from 'react';
+import { useStepper } from '@/hooks/useStepper';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import dayjs from 'dayjs';
+import SelectVehicle from './SelectVehicle';
+import SelectPackage from './SelectPackage';
+import SelectDateTime from './SelectDateTime';
+import BookingSummary from './BookingSummary';
+import DisclaimerBanner from '@/components/ui/banner/DisclaimerBanner';
 import {
   vehicleTypeSelected,
   packageSelected,
   dateTimeSelected,
   userInfoSubmitted,
-} from "@/lib/utils/bookingValidations";
-import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
-import { BookingInfo } from "@/lib/definitions/definitions";
-import { useRouter } from "next/navigation";
-import ErrorAlert from "../ui/alert/ErrorAlert";
+} from '@/lib/utils/bookingValidations';
+import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
+import { BookingInfo } from '@/lib/definitions/definitions';
+import { useRouter } from 'next/navigation';
+import ErrorAlert from '../ui/alert/ErrorAlert';
 
 const BookingStepper = () => {
   const router = useRouter();
   const [availableDates, setAvailableDates] = useState([]);
-  const [error, setError] = useState({ errorType: "", description: "" });
+  const [error, setError] = useState({ errorType: '', description: '' });
 
   const { step, setStep } = useStepper();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
 
   const fecthAvailabilities = async () => {
-    const response = await fetch("api/square/searchAvailabilities", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const response = await fetch('api/square/searchAvailabilities', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ...bookingInfo,
         selectedDate: `${dayjs()
@@ -38,7 +38,7 @@ const BookingStepper = () => {
           .minute(0)
           .second(0)
           .millisecond(0)
-          .format("YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
+          .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
       }),
     });
 
@@ -47,9 +47,9 @@ const BookingStepper = () => {
   };
 
   const createBooking = async () => {
-    const response = await fetch("/api/square/createBooking", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const response = await fetch('/api/square/createBooking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bookingInfo),
     });
     const data = response.json();
@@ -63,13 +63,13 @@ const BookingStepper = () => {
         if (vehicleTypeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
           setError({
-            errorType: "",
-            description: "",
+            errorType: '',
+            description: '',
           });
         } else {
           setError({
-            errorType: "Vehicle Selection",
-            description: "Please select a vehicle!",
+            errorType: 'Vehicle Selection',
+            description: 'Please select a vehicle!',
           });
         }
         break;
@@ -77,8 +77,8 @@ const BookingStepper = () => {
         if (packageSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
           setError({
-            errorType: "",
-            description: "",
+            errorType: '',
+            description: '',
           });
           setBookingInfo((prevState: BookingInfo) => ({
             ...prevState,
@@ -87,7 +87,7 @@ const BookingStepper = () => {
               .minute(0)
               .second(0)
               .millisecond(0)
-              .format("YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
+              .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
           }));
           // Fetch availabilities
           fecthAvailabilities()
@@ -108,8 +108,8 @@ const BookingStepper = () => {
             });
         } else {
           setError({
-            errorType: "Package Selection",
-            description: "Please select a package!",
+            errorType: 'Package Selection',
+            description: 'Please select a package!',
           });
         }
         break;
@@ -117,13 +117,13 @@ const BookingStepper = () => {
         if (dateTimeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
           setError({
-            errorType: "",
-            description: "",
+            errorType: '',
+            description: '',
           });
         } else {
           setError({
-            errorType: "Date & Time Selection",
-            description: "Please select a date & time!",
+            errorType: 'Date & Time Selection',
+            description: 'Please select a date & time!',
           });
         }
         break;
@@ -183,7 +183,7 @@ const BookingStepper = () => {
         </div>
         {step === 0 && (
           <div data-testid="selectVehicle">
-            {error.errorType === "Vehicle Selection" && (
+            {error.errorType === 'Vehicle Selection' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}
@@ -194,7 +194,7 @@ const BookingStepper = () => {
         )}
         {step === 1 && (
           <div>
-            {error.errorType === "Package Selection" && (
+            {error.errorType === 'Package Selection' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}
@@ -205,7 +205,7 @@ const BookingStepper = () => {
         )}
         {step === 2 && (
           <div>
-            {error.errorType === "Date & Time Selection" && (
+            {error.errorType === 'Date & Time Selection' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}

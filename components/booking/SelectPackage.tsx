@@ -1,9 +1,9 @@
-"use client";
-import { useEffect, useState } from "react";
-import { PackageCard } from "@/components/ui";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import PackageCardSkeleton from "@component/ui/skeletons/PackageCardSkeleton";
-import { vehicleBasedPricing } from "@/lib/utils/vehicleBasedPricing";
+'use client';
+import { useEffect, useState } from 'react';
+import { PackageCard } from '@/components/ui';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import PackageCardSkeleton from '@component/ui/skeletons/PackageCardSkeleton';
+import { vehicleBasedPricing } from '@/lib/utils/vehicleBasedPricing';
 
 const SelectPackage = () => {
   const [services, setServices] = useState([1, 2, 3, 4, 5, 6]);
@@ -12,10 +12,10 @@ const SelectPackage = () => {
   const { selectedVehicle } = bookingInfo;
 
   const fetchServices = async () => {
-    const response = await fetch("/api/square/listServices", {
-      method: "GET",
+    const response = await fetch('/api/square/listServices', {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json", // <- important
+        'Content-Type': 'application/json', // <- important
       },
     });
     const data = response.json();

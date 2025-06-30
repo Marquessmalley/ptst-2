@@ -1,12 +1,12 @@
-import { client } from "@/lib/api/sqaure";
-import { replace } from "@/lib/utils/bigIntHandler";
-import removeUnavailableSlot from "@/lib/utils/removeUnavailableSlot";
+import { client } from '@/lib/api/sqaure';
+import { replace } from '@/lib/utils/bigIntHandler';
+import removeUnavailableSlot from '@/lib/utils/removeUnavailableSlot';
 
 export async function POST(request: Request) {
   const body = await request.json();
   const { selectedDate } = body;
   const { teamMmebers, variationId, serviceDuration } = body.selectedPackage;
-  const endAt = selectedDate.split("T")[0];
+  const endAt = selectedDate.split('T')[0];
 
   try {
     const memberAvailabilites = await client.bookings.searchAvailability({
@@ -36,18 +36,18 @@ export async function POST(request: Request) {
     const openSlots = removeUnavailableSlot(
       existingBookings,
       memberAvailabilites,
-      serviceDuration
+      serviceDuration,
     );
 
     const availabilites = JSON.stringify(openSlots, replace);
 
     return new Response(availabilites, {
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.log(error);
     return Response.json({
-      error: "There was a error fetching the availabilites.",
+      error: 'There was a error fetching the availabilites.',
     });
   }
 }
