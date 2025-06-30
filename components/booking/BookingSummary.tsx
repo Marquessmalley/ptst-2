@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import { AddressAutofill } from "@mapbox/search-js-react";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import { Input, Divider, Textarea } from "@heroui/react";
-import { currencyFormatter } from "@/lib/utils/currencyFormatter";
-import { durationFormatter } from "@/lib/utils/durationFormatter";
-import { BookingInfo } from "@/lib/definitions/definitions";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import { AddressAutofill } from '@mapbox/search-js-react';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import { Input, Divider, Textarea } from '@heroui/react';
+import { currencyFormatter } from '@/lib/utils/currencyFormatter';
+import { durationFormatter } from '@/lib/utils/durationFormatter';
+import { BookingInfo } from '@/lib/definitions/definitions';
 
 const BookingSummary = () => {
   const { bookingInfo, setBookingInfo } = useBookingInfo();
@@ -41,11 +41,11 @@ const BookingSummary = () => {
             type="text"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
 
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
           <Input
@@ -57,10 +57,10 @@ const BookingSummary = () => {
             type="text"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
         </div>
@@ -76,10 +76,10 @@ const BookingSummary = () => {
             type="email"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
         </div>
@@ -98,10 +98,10 @@ const BookingSummary = () => {
               type="text"
               onChange={handleUserForm}
               classNames={{
-                label: "!text-default-700 text-sm font-medium",
+                label: '!text-default-700 text-sm font-medium',
                 inputWrapper:
-                  "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                input: "border-none focus:ring-0",
+                  'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                input: 'border-none focus:ring-0',
               }}
             />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 mt-4">
@@ -115,11 +115,11 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
 
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
               <Input
@@ -132,10 +132,10 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
             </div>
@@ -150,11 +150,11 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
 
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
               <Input
@@ -167,10 +167,10 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
             </div>
@@ -183,10 +183,10 @@ const BookingSummary = () => {
             placeholder="Enter any additional comments"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
         </div>

@@ -1,11 +1,11 @@
-import { client } from "@/lib/api/sqaure";
-import { Divider } from "@heroui/react";
-import Image from "next/image";
-import { replace } from "@/lib/utils/bigIntHandler";
-import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
-import { currencyFormatter } from "@/lib/utils/currencyFormatter";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
+import { client } from '@/lib/api/sqaure';
+import { Divider } from '@heroui/react';
+import Image from 'next/image';
+import { replace } from '@/lib/utils/bigIntHandler';
+import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
+import { currencyFormatter } from '@/lib/utils/currencyFormatter';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
 
 dayjs.extend(duration);
 
@@ -13,22 +13,22 @@ export default async function BookingDetails({ id }: { id: string }) {
   const bookingData = await client.bookings.get({ bookingId: id });
 
   if (!bookingData.booking) {
-    throw new Error("Booking is missing in the booking data.");
+    throw new Error('Booking is missing in the booking data.');
   }
   const { status, customerId, startAt } = bookingData.booking;
 
   if (!startAt) {
-    throw new Error("startAt date is missing");
+    throw new Error('startAt date is missing');
   }
 
   if (!bookingData.booking.appointmentSegments) {
-    throw new Error("Appointment is missing in the booking data.");
+    throw new Error('Appointment is missing in the booking data.');
   }
   const { serviceVariationId, durationMinutes } =
     bookingData.booking.appointmentSegments[0];
 
   if (!customerId) {
-    throw new Error("Customer ID is missing in the booking data.");
+    throw new Error('Customer ID is missing in the booking data.');
   }
 
   // CUSTOMER INFO
@@ -36,7 +36,7 @@ export default async function BookingDetails({ id }: { id: string }) {
   const customerData = await client.customers.get({ customerId });
 
   if (!customerData.customer) {
-    throw new Error("No customer data");
+    throw new Error('No customer data');
   }
 
   const { givenName, familyName, emailAddress, address } =
@@ -44,7 +44,7 @@ export default async function BookingDetails({ id }: { id: string }) {
 
   // SERVICE INFO
   if (!serviceVariationId) {
-    throw new Error("Service variation id is missing");
+    throw new Error('Service variation id is missing');
   }
 
   const serviceData = await client.catalog.object.get({
@@ -53,12 +53,12 @@ export default async function BookingDetails({ id }: { id: string }) {
   });
 
   if (!serviceData.relatedObjects) {
-    throw new Error("Related object is missing");
+    throw new Error('Related object is missing');
   }
 
   const serviceStringified = JSON.stringify(
     serviceData.relatedObjects[0],
-    replace
+    replace,
   );
 
   const parseDServiceData = JSON.parse(serviceStringified);
@@ -73,7 +73,7 @@ export default async function BookingDetails({ id }: { id: string }) {
   const parseDServiceVariant = JSON.parse(stringifyServiceVariant);
 
   const servicePrice = currencyFormatter(
-    parseDServiceVariant.object.itemVariationData.priceMoney.amount
+    parseDServiceVariant.object.itemVariationData.priceMoney.amount,
   );
 
   const vehicleType = parseDServiceVariant.object.itemVariationData.name;
@@ -84,7 +84,7 @@ export default async function BookingDetails({ id }: { id: string }) {
       <div className="grid grid-cols-1 place-items-center mb-10">
         <div className="flex items-center my-2 ">
           <h2 className="font-bold text-4xl text-gray-700">
-            Appointment{" "}
+            Appointment{' '}
             {status &&
               status
                 .charAt(0)
@@ -117,7 +117,7 @@ export default async function BookingDetails({ id }: { id: string }) {
           <div className="col-span-1 mx-6 my-4">
             <h3 className="font-bold text-xl text-gray-700">Booking Summary</h3>
             <p className="font-normal text-md text-gray-700">
-              Booking ID: #{id}{" "}
+              Booking ID: #{id}{' '}
             </p>
           </div>
 
@@ -229,8 +229,8 @@ export default async function BookingDetails({ id }: { id: string }) {
                 <p className="font-normal text-xs text-gray-700 ml-2">
                   {durationMinutes &&
                     dayjs
-                      .duration(durationMinutes, "minutes")
-                      .format("H[h] m[min]")}
+                      .duration(durationMinutes, 'minutes')
+                      .format('H[h] m[min]')}
                 </p>
               </div>
             </div>
@@ -316,7 +316,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                   {address?.addressLine1}
                 </p>
                 <p className="font-normal text-xs text-gray-900 ml-2">
-                  {address?.locality}, {address?.administrativeDistrictLevel1},{" "}
+                  {address?.locality}, {address?.administrativeDistrictLevel1},{' '}
                   {address?.postalCode}
                 </p>
               </div>
@@ -338,7 +338,7 @@ export default async function BookingDetails({ id }: { id: string }) {
       </div>
       <div className="flex justify-center my-4">
         <p className="text-sm font-normal text-gray-900">
-          If you have any questions, please contact us at{" "}
+          If you have any questions, please contact us at{' '}
           <span className="text-blue-400 font-bold">
             paultevshinetime@gmail.com
           </span>

@@ -1,5 +1,5 @@
-import { client } from "@/lib/api/sqaure";
-import { replace } from "@/lib/utils/bigIntHandler";
+import { client } from '@/lib/api/sqaure';
+import { replace } from '@/lib/utils/bigIntHandler';
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
           },
         ],
         locationId: process.env.SQUARE_LOCATION_ID,
-        locationType: "BUSINESS_LOCATION",
+        locationType: 'BUSINESS_LOCATION',
         customerId: customer.customer?.id,
         startAt: `${selectedDate}`,
       },
@@ -52,9 +52,9 @@ export async function POST(request: Request) {
 
     const json = JSON.stringify({ booking }, replace);
     return new Response(json, {
-      headers: { "Content-type": "application/json" },
+      headers: { 'Content-type': 'application/json' },
     });
   } catch (err) {
-    console.log("The error: ", err);
+    console.log('The error: ', err);
   }
 }

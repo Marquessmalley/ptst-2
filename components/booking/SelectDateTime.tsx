@@ -1,21 +1,21 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Calendar } from "@heroui/react";
-import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import { BookingInfo } from "@/lib/definitions/definitions";
-import dayjs from "dayjs";
-import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
-import TimeSlotsSkeleton from "../ui/skeletons/TimeSlotsSkeleton";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
+'use client';
+import { useState, useEffect } from 'react';
+import { Calendar } from '@heroui/react';
+import { parseDate, today, getLocalTimeZone } from '@internationalized/date';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import { BookingInfo } from '@/lib/definitions/definitions';
+import dayjs from 'dayjs';
+import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
+import TimeSlotsSkeleton from '../ui/skeletons/TimeSlotsSkeleton';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const todaysDate = new Date().toISOString().split("T")[0];
+const todaysDate = new Date().toISOString().split('T')[0];
 
 interface SelectDateTimeProps {
   availableDates: any[];
@@ -28,21 +28,21 @@ const SelectDateTime = ({
 }: SelectDateTimeProps) => {
   let [value, setValue] = useState<any>(parseDate(todaysDate));
   let [minDate, setMinDate] = useState<any>(today(getLocalTimeZone()));
-  const [selectedDayOnly, setSelectedDayOnly] = useState(""); // YYYY-MM-DD
+  const [selectedDayOnly, setSelectedDayOnly] = useState(''); // YYYY-MM-DD
   const [loading, setLoading] = useState(availableDates.length === 0);
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedDate, selectedTime } = bookingInfo;
 
   const handleDateChange = (value: any) => {
     const dayOnly = dayjs(`${value.year}-${value.month}-${value.day}`).format(
-      "YYYY-MM-DD"
+      'YYYY-MM-DD',
     );
 
     setSelectedDayOnly(dayOnly);
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
       selectedDate: dayjs(`${dayOnly}T09:00:00.000`).format(
-        "YYYY-MM-DDTHH:mm:ss.SSSZ"
+        'YYYY-MM-DDTHH:mm:ss.SSSZ',
       ),
     }));
     setValue(value);
@@ -52,28 +52,28 @@ const SelectDateTime = ({
     const rawTime = e.target.value?.trim();
 
     if (!rawTime || !value?.year || !value?.month || !value?.day) {
-      console.error("Missing input values");
+      console.error('Missing input values');
       return;
     }
 
     const timeString = rawTime
       .toUpperCase()
-      .replace(/\s+/g, "") // remove accidental spaces
-      .replace(/^(\d{1,2}:\d{2})(AM|PM)$/, "$1 $2");
+      .replace(/\s+/g, '') // remove accidental spaces
+      .replace(/^(\d{1,2}:\d{2})(AM|PM)$/, '$1 $2');
 
     const dateTimeString = `${value.year}-${String(value.month).padStart(
       2,
-      "0"
-    )}-${String(value.day).padStart(2, "0")} ${timeString}`;
+      '0',
+    )}-${String(value.day).padStart(2, '0')} ${timeString}`;
 
     const localTime = dayjs.tz(
       dateTimeString,
-      "YYYY-MM-DD h:mm A",
-      "America/New_York"
+      'YYYY-MM-DD h:mm A',
+      'America/New_York',
     );
 
     if (!localTime.isValid()) {
-      console.error("Invalid date-time parsed:", dateTimeString);
+      console.error('Invalid date-time parsed:', dateTimeString);
       return;
     }
 
@@ -81,7 +81,7 @@ const SelectDateTime = ({
 
     setBookingInfo((prevState: BookingInfo) => ({
       ...prevState,
-      selectedDate: utcTime.format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
+      selectedDate: utcTime.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'),
       selectedTime: rawTime,
     }));
   };
@@ -89,7 +89,7 @@ const SelectDateTime = ({
   const getFormattedDayAndDate = () => {
     const x = new Date(value.year, value.month - 1, value.day)
       .toString()
-      .split(" ");
+      .split(' ');
     const day = x[0];
     const date = x[2];
     return `${day} ${date}`;
@@ -97,10 +97,10 @@ const SelectDateTime = ({
 
   const fecthAvailabilities = async () => {
     setLoading(true);
-    const response = await fetch("api/square/searchAvailabilities", {
-      method: "POST",
+    const response = await fetch('api/square/searchAvailabilities', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(bookingInfo),
     });
@@ -147,15 +147,15 @@ const SelectDateTime = ({
           onChange={handleDateChange}
           minValue={minDate}
           classNames={{
-            base: "!bg-transparent rounded-none shadow-none",
-            title: "font-semibold text-small text-default-700",
-            headerWrapper: "py-2 bg-transparent",
-            content: "",
-            gridHeader: "shadow-none bg-transparent",
-            gridHeaderCell: "text-default-400 font-medium  m-1 text-xs",
+            base: '!bg-transparent rounded-none shadow-none',
+            title: 'font-semibold text-small text-default-700',
+            headerWrapper: 'py-2 bg-transparent',
+            content: '',
+            gridHeader: 'shadow-none bg-transparent',
+            gridHeaderCell: 'text-default-400 font-medium  m-1 text-xs',
 
             cellButton:
-              "m-1 data-[selected]:bg-blue-600  data-[selected]:rounded-xl data-[selected]:shadow-[0_2px_12px_0] data-[selected]:shadow-blue-600 data-[selected]:font-bold data-[hover]:rounded-xl",
+              'm-1 data-[selected]:bg-blue-600  data-[selected]:rounded-xl data-[selected]:shadow-[0_2px_12px_0] data-[selected]:shadow-blue-600 data-[selected]:font-bold data-[hover]:rounded-xl',
           }}
           weekdayStyle="short"
           calendarWidth={370}
@@ -181,8 +181,8 @@ const SelectDateTime = ({
                   onClick={handleSelectTime}
                   className={`w-full text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
                     selectedTime === time.startAt
-                      ? "bg-default-200 "
-                      : "bg-default-100"
+                      ? 'bg-default-200 '
+                      : 'bg-default-100'
                   }`}
                 >
                   {time.startAt}

@@ -1,5 +1,5 @@
-"use client";
-import { createContext, useState } from "react";
+'use client';
+import { createContext, useState } from 'react';
 
 export type StepperContextType = {
   step: number;
@@ -7,7 +7,7 @@ export type StepperContextType = {
 };
 
 export const StepperContext = createContext<StepperContextType | undefined>(
-  undefined
+  undefined,
 );
 
 const StepperProvider = ({ children }: { children: React.ReactNode }) => {

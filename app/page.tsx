@@ -1,9 +1,9 @@
-"use client";
-import Link from "next/link";
-import { services } from "@/lib/data/placeholder-data";
-import { Banner, Demo, ServiceCard, PackageCard } from "@/components/ui";
-import Pricing from "@/components/sections/Pricing";
-import Faq from "@/components/sections/Faq";
+'use client';
+import Link from 'next/link';
+import { services } from '@/lib/data/placeholder-data';
+import { Banner, Demo, ServiceCard, PackageCard } from '@/components/ui';
+import Pricing from '@/components/sections/Pricing';
+import Faq from '@/components/sections/Faq';
 
 export default function Page() {
   return (
@@ -28,7 +28,7 @@ export default function Page() {
             </p>
             <div className="mt-6 flex w-sm">
               <Link
-                href={"/booking"}
+                href={'/booking'}
                 className="text-md mr-2 flex cursor-pointer rounded-xl border bg-gradient-to-t from-orange-400 to-blue-600 px-3 py-2 font-bold text-white transition duration-200 hover:bg-gradient-to-t hover:from-orange-500 hover:to-blue-700"
               >
                 <svg

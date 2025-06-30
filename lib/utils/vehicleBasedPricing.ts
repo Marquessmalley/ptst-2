@@ -7,7 +7,7 @@ export const vehicleBasedPricing = (selectedVehicle: string, data: any) => {
 
   const adjustedPricing = data.data.map((item: any) => {
     const filteredVariation = item.itemData.variations.filter(
-      (variation: any) => variation.itemVariationData.name === selectedVehicle
+      (variation: any) => variation.itemVariationData.name === selectedVehicle,
     );
 
     return {

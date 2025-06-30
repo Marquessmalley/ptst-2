@@ -1,4 +1,4 @@
-import { SquareClient, SquareEnvironment } from "square";
+import { SquareClient, SquareEnvironment } from 'square';
 
 export const client = new SquareClient({
   environment: SquareEnvironment.Sandbox,
