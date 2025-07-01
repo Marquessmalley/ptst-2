@@ -13,7 +13,7 @@ const Pricing: React.FC = () => {
             Choose the right package for you
           </p>
           <p className="my-4 text-center text-lg text-gray-700 font-extralight  lg:text-justify">
-            Whether you're looking for a basic clean or a comprehensive
+            Whether you&apos;re looking for a basic clean or a comprehensive
             detailing service, our pricing is transparent and competitive.{' '}
             <span
               // href="/prices"
