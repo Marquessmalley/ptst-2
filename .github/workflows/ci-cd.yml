@@ -1,0 +1,63 @@
+# GitHub Actions workflow for Next.js app with Vercel deployment
+# - CI on all branches: install, lint, test, build
+# - Deploy preview on feature branches
+# - Deploy production on main
+
+# The display name for this workflow in GitHub Actions.
+name: PTST2.0 CI/CD
+
+# on: Specifies when the workflow runs.
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+# jobs: Defines a set of tasks to run.
+jobs:
+  # ci-cd: The name of this job.
+  ci-cd:
+    # runs-on: The OS for the runner. Here, it’s the latest Ubuntu.
+    runs-on: ubuntu-latest
+    env:
+      SQUARE_SANDBOX_ACCESS_TOKEN: ${{ secrets.SQUARE_SANDBOX_ACCESS_TOKEN }}
+      SQUARE_LOCATION_ID: ${{ secrets.SQUARE_LOCATION_ID }}
+      SQUARE_TEAM_MEMBER_ID: ${{ secrets.SQUARE_TEAM_MEMBER_ID }}
+      SQUARE_SIGNATURE_KEY: ${{ secrets.SQUARE_SIGNATURE_KEY }}
+      SQUARE_NOTIFICATION_URL: ${{ secrets.SQUARE_NOTIFICATION_URL }}
+      NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+    # steps: List of actions to run.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Vercel (Preview or Production)
+        if: github.ref == 'refs/heads/main' || github.ref != 'refs/heads/main'
+        run: |
+          if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+            npx vercel --token "$VERCEL_TOKEN" --prod --yes
+          else
+            npx vercel --token "$VERCEL_TOKEN" --yes
+          fi
