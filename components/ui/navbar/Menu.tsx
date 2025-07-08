@@ -20,13 +20,13 @@ const Menu = () => {
         </div>
 
         <div className=" w-full flex justify-end ">
-          <div className="rounded-3xl bg-gradient-to-b from-blue-600 to-orange-400 p-px cursor-pointer ">
-            <div className="rounded-[calc(1.5rem-1px)] bg-sky-100 p-1 transition duration-200 hover:bg-sky-200 flex items-center">
-              <Image src="/crown-blue.svg" alt="crown" height={26} width={26} />
+          <div className="rounded-3xl bg-gradient-to-b from-sky-400 to-orange-400 p-px cursor-pointer ">
+            <div className="rounded-[calc(1.5rem-1px)] bg-slate-100 p-1 transition duration-200 hover:bg-slate-50 flex items-center">
+              <Image src="/crown-blue.svg" alt="crown" height={22} width={22} />
 
               <Link
                 href="#"
-                className="text-md rounded-2xl px-2 py-1 font-bold bg-gradient-to-r from-orange-400 to-blue-600 bg-clip-text text-transparent "
+                className="text-md rounded-2xl px-2 py-1 font-bold bg-gradient-to-r from-orange-400 to-sky-500 bg-clip-text text-transparent "
               >
                 Subscriptions
               </Link>
