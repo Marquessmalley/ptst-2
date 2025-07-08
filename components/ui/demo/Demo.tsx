@@ -15,7 +15,7 @@ const Demo = () => {
     <>
       <button
         onClick={openModal}
-        className="text-md flex cursor-pointer rounded-xl border border-blue-500 px-3 py-2 font-bold text-blue-500 transition duration-200 hover:bg-slate-200"
+        className="text-md flex cursor-pointer rounded-xl border border-sky-500 px-3 py-2 font-bold text-sky-500 transition duration-200 bg-slate-100 hover:bg-slate-50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

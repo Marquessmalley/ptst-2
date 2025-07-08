@@ -12,12 +12,12 @@ const Pricing: React.FC = () => {
           <p className=" text-center text-2xl font-bold tracking-tight text-slate-900/80  sm:text-4xl">
             Choose the right package for you
           </p>
-          <p className="my-4 text-center text-lg text-gray-700 font-extralight  lg:text-justify">
+          <p className="my-4 text-center text-lg text-gray-700 font-normal  lg:text-justify">
             Whether you&apos;re looking for a basic clean or a comprehensive
             detailing service, our pricing is transparent and competitive.{' '}
             <span
               // href="/prices"
-              className="inline-flex items-center justify-center font-semibold  text-blue-600"
+              className="inline-flex items-center justify-center font-bold  text-sky-400"
             >
               Check out our prices{' '}
               <svg

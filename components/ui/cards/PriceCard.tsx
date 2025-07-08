@@ -14,8 +14,8 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
             alt="car"
             className={
               plan.packageName === 'Gold Package'
-                ? 'h-12 w-12 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-3 shadow'
-                : 'h-12 w-12 rounded-full border bg-gradient-to-br from-blue-600 via-orange-600 to-orange-300 p-3 shadow '
+                ? 'h-12 w-12 rounded-full border bg-orange-400 p-3 shadow'
+                : 'h-12 w-12 rounded-full border bg-sky-400 p-3 shadow '
             }
           />
           <p className="ml-4 text-xl font-semibold">{plan.packageName}</p>
@@ -40,8 +40,8 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
       <div
         className={
           plan.packageName === 'Gold Package'
-            ? 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-br from-orange-600 via-orange-300 to-orange-600 p-2 text-center shadow'
-            : 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-br from-orange-400 via-blue-600 to-orange-400 p-2 text-center shadow '
+            ? 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-orange-400 p-2 text-center shadow'
+            : 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-sky-400 p-2 text-center shadow '
         }
       >
         <p className="text-sm font-bold text-white">
@@ -62,7 +62,7 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="size-6 text-blue-600"
+                      className="size-6 text-sky-400"
                     >
                       <path
                         fillRule="evenodd"
@@ -96,7 +96,7 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="size-6 text-blue-600"
+                        className="size-6 text-sky-400"
                       >
                         <path
                           fillRule="evenodd"
@@ -109,7 +109,7 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="size-6 text-blue-600"
+                        className="size-6 text-sky-400"
                       >
                         <path
                           fillRule="evenodd"
