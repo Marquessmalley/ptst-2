@@ -13,7 +13,7 @@ const StepperProgress = () => {
             <span
               className={`mr-2 rounded-full text-center ${
                 step === index
-                  ? 'bg-blue-400 text-white px-3 py-1 sm:px-3 sm:py-1 text-md sm:text-sm'
+                  ? 'bg-sky-400 text-white px-3 py-1 sm:px-3 sm:py-1 text-md sm:text-sm'
                   : 'bg-gray-300 text-gray-400 hidden sm:block sm:px-3 sm:py-1 sm:text-sm'
               }`}
             >
@@ -23,7 +23,7 @@ const StepperProgress = () => {
             <p
               className={` sm:text-sm font-bold ${
                 step === index
-                  ? 'sm:block text-blue-400 text-2xl'
+                  ? 'sm:block text-sky-400 text-2xl'
                   : 'hidden sm:block text-gray-300'
               }`}
             >

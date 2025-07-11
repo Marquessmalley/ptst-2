@@ -172,7 +172,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                 alt=""
                 width={28}
                 height={28}
-                className="bg-blue-400 p-1 rounded-full"
+                className="bg-sky-400 p-1 rounded-full"
               />
               <div>
                 <p className="font-semibold text-sm text-gray-900 ml-2">
@@ -188,7 +188,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-blue-400 rounded-full p-1"
+                className="size-7 text-white bg-sky-400 rounded-full p-1"
               >
                 <path
                   strokeLinecap="round"
@@ -213,7 +213,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-blue-400 rounded-full p-1"
+                className="size-7 text-white bg-sky-400 rounded-full p-1"
               >
                 <path
                   strokeLinecap="round"
@@ -244,7 +244,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-blue-400 rounded-full p-1"
+                className="size-7 text-white bg-sky-400 rounded-full p-1"
               >
                 <path
                   strokeLinecap="round"
@@ -269,7 +269,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-blue-400 rounded-full p-1"
+                className="size-7 text-white bg-sky-400 rounded-full p-1"
               >
                 <path
                   strokeLinecap="round"
@@ -294,7 +294,7 @@ export default async function BookingDetails({ id }: { id: string }) {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-blue-400 rounded-full p-1"
+                className="size-7 text-white bg-sky-400 rounded-full p-1"
               >
                 <path
                   strokeLinecap="round"
@@ -339,7 +339,7 @@ export default async function BookingDetails({ id }: { id: string }) {
       <div className="flex justify-center my-4">
         <p className="text-sm font-normal text-gray-900">
           If you have any questions, please contact us at{' '}
-          <span className="text-blue-400 font-bold">
+          <span className="text-sky-400 font-bold">
             paultevshinetime@gmail.com
           </span>
         </p>

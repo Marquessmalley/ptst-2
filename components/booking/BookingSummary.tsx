@@ -234,7 +234,7 @@ const BookingSummary = () => {
         <Divider className="my-4" />
         <div className="grid grid-cols-2 items-center mb-4 gap-x-4">
           <p className="text-small text-default-500">Estimated Price</p>
-          <p className="text-small text-blue-500 font-semibold text-right">
+          <p className="text-small text-sky-500 font-semibold text-right">
             {currencyFormatter(price)}
           </p>
         </div>
