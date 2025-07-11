@@ -44,7 +44,7 @@ const PackageCard = ({ item }: { item: any }) => {
         shadow="lg"
         className={`py-4 max-w-[300px] rounded-xl shadow-lg  border whitespace-  ${
           selectedPackage.name === name
-            ? '!bg-slate-200 border-blue-500'
+            ? '!bg-slate-200 border-sky-500'
             : 'bg-slate-50'
         }`}
       >
@@ -62,7 +62,7 @@ const PackageCard = ({ item }: { item: any }) => {
             <p className="text-sm font-bold  break-words whitespace-normal max-w-[125px]">
               {name}
             </p>
-            <p className="text-md font-semibold text-blue-500">
+            <p className="text-md font-semibold text-sky-500">
               {currencyFormatter(priceMoney.amount)}
             </p>
           </div>
@@ -88,7 +88,7 @@ const PackageCard = ({ item }: { item: any }) => {
           </div>
 
           <p
-            className="text-sm font-semibold text-blue-500 cursor-pointer my-2"
+            className="text-sm font-semibold text-sky-500 cursor-pointer my-2"
             onClick={onOpen}
           >
             View Services
@@ -116,7 +116,7 @@ const PackageCard = ({ item }: { item: any }) => {
           {(onClose) => (
             <>
               <ModalHeader className="flex items-center">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-600 via-orange-600 to-orange-300 p-3">
+                <div className="h-10 w-10 rounded-full bg-sky-400 p-3">
                   <Image src="/wash.png" alt="" width={20} height={26} />
                 </div>
                 <p className="ml-1">{name} Services</p>
@@ -140,7 +140,7 @@ const PackageCard = ({ item }: { item: any }) => {
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 24 24"
                               fill="currentColor"
-                              className="size-5 text-blue-500"
+                              className="size-5 text-sky-500"
                             >
                               <path
                                 fillRule="evenodd"
