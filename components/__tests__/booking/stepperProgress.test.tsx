@@ -40,7 +40,7 @@ describe('Stepper progress component', () => {
 
     expect(stepName).toHaveClass('sm:block text-sky-400 text-2xl');
     expect(stepNumber).toHaveClass(
-      'mr-2 rounded-full text-center bg-blue-400 text-white px-3 py-1 sm:px-3 sm:py-1 text-md sm:text-sm',
+      'mr-2 rounded-full text-center bg-sky-400 text-white px-3 py-1 sm:px-3 sm:py-1 text-md sm:text-sm',
     );
   });
 
