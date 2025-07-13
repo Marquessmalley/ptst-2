@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const SplashScreen = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40 flex justify-center items-center animate__pulse">
+    <div className="animate__pulse flex min-h-screen items-center justify-center bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
       <div className="">
         <Image
           src="/logo.png"

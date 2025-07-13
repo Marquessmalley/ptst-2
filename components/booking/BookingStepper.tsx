@@ -157,7 +157,7 @@ const BookingStepper = () => {
           {step !== 0 && (
             <button
               type="button"
-              className="font-bold p-1 bg-slate-700 hover:bg-slate-900 transition duration-200 text-white rounded-2xl cursor-pointer"
+              className="cursor-pointer rounded-2xl bg-slate-700 p-1 font-bold text-white transition duration-200 hover:bg-slate-900"
               disabled={step === 0 ? true : false}
               onClick={handleBack}
               data-testid="previousBtn"
@@ -226,7 +226,7 @@ const BookingStepper = () => {
         <div className="p-2 sm:flex sm:justify-end">
           <button
             type="button"
-            className="font-bold p-2 bg-slate-800 hover:bg-slate-900 transition duration-200 text-white w-full sm:w-44 rounded-2xl my-2 cursor-pointer text-nowrap"
+            className="my-2 w-full cursor-pointer text-nowrap rounded-2xl bg-slate-800 p-2 font-bold text-white transition duration-200 hover:bg-slate-900 sm:w-44"
             // disabled={step === 3 ? true : false}
             onClick={handleNext}
           >

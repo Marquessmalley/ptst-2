@@ -25,13 +25,13 @@ const BookingSummary = () => {
   };
 
   return (
-    <div className=" p-2 grid grid-cols-1 lg:grid-cols-12 lg:gap-x-10">
-      <div className=" p-2 col-span-7">
-        <h2 className="my-3 font-bold text-lg text-default-700">
+    <div className="grid grid-cols-1 p-2 lg:grid-cols-12 lg:gap-x-10">
+      <div className="col-span-7 p-2">
+        <h2 className="my-3 text-lg font-bold text-default-700">
           Contact Information
         </h2>
         <Divider className="my-4" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 mb-10">
+        <div className="mb-10 grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
           <Input
             isRequired
             name="firstName"
@@ -104,7 +104,7 @@ const BookingSummary = () => {
                 input: 'border-none focus:ring-0',
               }}
             />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 mt-4">
+            <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
               <Input
                 isRequired
                 name="city"
@@ -139,7 +139,7 @@ const BookingSummary = () => {
                 }}
               />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 mt-4">
+            <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
               <Input
                 isRequired
                 name="postalCode"
@@ -191,26 +191,26 @@ const BookingSummary = () => {
           />
         </div>
       </div>
-      <div className="p-2 col-span-5">
-        <h2 className="my-3 font-bold text-lg text-default-700 text-nowrap">
+      <div className="col-span-5 p-2">
+        <h2 className="my-3 text-nowrap text-lg font-bold text-default-700">
           Appointment Information
         </h2>
         <Divider className="my-4" />
-        <div className="grid grid-cols-2 items-center mb-8">
+        <div className="mb-8 grid grid-cols-2 items-center">
           <p className="text-small text-default-500">Appointment Date</p>
-          <p className="text-small text-default-800 font-semibold text-right">
+          <p className="text-right text-small font-semibold text-default-800">
             {new Date(selectedDate).toDateString()}
           </p>
         </div>
-        <div className="grid grid-cols-2 items-center mb-8">
+        <div className="mb-8 grid grid-cols-2 items-center">
           <p className="text-small text-default-500">Appointment Time</p>
-          <p className="text-small text-default-800 font-semibold text-right">
+          <p className="text-right text-small font-semibold text-default-800">
             {selectedTime}
           </p>
         </div>
-        <div className="grid grid-cols-2 items-center mb-8 gap-x-4">
+        <div className="mb-8 grid grid-cols-2 items-center gap-x-4">
           <p className="text-small text-default-500">Vehicle Type</p>
-          <div className="flex justify-end w-full ml-7">
+          <div className="ml-7 flex w-full justify-end">
             <Image
               src={`/vehicles/${selectedVehicle}.png`}
               alt=""
@@ -219,22 +219,22 @@ const BookingSummary = () => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 items-center mb-8 gap-x-4">
+        <div className="mb-8 grid grid-cols-2 items-center gap-x-4">
           <p className="text-small text-default-500">Service</p>
-          <p className="text-small text-default-800 font-semibold text-right">
+          <p className="text-right text-small font-semibold text-default-800">
             {name}
           </p>
         </div>
-        <div className="grid grid-cols-2 items-center mb-8 gap-x-4">
+        <div className="mb-8 grid grid-cols-2 items-center gap-x-4">
           <p className="text-small text-default-500">Estimated Time</p>
-          <p className="text-small text-default-800 font-semibold text-right">
+          <p className="text-right text-small font-semibold text-default-800">
             {durationFormatter(serviceDuration)}
           </p>
         </div>
         <Divider className="my-4" />
-        <div className="grid grid-cols-2 items-center mb-4 gap-x-4">
+        <div className="mb-4 grid grid-cols-2 items-center gap-x-4">
           <p className="text-small text-default-500">Estimated Price</p>
-          <p className="text-small text-sky-500 font-semibold text-right">
+          <p className="text-right text-small font-semibold text-sky-500">
             {currencyFormatter(price)}
           </p>
         </div>
