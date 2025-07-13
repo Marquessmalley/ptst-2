@@ -15,7 +15,7 @@ const Demo = () => {
     <>
       <button
         onClick={openModal}
-        className="text-md flex cursor-pointer rounded-xl border border-sky-500 px-3 py-2 font-bold text-sky-500 transition duration-200 bg-slate-100 hover:bg-slate-50"
+        className="sm:text-md flex cursor-pointer rounded-xl border border-sky-500 bg-slate-100 px-3 py-2 text-sm font-bold text-sky-500 transition duration-200 hover:bg-slate-50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ const Demo = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="mr-2 size-6"
+          className="mr-2 size-5 sm:size-6"
         >
           <path
             strokeLinecap="round"

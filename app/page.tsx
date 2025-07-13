@@ -9,27 +9,27 @@ export default function Page() {
   return (
     <div className="mt-20">
       <div className="mx-auto grid max-w-6xl">
-        <div className="mt-4 grid grid-cols-1 gap-y-10 sm:mt-22 lg:grid-cols-2">
-          <div className="ml-2 ">
+        <div className="sm:mt-22 mt-4 grid grid-cols-1 gap-y-10 lg:grid-cols-2">
+          <div className="ml-2">
             <div data-testid="banner">
               <Banner />
             </div>
 
-            <h1 className="mt-6 text-4xl sm:text-5xl font-bold">
+            <h1 className="mt-6 text-3xl font-bold sm:text-5xl">
               Your Car Deserves <br />
               <span className="text-sky-400">
                 Premium <span className="text-orange-400">Detailing</span>
               </span>
             </h1>
-            <p className="mt-6 text-sm font-bold text-gray-700 sm:w-4/5">
+            <p className="mt-6 text-xs font-bold text-gray-700 sm:w-4/5">
               Experience professional auto detailing services with our
               easy-to-use booking platform. We bring the shine back to your
               vehicle.
             </p>
-            <div className="mt-6 flex w-sm">
+            <div className="w-sm mt-6 flex">
               <Link
                 href={'/booking'}
-                className="text-md mr-2 flex cursor-pointer rounded-xl border bg-orange-400 px-3 py-2 font-bold text-white transition duration-200 hover:bg-orange-500/90 "
+                className="sm:text-md mr-2 flex cursor-pointer items-center rounded-xl border bg-orange-400 px-3 py-2 text-sm font-bold text-white transition duration-200 hover:bg-orange-500/90"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ export default function Page() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="mr-2 size-6"
+                  className="mr-2 size-5 sm:size-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -51,7 +51,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-x-2 gap-y-4 rounded-2xl bg-white/10 p-4 opacity-90 shadow-xl shadow-sky-400 sm:grid-cols-2 sm:border sm:border-orange-300">
+          <div className="grid grid-cols-1 gap-x-2 gap-y-4 bg-white/10 p-4 opacity-90 sm:grid-cols-2 sm:rounded-2xl sm:border sm:border-orange-300 sm:shadow-xl sm:shadow-sky-400">
             {services.map((service) => (
               <div key={service.id}>
                 <ServiceCard
