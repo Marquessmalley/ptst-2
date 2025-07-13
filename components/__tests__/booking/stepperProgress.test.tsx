@@ -38,7 +38,9 @@ describe('Stepper progress component', () => {
     const stepName = getByText('Select Vehicle');
     const stepNumber = getByText('1');
 
-    expect(stepName).toHaveClass('sm:block text-sky-400 text-2xl');
+    expect(stepName).toHaveClass(
+      'font-bold sm:text-sm text-xl text-sky-400 sm:block sm:text-2xl',
+    );
     expect(stepNumber).toHaveClass(
       'mr-2 rounded-full text-center bg-sky-400 text-white px-3 py-1 sm:px-3 sm:py-1 text-md sm:text-sm',
     );
