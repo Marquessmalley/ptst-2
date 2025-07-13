@@ -35,7 +35,10 @@ describe('Services lists all service items', () => {
       const description = getByText(service.description);
       expect(title).toBeInTheDocument();
       expect(description).toBeInTheDocument();
-      expect(img[index]).toHaveAttribute('src', service.icon);
+      expect(img[index]).toHaveAttribute(
+        'src',
+        '/_next/image?url=%2Fwash.png&w=48&q=75',
+      );
     });
   });
 });
