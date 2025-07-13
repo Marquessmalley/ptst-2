@@ -22,14 +22,14 @@ export default function RootLayout({
   }, []);
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-screen flex-col">
         <HeroUIProvider>
           {isLoading ? (
             <SplashScreen />
           ) : (
-            <div className="flex flex-col min-h-screen bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
+            <div className="flex min-h-screen flex-col bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
               <Menu />
-              <main className="flex-grow flex justify-center items-center">
+              <main className="flex flex-grow items-center justify-center">
                 {children}
               </main>
               <Footer />

@@ -1,5 +1,5 @@
 import { DetailMenuItem } from '@/lib/definitions/definitions';
-
+import Image from 'next/image';
 const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
   return (
     <div
@@ -13,9 +13,11 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
       {/* CARD HEADER */}
       <div className="flex items-center">
         <div className="flex flex-1 items-center">
-          <img
+          <Image
             src={'/wash.png'}
             alt="car"
+            width={12}
+            height={12}
             className={
               plan.packageName === 'Gold Package'
                 ? 'h-11 w-11 rounded-full border bg-orange-400 p-3 shadow sm:h-12 sm:w-12'

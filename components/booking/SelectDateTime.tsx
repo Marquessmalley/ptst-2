@@ -139,8 +139,8 @@ const SelectDateTime = ({
   }, [selectedDayOnly]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 ">
-      <div className="flex justify-center ">
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="flex justify-center">
         <Calendar
           aria-label="Date (Controlled)"
           value={value}
@@ -161,27 +161,27 @@ const SelectDateTime = ({
           calendarWidth={370}
         />
       </div>
-      <div className="flex flex-col justify-start items-center w-full">
-        <div className="my-1 mx-2 p-2 text-left w-full max-w-[370px] ">
-          <p className="text-sm text-default-700 font-semibold ">
+      <div className="flex w-full flex-col items-center justify-start">
+        <div className="mx-2 my-1 w-full max-w-[370px] p-2 text-left">
+          <p className="text-sm font-semibold text-default-700">
             {getFormattedDayAndDate()}
           </p>
         </div>
         {/* TIMES CONTAINER */}
-        <div className="max-w-[370px] w-full">
+        <div className="w-full max-w-[370px]">
           {loading === true ? (
             <TimeSlotsSkeleton />
           ) : availableDates.length !== 0 ? (
-            <div className="my-2 mx-2 grid grid-cols-1 gap-y-2 max-h-[260px] overflow-scroll ">
+            <div className="mx-2 my-2 grid max-h-[260px] grid-cols-1 gap-y-2 overflow-scroll">
               {availableDates.map((time: any) => (
                 <button
                   key={time.startAt}
                   type="button"
                   value={time.startAt}
                   onClick={handleSelectTime}
-                  className={`w-full text-center cursor-pointer hover:bg-default-200 text-xs font-semibold leading-4 text-default-500 p-4 rounded-xl transition duration-300 ${
+                  className={`w-full cursor-pointer rounded-xl p-4 text-center text-xs font-semibold leading-4 text-default-500 transition duration-300 hover:bg-default-200 ${
                     selectedTime === time.startAt
-                      ? 'bg-default-200 '
+                      ? 'bg-default-200'
                       : 'bg-default-100'
                   }`}
                 >
