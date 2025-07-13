@@ -1,9 +1,9 @@
 const DisclaimerBanner = () => {
   return (
-    <div className="py-6 flex justify-center m-2">
-      <div className="flex w-fit justify-center items-center rounded-2xl bg-white py-2 px-2 ">
+    <div className="m-2 flex justify-center py-2">
+      <div className="flex w-fit items-center justify-center rounded-2xl bg-white px-2 py-2">
         <div className="flex flex-wrap items-center">
-          <p className=" text-sm sm:text-sm/6 font-bold text-gray-900 text-center">
+          <p className="text-center text-xs font-bold text-gray-900 sm:text-sm">
             🔔 Estimated price — subject to change after inspection or service
             adjustments.
           </p>

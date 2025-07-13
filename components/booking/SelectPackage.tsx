@@ -36,10 +36,10 @@ const SelectPackage = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {loading ? (
           <>
-            {services?.map((item, index) => (
+            {services?.map((index) => (
               <div key={index}>
                 <PackageCardSkeleton />
               </div>

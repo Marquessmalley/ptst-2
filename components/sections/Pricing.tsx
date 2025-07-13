@@ -5,19 +5,19 @@ const Pricing: React.FC = () => {
   const specialPackages = detailMenu.slice(0, 3);
 
   return (
-    <div id="pricing" className="my-10 pt-24 sm:pt-32">
+    <div id="pricing" className="my-10 pt-8 sm:pt-24">
       {/* PRICE HEADER */}
       <div className="mx-auto mb-4 max-w-md sm:max-w-xl md:max-w-3xl lg:text-center">
         <div className="mx-4">
-          <p className=" text-center text-2xl font-bold tracking-tight text-slate-900/80  sm:text-4xl">
+          <p className="text-center text-xl font-bold tracking-tight text-slate-900/80 sm:text-4xl">
             Choose the right package for you
           </p>
-          <p className="my-4 text-center text-lg text-gray-700 font-normal  lg:text-justify">
+          <p className="my-4 text-center text-sm font-normal text-gray-700 sm:text-lg lg:text-justify">
             Whether you&apos;re looking for a basic clean or a comprehensive
             detailing service, our pricing is transparent and competitive.{' '}
             <span
               // href="/prices"
-              className="inline-flex items-center justify-center font-bold  text-sky-400"
+              className="inline-flex items-center justify-center font-bold text-sky-400"
             >
               Check out our prices{' '}
               <svg

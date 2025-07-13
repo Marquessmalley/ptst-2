@@ -8,9 +8,9 @@ import { faq } from '@/lib/data/placeholder-data';
 
 const Faq = () => {
   return (
-    <div id="faq" className="mb-10 w-full px-4 pt-32">
+    <div id="faq" className="mb-10 w-full px-4 pt-10">
       <div className="mx-auto mb-5 grid max-w-7xl grid-cols-1">
-        <h2 className="mb-4 text-xl sm:text-4xl font-extrabold  text-slate-900/80">
+        <h2 className="mb-4 text-xl font-extrabold text-slate-900/80 sm:text-4xl">
           Frequently asked questions
         </h2>
       </div>
@@ -24,7 +24,7 @@ const Faq = () => {
               defaultOpen={false}
             >
               <DisclosureButton className="group flex w-full items-center justify-between">
-                <span className=" text-sm sm:text-md hover:text-black-50 font-medium text-black">
+                <span className="sm:text-md hover:text-black-50 text-sm font-medium text-black">
                   {qa.question}
                 </span>
                 <ChevronDownIcon className="size-5 text-black group-data-[open]:rotate-180 dark:text-white" />

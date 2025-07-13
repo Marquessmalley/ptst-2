@@ -81,9 +81,9 @@ export default async function BookingDetails({ id }: { id: string }) {
   return (
     <div className="">
       {/* Top */}
-      <div className="grid grid-cols-1 place-items-center mb-10">
-        <div className="flex items-center my-2 ">
-          <h2 className="font-bold text-4xl text-gray-700">
+      <div className="mb-10 grid grid-cols-1 place-items-center">
+        <div className="my-2 flex items-center">
+          <h2 className="text-xl font-bold text-gray-700 sm:text-4xl">
             Appointment{' '}
             {status &&
               status
@@ -97,7 +97,7 @@ export default async function BookingDetails({ id }: { id: string }) {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="green"
-            className="size-12 p-1 bg-white border rounded-full  ml-2"
+            className="ml-2 size-8 rounded-full border bg-white p-1 sm:size-12"
           >
             <path
               strokeLinecap="round"
@@ -106,22 +106,24 @@ export default async function BookingDetails({ id }: { id: string }) {
             />
           </svg>
         </div>
-        <p className=" text-sm font-semibold text-gray-700">
+        <p className="text-center text-xs font-semibold text-gray-700 sm:text-sm">
           Thank you for choosing our car detailing service.
         </p>
       </div>
 
       {/* MIDDLE */}
-      <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl shadow-lg border">
+      <div className="mx-auto max-w-4xl rounded-xl bg-white/10 backdrop-blur-lg sm:border sm:shadow-lg">
         <div className="grid grid-cols-2">
           <div className="col-span-1 mx-6 my-4">
-            <h3 className="font-bold text-xl text-gray-700">Booking Summary</h3>
-            <p className="font-normal text-md text-gray-700">
+            <h3 className="whitespace-nowrap text-sm font-bold text-gray-700 sm:text-xl">
+              Booking Summary
+            </h3>
+            <p className="whitespace-nowrap text-xs font-normal text-gray-700 sm:text-base">
               Booking ID: #{id}{' '}
             </p>
           </div>
 
-          <p className="justify-self-end mx-6 my-4 bg-green-200 text-green-500 font-semibold rounded-3xl w-24 text-center h-7">
+          <p className="mx-2 my-4 flex h-6 w-20 items-center justify-center justify-self-end rounded-3xl bg-green-200 text-center text-xs font-semibold text-green-500 sm:mx-6 sm:my-4 sm:h-7 sm:w-24">
             {status &&
               status
                 .charAt(0)
@@ -131,13 +133,13 @@ export default async function BookingDetails({ id }: { id: string }) {
         </div>
 
         <Divider className="my-4" />
-        <div className="mx-6 my-4 flex justify-between">
-          <div className="">
+        <div className="mx-6 my-4 flex flex-col gap-y-4 sm:flex-row sm:justify-between">
+          <div className="flex items-center justify-between sm:flex-col">
             <p className="text-sm font-semibold text-gray-600">Total Amount:</p>
-            <p className="text-2xl font-bold">{servicePrice}</p>
+            <p className="text-lg font-bold sm:text-2xl">{servicePrice}</p>
           </div>
           <div
-            className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-1 flex items-center max-w-xs"
+            className="flex max-w-xs items-center border-l-4 border-orange-500 bg-orange-100 text-orange-700 sm:p-1"
             role="alert"
           >
             <svg
@@ -146,7 +148,7 @@ export default async function BookingDetails({ id }: { id: string }) {
               viewBox="0 0 24 24"
               strokeWidth="1.75"
               stroke="currentColor"
-              className="size-12"
+              className="size-14 sm:size-12"
             >
               <path
                 strokeLinecap="round"
@@ -155,7 +157,7 @@ export default async function BookingDetails({ id }: { id: string }) {
               />
             </svg>
 
-            <p className="font-normal text-xs ml-2">
+            <p className="ml-2 text-xs font-normal">
               Please remove all personal belongings from your vehicle before
               your appointment
             </p>
@@ -163,32 +165,32 @@ export default async function BookingDetails({ id }: { id: string }) {
         </div>
         <Divider className="my-4" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 ">
+        <div className="grid grid-cols-1 sm:grid-cols-3">
           <div className="mx-6 my-2">
-            <p className="font-bold mb-2 text-lg">Service Details</p>
-            <div className="flex items-center my-4">
+            <p className="mb-2 text-lg font-bold">Service Details</p>
+            <div className="my-4 flex items-center">
               <Image
                 src="/wash.png"
                 alt=""
                 width={28}
                 height={28}
-                className="bg-sky-400 p-1 rounded-full"
+                className="rounded-full bg-sky-400 p-1"
               />
               <div>
-                <p className="font-semibold text-sm text-gray-900 ml-2">
+                <p className="ml-2 text-sm font-semibold text-gray-900">
                   Package Selected
                 </p>
-                <p className="font-normal text-xs text-gray-900 ml-2">{name}</p>
+                <p className="ml-2 text-xs font-normal text-gray-900">{name}</p>
               </div>
             </div>
-            <div className="flex items-center my-4">
+            <div className="my-4 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-sky-400 rounded-full p-1"
+                className="size-7 rounded-full bg-sky-400 p-1 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -198,22 +200,22 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-sm text-gray-900 ml-2">
+                <p className="ml-2 text-sm font-semibold text-gray-900">
                   {new Date(startAt).toDateString()}
                 </p>
-                <p className="font-normal text-xs text-gray-700 ml-2">
+                <p className="ml-2 text-xs font-normal text-gray-700">
                   {formatTimeFromRFC3339(startAt)}
                 </p>
               </div>
             </div>
-            <div className="flex items-center my-4">
+            <div className="my-4 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-sky-400 rounded-full p-1"
+                className="size-7 rounded-full bg-sky-400 p-1 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -223,10 +225,10 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-sm text-gray-900 ml-2">
+                <p className="ml-2 text-sm font-semibold text-gray-900">
                   Estimated Duration
                 </p>
-                <p className="font-normal text-xs text-gray-700 ml-2">
+                <p className="ml-2 text-xs font-normal text-gray-700">
                   {durationMinutes &&
                     dayjs
                       .duration(durationMinutes, 'minutes')
@@ -236,15 +238,15 @@ export default async function BookingDetails({ id }: { id: string }) {
             </div>
           </div>
           <div className="mx-6 my-2">
-            <p className="font-bold mb-2 text-lg">Contact Information</p>
-            <div className="flex items-center my-4">
+            <p className="mb-2 text-lg font-bold">Contact Information</p>
+            <div className="my-4 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-sky-400 rounded-full p-1"
+                className="size-7 rounded-full bg-sky-400 p-1 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -254,22 +256,22 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-sm text-gray-900 ml-2">
+                <p className="ml-2 text-sm font-semibold text-gray-900">
                   Customer Name
                 </p>
-                <p className="font-normal text-xs text-gray-900 ml-2">
+                <p className="ml-2 text-xs font-normal text-gray-900">
                   {givenName} {familyName}
                 </p>
               </div>
             </div>
-            <div className="flex items-center my-4">
+            <div className="my-4 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-sky-400 rounded-full p-1"
+                className="size-7 rounded-full bg-sky-400 p-1 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -279,22 +281,22 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-sm text-gray-900 ml-2">
+                <p className="ml-2 text-sm font-semibold text-gray-900">
                   Email
                 </p>
-                <p className="font-normal text-xs text-gray-900 ml-2">
+                <p className="ml-2 text-xs font-normal text-gray-900">
                   {emailAddress}
                 </p>
               </div>
             </div>
-            <div className="flex items-center my-4">
+            <div className="my-4 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="size-7 text-white bg-sky-400 rounded-full p-1"
+                className="size-7 rounded-full bg-sky-400 p-1 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -309,13 +311,13 @@ export default async function BookingDetails({ id }: { id: string }) {
               </svg>
 
               <div>
-                <p className="font-semibold text-sm text-gray-900 ml-2">
+                <p className="ml-2 text-sm font-semibold text-gray-900">
                   Location
                 </p>
-                <p className="font-normal text-xs text-gray-900 ml-2">
+                <p className="ml-2 text-xs font-normal text-gray-900">
                   {address?.addressLine1}
                 </p>
-                <p className="font-normal text-xs text-gray-900 ml-2">
+                <p className="ml-2 text-xs font-normal text-gray-900">
                   {address?.locality}, {address?.administrativeDistrictLevel1},{' '}
                   {address?.postalCode}
                 </p>
@@ -323,7 +325,7 @@ export default async function BookingDetails({ id }: { id: string }) {
             </div>
           </div>
           <div className="mx-6 my-2">
-            <p className="font-bold mb-2 text-lg">
+            <p className="mb-2 text-lg font-bold">
               Vehicle Type Selected
               {/* <span className="font-semibold text-md">{vehicleType}</span> */}
             </p>
@@ -336,10 +338,10 @@ export default async function BookingDetails({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <div className="flex justify-center my-4">
-        <p className="text-sm font-normal text-gray-900">
+      <div className="my-4 flex justify-center">
+        <p className="text-center text-xs font-normal text-gray-900 sm:text-sm">
           If you have any questions, please contact us at{' '}
-          <span className="text-sky-400 font-bold">
+          <span className="font-bold text-sky-400">
             paultevshinetime@gmail.com
           </span>
         </p>

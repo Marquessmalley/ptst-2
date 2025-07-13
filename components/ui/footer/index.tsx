@@ -1,19 +1,19 @@
 const Footer = () => {
   return (
-    <footer className="py-10 ">
+    <footer className="py-2">
       <div className="mx-auto grid max-w-7xl gap-y-4 p-4 sm:grid-cols-12">
         {/* LOGO */}
         <div className="col-span-12 grid grid-cols-1 items-center sm:col-span-6">
-          <p className="text-sm font-semibold">
+          <p className="text-xs font-semibold sm:text-sm">
             &copy; {new Date().getFullYear()} Paul & Tev Shinetime. All rights
             reserved.
           </p>
         </div>
         {/* SOCIAL MEDIA */}
         <div className="col-span-6 grid justify-items-start sm:col-span-3 sm:justify-items-center">
-          <h2 className="text-sm font-semibold">Connect with us</h2>
+          <h2 className="text-xs font-semibold sm:text-sm">Connect with us</h2>
           <div className="flex">
-            <button className="group border m-2 flex h-10 w-10 items-center justify-center rounded-lg  shadow-sm transition-all duration-300 ">
+            <button className="group m-2 flex h-10 w-10 items-center justify-center rounded-lg border shadow-sm transition-all duration-300">
               <a href="https://www.facebook.com/paulandtevshinetime/">
                 <svg
                   className="transition-all duration-300 group-hover:scale-110"
@@ -31,7 +31,7 @@ const Footer = () => {
               </a>
             </button>
 
-            <button className="border group m-2 flex h-10 w-10 items-center justify-center rounded-lg  shadow-sm transition-all duration-200">
+            <button className="group m-2 flex h-10 w-10 items-center justify-center rounded-lg border shadow-sm transition-all duration-200">
               <a href="https://www.instagram.com/paul_tev_shinetime_llc/">
                 <svg
                   className="transition-all duration-300 group-hover:scale-110"
@@ -81,12 +81,12 @@ const Footer = () => {
 
         {/* COMPANY */}
         <div className="col-span-6 grid sm:col-span-3">
-          <h2 className="text-sm font-semibold">Company</h2>
+          <h2 className="text-xs font-semibold sm:text-sm">Company</h2>
           <ul className="flex justify-between">
             <li>
               <a
                 href="/about"
-                className="text-sm font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
               >
                 About
               </a>
@@ -94,7 +94,7 @@ const Footer = () => {
             <li>
               <a
                 href="https://main--ptshinetime.netlify.app/prices"
-                className="text-sm font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
               >
                 Pricing
               </a>
@@ -102,7 +102,7 @@ const Footer = () => {
             <li>
               <a
                 href="https://main--ptshinetime.netlify.app/contact"
-                className="text-sm font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
               >
                 Contact
               </a>
@@ -110,7 +110,7 @@ const Footer = () => {
             <li>
               <a
                 href="https://main--ptshinetime.netlify.app/#faq"
-                className="text-sm font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
               >
                 FAQ
               </a>
@@ -119,7 +119,7 @@ const Footer = () => {
         </div>
       </div>
       <footer className="flex justify-center border-t border-b-slate-300 py-4 dark:border-t-slate-700">
-        <p className="text-sm font-semibold">
+        <p className="text-xs font-semibold sm:text-sm">
           Developed by{' '}
           <a
             href="https://marquessmalley.netlify.app/"
