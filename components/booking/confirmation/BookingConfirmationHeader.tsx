@@ -6,6 +6,7 @@ export default async function BookingConfirmationHeader({
   id: string;
 }) {
   const bookingData = await fetchBooking(id);
+  if (!bookingData) throw new Error('Booking data is missing');
   const { status, customerId, startAt, appointmentSegments } = bookingData;
   return (
     <div className="mb-10 grid grid-cols-1 place-items-center">
