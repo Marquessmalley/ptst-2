@@ -25,43 +25,34 @@ export default async function BookingDetails({ id }: { id: string }) {
 
   const { status, customerId, startAt, appointmentSegments } = bookingData;
 
-  if (!startAt) throw new Error('startAt date is missing');
-
-  if (!customerId)
-    throw new Error('Customer ID is missing in the booking data.');
-
   if (!appointmentSegments)
     throw new Error('Appointment is missing in the booking data.');
 
   const { serviceVariationId, durationMinutes } = appointmentSegments[0];
 
-  if (!serviceVariationId) throw new Error('Service variation id is missing');
-
   // CATALOG OBJECT INFO
   const catalogRelatedObject =
-    await fetchCatalogRelatedObject(serviceVariationId);
+    serviceVariationId && (await fetchCatalogRelatedObject(serviceVariationId));
 
   if (!catalogRelatedObject)
     throw new Error('Catalog related object is missing');
 
   const { relatedObjects } = catalogRelatedObject;
 
-  if (!relatedObjects) {
-    throw new Error('Related object is missing');
-  }
+  const relatedObjectStringified =
+    relatedObjects && JSON.stringify(relatedObjects[0], replace);
 
-  const relatedObjectStringified = JSON.stringify(relatedObjects[0], replace);
-
-  const parsedRelatedObject = JSON.parse(relatedObjectStringified);
+  const parsedRelatedObject =
+    relatedObjectStringified && JSON.parse(relatedObjectStringified);
 
   const { name } = parsedRelatedObject.itemData;
 
   const catalogObject = await fetchCatalogObject(serviceVariationId);
 
-  if (!catalogObject) throw new Error('Catalog data is missing');
-
-  const catalogObjectStringified = JSON.stringify(catalogObject, replace);
-  const parsedCatalogObject = JSON.parse(catalogObjectStringified);
+  const catalogObjectStringified =
+    catalogObject && JSON.stringify(catalogObject, replace);
+  const parsedCatalogObject =
+    catalogObjectStringified && JSON.parse(catalogObjectStringified);
 
   const catalogPrice = currencyFormatter(
     parsedCatalogObject.object.itemVariationData.priceMoney.amount,
@@ -164,10 +155,10 @@ export default async function BookingDetails({ id }: { id: string }) {
 
               <div>
                 <p className="ml-2 text-sm font-semibold text-gray-900">
-                  {new Date(startAt).toDateString()}
+                  {startAt && new Date(startAt).toDateString()}
                 </p>
                 <p className="ml-2 text-xs font-normal text-gray-700">
-                  {formatTimeFromRFC3339(startAt)}
+                  {startAt && formatTimeFromRFC3339(startAt)}
                 </p>
               </div>
             </div>
@@ -200,7 +191,8 @@ export default async function BookingDetails({ id }: { id: string }) {
               </div>
             </div>
           </div>
-          <CustomerInfo customerId={customerId} />
+          {customerId && <CustomerInfo customerId={customerId} />}
+
           <div className="mx-6 my-2">
             <p className="mb-2 text-lg font-bold">
               Vehicle Type Selected
