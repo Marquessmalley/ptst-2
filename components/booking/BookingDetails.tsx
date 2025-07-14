@@ -1,4 +1,3 @@
-import { client } from '@/lib/api/sqaure';
 import { Divider } from '@heroui/react';
 import Image from 'next/image';
 import { replace } from '@/lib/utils/bigIntHandler';
@@ -6,110 +5,65 @@ import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
 import { currencyFormatter } from '@/lib/utils/currencyFormatter';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+import {
+  fetchBooking,
+  fetchCatalogObject,
+  fetchCatalogRelatedObject,
+} from '@/lib/data/booking';
+import BookingConfirmationHeader from './confirmation/BookingConfirmationHeader';
+import CustomerInfo from './confirmation/CustomerInfo';
 
 dayjs.extend(duration);
 
 export default async function BookingDetails({ id }: { id: string }) {
-  const bookingData = await client.bookings.get({ bookingId: id });
+  // BOOKING INFO
+  const bookingData = await fetchBooking(id);
 
-  if (!bookingData.booking) {
-    throw new Error('Booking is missing in the booking data.');
-  }
-  const { status, customerId, startAt } = bookingData.booking;
-
-  if (!startAt) {
-    throw new Error('startAt date is missing');
+  if (!bookingData) {
+    throw new Error('Booking data is missing');
   }
 
-  if (!bookingData.booking.appointmentSegments) {
+  const { status, customerId, startAt, appointmentSegments } = bookingData;
+
+  if (!appointmentSegments)
     throw new Error('Appointment is missing in the booking data.');
-  }
-  const { serviceVariationId, durationMinutes } =
-    bookingData.booking.appointmentSegments[0];
 
-  if (!customerId) {
-    throw new Error('Customer ID is missing in the booking data.');
-  }
+  const { serviceVariationId, durationMinutes } = appointmentSegments[0];
 
-  // CUSTOMER INFO
+  // CATALOG OBJECT INFO
+  const catalogRelatedObject =
+    serviceVariationId && (await fetchCatalogRelatedObject(serviceVariationId));
 
-  const customerData = await client.customers.get({ customerId });
+  if (!catalogRelatedObject)
+    throw new Error('Catalog related object is missing');
 
-  if (!customerData.customer) {
-    throw new Error('No customer data');
-  }
+  const { relatedObjects } = catalogRelatedObject;
 
-  const { givenName, familyName, emailAddress, address } =
-    customerData.customer;
+  const relatedObjectStringified =
+    relatedObjects && JSON.stringify(relatedObjects[0], replace);
 
-  // SERVICE INFO
-  if (!serviceVariationId) {
-    throw new Error('Service variation id is missing');
-  }
+  const parsedRelatedObject =
+    relatedObjectStringified && JSON.parse(relatedObjectStringified);
 
-  const serviceData = await client.catalog.object.get({
-    objectId: serviceVariationId,
-    includeRelatedObjects: true,
-  });
+  const { name } = parsedRelatedObject.itemData;
 
-  if (!serviceData.relatedObjects) {
-    throw new Error('Related object is missing');
-  }
+  const catalogObject = await fetchCatalogObject(serviceVariationId);
 
-  const serviceStringified = JSON.stringify(
-    serviceData.relatedObjects[0],
-    replace,
+  const catalogObjectStringified =
+    catalogObject && JSON.stringify(catalogObject, replace);
+  const parsedCatalogObject =
+    catalogObjectStringified && JSON.parse(catalogObjectStringified);
+
+  const catalogPrice = currencyFormatter(
+    parsedCatalogObject.object.itemVariationData.priceMoney.amount,
   );
 
-  const parseDServiceData = JSON.parse(serviceStringified);
-
-  const { name } = parseDServiceData.itemData;
-
-  const serviceVariant = await client.catalog.object.get({
-    objectId: serviceVariationId,
-  });
-
-  const stringifyServiceVariant = JSON.stringify(serviceVariant, replace);
-  const parseDServiceVariant = JSON.parse(stringifyServiceVariant);
-
-  const servicePrice = currencyFormatter(
-    parseDServiceVariant.object.itemVariationData.priceMoney.amount,
-  );
-
-  const vehicleType = parseDServiceVariant.object.itemVariationData.name;
+  const vehicleType = parsedCatalogObject.object.itemVariationData.name;
 
   return (
-    <div className="">
+    <div>
       {/* Top */}
-      <div className="mb-10 grid grid-cols-1 place-items-center">
-        <div className="my-2 flex items-center">
-          <h2 className="text-xl font-bold text-gray-700 sm:text-4xl">
-            Appointment{' '}
-            {status &&
-              status
-                .charAt(0)
-                .toUpperCase()
-                .concat(status.slice(1).toLocaleLowerCase())}
-          </h2>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="green"
-            className="ml-2 size-8 rounded-full border bg-white p-1 sm:size-12"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m4.5 12.75 6 6 9-13.5"
-            />
-          </svg>
-        </div>
-        <p className="text-center text-xs font-semibold text-gray-700 sm:text-sm">
-          Thank you for choosing our car detailing service.
-        </p>
-      </div>
+      <BookingConfirmationHeader id={id} />
 
       {/* MIDDLE */}
       <div className="mx-auto max-w-4xl rounded-xl bg-white/10 backdrop-blur-lg sm:border sm:shadow-lg">
@@ -136,7 +90,7 @@ export default async function BookingDetails({ id }: { id: string }) {
         <div className="mx-6 my-4 flex flex-col gap-y-4 sm:flex-row sm:justify-between">
           <div className="flex items-center justify-between sm:flex-col">
             <p className="text-sm font-semibold text-gray-600">Total Amount:</p>
-            <p className="text-lg font-bold sm:text-2xl">{servicePrice}</p>
+            <p className="text-lg font-bold sm:text-2xl">{catalogPrice}</p>
           </div>
           <div
             className="flex max-w-xs items-center border-l-4 border-orange-500 bg-orange-100 text-orange-700 sm:p-1"
@@ -201,10 +155,10 @@ export default async function BookingDetails({ id }: { id: string }) {
 
               <div>
                 <p className="ml-2 text-sm font-semibold text-gray-900">
-                  {new Date(startAt).toDateString()}
+                  {startAt && new Date(startAt).toDateString()}
                 </p>
                 <p className="ml-2 text-xs font-normal text-gray-700">
-                  {formatTimeFromRFC3339(startAt)}
+                  {startAt && formatTimeFromRFC3339(startAt)}
                 </p>
               </div>
             </div>
@@ -237,93 +191,8 @@ export default async function BookingDetails({ id }: { id: string }) {
               </div>
             </div>
           </div>
-          <div className="mx-6 my-2">
-            <p className="mb-2 text-lg font-bold">Contact Information</p>
-            <div className="my-4 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                className="size-7 rounded-full bg-sky-400 p-1 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                />
-              </svg>
+          {customerId && <CustomerInfo customerId={customerId} />}
 
-              <div>
-                <p className="ml-2 text-sm font-semibold text-gray-900">
-                  Customer Name
-                </p>
-                <p className="ml-2 text-xs font-normal text-gray-900">
-                  {givenName} {familyName}
-                </p>
-              </div>
-            </div>
-            <div className="my-4 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                className="size-7 rounded-full bg-sky-400 p-1 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 3.75H6.912a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859M12 3v8.25m0 0-3-3m3 3 3-3"
-                />
-              </svg>
-
-              <div>
-                <p className="ml-2 text-sm font-semibold text-gray-900">
-                  Email
-                </p>
-                <p className="ml-2 text-xs font-normal text-gray-900">
-                  {emailAddress}
-                </p>
-              </div>
-            </div>
-            <div className="my-4 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                className="size-7 rounded-full bg-sky-400 p-1 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                />
-              </svg>
-
-              <div>
-                <p className="ml-2 text-sm font-semibold text-gray-900">
-                  Location
-                </p>
-                <p className="ml-2 text-xs font-normal text-gray-900">
-                  {address?.addressLine1}
-                </p>
-                <p className="ml-2 text-xs font-normal text-gray-900">
-                  {address?.locality}, {address?.administrativeDistrictLevel1},{' '}
-                  {address?.postalCode}
-                </p>
-              </div>
-            </div>
-          </div>
           <div className="mx-6 my-2">
             <p className="mb-2 text-lg font-bold">
               Vehicle Type Selected
