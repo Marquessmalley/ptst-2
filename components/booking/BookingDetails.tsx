@@ -18,6 +18,11 @@ dayjs.extend(duration);
 export default async function BookingDetails({ id }: { id: string }) {
   // BOOKING INFO
   const bookingData = await fetchBooking(id);
+
+  if (!bookingData) {
+    throw new Error('Booking data is missing');
+  }
+
   const { status, customerId, startAt, appointmentSegments } = bookingData;
 
   if (!startAt) throw new Error('startAt date is missing');
@@ -36,6 +41,9 @@ export default async function BookingDetails({ id }: { id: string }) {
   const catalogRelatedObject =
     await fetchCatalogRelatedObject(serviceVariationId);
 
+  if (!catalogRelatedObject)
+    throw new Error('Catalog related object is missing');
+
   const { relatedObjects } = catalogRelatedObject;
 
   if (!relatedObjects) {
@@ -49,6 +57,8 @@ export default async function BookingDetails({ id }: { id: string }) {
   const { name } = parsedRelatedObject.itemData;
 
   const catalogObject = await fetchCatalogObject(serviceVariationId);
+
+  if (!catalogObject) throw new Error('Catalog data is missing');
 
   const catalogObjectStringified = JSON.stringify(catalogObject, replace);
   const parsedCatalogObject = JSON.parse(catalogObjectStringified);
