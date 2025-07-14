@@ -6,6 +6,7 @@ export default async function CustomerInfo({
   customerId: string;
 }) {
   const customerData = await fetchCustomer(customerId);
+  if (!customerData) throw new Error('Customer data is missing');
   const { givenName, familyName, emailAddress, address } = customerData;
   return (
     <div className="mx-6 my-2">
