@@ -6,7 +6,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { faq } from '@/lib/data/placeholder-data';
 
-const Faq = () => {
+const Faq: React.FC = () => {
   return (
     <div id="faq" className="mb-10 w-full px-4 pt-10">
       <div className="mx-auto mb-5 grid max-w-7xl grid-cols-1">
