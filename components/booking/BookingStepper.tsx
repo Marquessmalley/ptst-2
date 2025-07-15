@@ -18,9 +18,11 @@ import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
 import { BookingInfo } from '@/lib/definitions/definitions';
 import { useRouter } from 'next/navigation';
 import ErrorAlert from '../ui/alert/ErrorAlert';
+import { Spinner } from '@heroui/react';
 
 const BookingStepper = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [availableDates, setAvailableDates] = useState([]);
   const [error, setError] = useState({ errorType: '', description: '' });
 
@@ -130,8 +132,14 @@ const BookingStepper = () => {
       case 3:
         // create booking
         if (userInfoSubmitted(bookingInfo)) {
+          setIsLoading(true);
+          setError({
+            errorType: '',
+            description: '',
+          });
           createBooking()
             .then((data) => {
+              setIsLoading(false);
               const { id } = data.booking.booking;
               // this takes too long, maybe setup a fallback ui
               router.push(`/booking/confirmation/${id}`);
@@ -139,6 +147,12 @@ const BookingStepper = () => {
             .catch((err) => {
               console.log(err);
             });
+        } else {
+          setIsLoading(false);
+          setError({
+            errorType: 'Booking Summary',
+            description: 'Please fill out the required fields!',
+          });
         }
         break;
       default:
@@ -219,6 +233,12 @@ const BookingStepper = () => {
         )}
         {step === 3 && (
           <div>
+            {error.errorType === 'Booking Summary' && (
+              <ErrorAlert
+                errorType={error.errorType}
+                errorDescription={error.description}
+              />
+            )}
             <BookingSummary />
           </div>
         )}
@@ -227,10 +247,23 @@ const BookingStepper = () => {
           <button
             type="button"
             className="my-2 w-full cursor-pointer text-nowrap rounded-2xl bg-slate-800 p-2 font-bold text-white transition duration-200 hover:bg-slate-900 sm:w-44"
-            // disabled={step === 3 ? true : false}
+            disabled={isLoading}
             onClick={handleNext}
           >
-            {step == 3 ? <>Book Appointment</> : <>Continue</>}
+            {isLoading ? (
+              <Spinner
+                variant="dots"
+                size="md"
+                classNames={{
+                  base: 'flex',
+                  dots: 'bg-sky-400',
+                }}
+              />
+            ) : step == 3 ? (
+              <>Book Appointment</>
+            ) : (
+              <>Continue</>
+            )}
           </button>
         </div>
       </form>
