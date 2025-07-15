@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import Page from '@/app/page';
+import { Hero } from '@/components/sections';
 import { services } from '@/lib/data/placeholder-data';
 
 describe('Home page componenet', () => {
@@ -10,8 +11,8 @@ describe('Home page componenet', () => {
   });
 
   it('Renders correct banner text.', () => {
-    const { getByText } = render(<Page />);
-    const bannerText = getByText('⚡️ Premium Auto Detailng');
+    const { getByText } = render(<Hero />);
+    const bannerText = getByText('⚡️Premium Auto Detailng');
 
     expect(bannerText).toBeInTheDocument();
   });
