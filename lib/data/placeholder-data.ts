@@ -22,6 +22,45 @@ export const services = [
   },
 ];
 
+export const galleryImages = [
+  {
+    id: 0,
+    src: '/gallery-image-1.jpg',
+    width: 1875,
+    height: 2500,
+  },
+  {
+    id: 1,
+    src: '/gallery-image-2.jpg',
+    width: 1875,
+    height: 2500,
+  },
+  {
+    id: 2,
+    src: '/gallery-image-3.jpg',
+    width: 1875,
+    height: 2500,
+  },
+  {
+    id: 3,
+    src: '/gallery-image-7.jpg',
+    width: 680,
+    height: 580,
+  },
+  {
+    id: 4,
+    src: '/gallery-image-8.jpg',
+    width: 680,
+    height: 580,
+  },
+  {
+    id: 5,
+    src: '/gallery-image-10.jpg',
+    width: 680,
+    height: 580,
+  },
+];
+
 export const faq = [
   {
     id: 0,
