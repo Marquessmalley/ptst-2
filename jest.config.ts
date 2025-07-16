@@ -12,7 +12,6 @@ const config: Config = {
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
-  transformIgnorePatterns: ['/node_modules/(?!(photoswipe)/)'],
 };
 
 export default createJestConfig(config);
