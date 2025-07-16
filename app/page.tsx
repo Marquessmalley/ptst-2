@@ -1,5 +1,5 @@
 'use client';
-import { Hero, Pricing, Gallery, Faq } from '@/components/sections';
+import { Hero, Pricing, Gallery, Faq, Contact } from '@/components/sections';
 
 export default function Page() {
   return (
@@ -10,6 +10,7 @@ export default function Page() {
       <Pricing />
       <Gallery />
       <Faq />
+      <Contact />
     </div>
   );
 }
