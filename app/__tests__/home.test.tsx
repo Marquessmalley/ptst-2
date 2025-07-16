@@ -2,6 +2,16 @@ import { render } from '@testing-library/react';
 import Page from '@/app/page';
 import { Hero } from '@/components/sections';
 import { services } from '@/lib/data/placeholder-data';
+import { init } from 'next/dist/compiled/webpack/webpack';
+
+jest.mock('photoswipe/lightbox', () => {
+  return function () {
+    return {
+      init: jest.fn(),
+      destroy: jest.fn(),
+    };
+  };
+});
 
 describe('Home page componenet', () => {
   it('Renders the banner', () => {
