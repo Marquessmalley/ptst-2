@@ -91,7 +91,6 @@ const BookingStepper = () => {
               .millisecond(0)
               .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
           }));
-          // Fetch availabilities
           fecthAvailabilities()
             .then((data) => {
               const formattedTime =
@@ -130,7 +129,6 @@ const BookingStepper = () => {
         }
         break;
       case 3:
-        // create booking
         if (userInfoSubmitted(bookingInfo)) {
           setIsLoading(true);
           setError({
@@ -141,7 +139,6 @@ const BookingStepper = () => {
             .then((data) => {
               setIsLoading(false);
               const { id } = data.booking.booking;
-              // this takes too long, maybe setup a fallback ui
               router.push(`/booking/confirmation/${id}`);
             })
             .catch((err) => {
