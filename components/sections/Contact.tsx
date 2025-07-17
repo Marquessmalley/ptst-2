@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
           Contact Us
         </p>
         <p className="my-4 text-center text-sm font-normal text-gray-700 sm:text-lg">
-          Have a question or need help? We&apo;re here for you.
+          Have a question or need help? We&apos;re here for you.
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-12">
