@@ -23,7 +23,7 @@ const SimpleGallery = ({
   }, []);
   return (
     <div id={galleryID} className="my-10">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="m-4 grid grid-cols-1 gap-4 sm:m-0 sm:grid-cols-3">
         {images.map((item) => (
           <a
             href={item.src}
