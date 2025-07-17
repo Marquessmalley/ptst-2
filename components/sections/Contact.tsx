@@ -8,23 +8,22 @@ const Contact: React.FC = () => {
           Contact Us
         </p>
         <p className="my-4 text-center text-sm font-normal text-gray-700 sm:text-lg">
-          Consequat sunt cillum cillum elit sint. Qui occaecat nisi in ipsum
-          commodo.
+          Have a question or need help? We're here for you.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2">
-        <div className="flex flex-col">
+      <div className="grid grid-cols-1 sm:grid-cols-12">
+        <div className="sm:col-span-4">
           <h1 className="text-xl font-bold tracking-tight text-slate-900/80 sm:text-3xl">
             Business Information
           </h1>
-          <div className="my-6 flex items-start">
+          <div className="my-10 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-8"
+              className="size-14 rounded-lg bg-slate-200 p-3 text-gray-800"
             >
               <path
                 strokeLinecap="round"
@@ -37,14 +36,14 @@ const Contact: React.FC = () => {
               Grand Rapids, MI 49507
             </p>
           </div>
-          <div className="my-6 flex items-start">
+          <div className="my-10 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-14 rounded-lg bg-slate-200 p-3 text-gray-800"
             >
               <path
                 strokeLinecap="round"
@@ -57,14 +56,14 @@ const Contact: React.FC = () => {
               (616) 226-4109
             </p>
           </div>
-          <div className="my-6 flex items-start">
+          <div className="my-10 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-14 rounded-lg bg-slate-200 p-3 text-gray-800"
             >
               <path
                 strokeLinecap="round"
@@ -78,7 +77,9 @@ const Contact: React.FC = () => {
             </p>
           </div>
         </div>
-        <ContactForm />
+        <div className="sm:col-span-8">
+          <ContactForm />
+        </div>
       </div>
     </div>
   );
