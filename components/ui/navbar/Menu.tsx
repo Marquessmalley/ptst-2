@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 const Menu = () => {
   return (
-    <div className="sticky top-0 z-40 h-20 bg-transparent backdrop-blur-lg backdrop-saturate-150">
+    <div className="top-0 z-40 h-20 bg-transparent backdrop-blur-lg backdrop-saturate-150">
       <div className="flex items-center px-6">
         <div className="mt-2">
           <Link href="/">

@@ -4,7 +4,7 @@ import { Hero, Pricing, Gallery, Faq, Contact } from '@/components/sections';
 export default function Page() {
   return (
     <div className="">
-      <div className="lg:mb-48 lg:mt-36">
+      <div className="px-4 lg:mb-10 lg:mt-12 lg:px-10">
         <Hero />
       </div>
       <Pricing />
