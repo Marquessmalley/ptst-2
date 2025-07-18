@@ -1,7 +1,7 @@
 import Banner from './banner/Banner';
-import Demo from './demo/Demo';
+import DemoButton from './buttons/DemoButton';
 import ServiceCard from './cards/ServiceCard';
 import PriceCard from './cards/PriceCard';
 import PackageCard from './cards/PackageCard';
 
-export { Banner, Demo, ServiceCard, PriceCard, PackageCard };
+export { Banner, DemoButton, ServiceCard, PriceCard, PackageCard };

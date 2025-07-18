@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { services } from '@/lib/data/placeholder-data';
-import { Banner, Demo, ServiceCard } from '@/components/ui';
+import { Banner, DemoButton, ServiceCard } from '@/components/ui';
 
 const Hero: React.FC = () => {
   return (
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
               </svg>
               Book now
             </Link>
-            <Demo />
+            <DemoButton />
           </div>
         </div>
 
