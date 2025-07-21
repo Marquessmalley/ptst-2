@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-const Demo = () => {
+const DemoButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -59,8 +59,11 @@ const Demo = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <video controls width="600" className="h-2/5 w-full">
-                    <source src="/demo.mp4" type="video/mp4" />
+                  <video controls preload="none" width="600">
+                    <source
+                      src={process.env.NEXT_PUBLIC_VERCEL_DEMO_BLOB_URL}
+                      type="video/mp4"
+                    />
                     Your browser does not support the video tag.
                   </video>
                 </Dialog.Panel>
@@ -73,4 +76,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default DemoButton;
