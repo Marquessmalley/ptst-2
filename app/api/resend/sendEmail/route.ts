@@ -40,19 +40,19 @@ export async function POST(request: Request) {
 
       console.log('📅 Customer:', customer);
 
-      // const { data, error } = await resend.emails.send({
-      //   from: "marquessmalley@gmail.com",
-      //   to: [`${customer.customer?.emailAddress}` || "msmalley@bizstream.com"],
-      //   subject: "Paul & Tev Shine Time Confirmation",
-      //   react: EmailTemplate(),
-      // });
+      const { data, error } = await resend.emails.send({
+        from: 'marquessmalley@gmail.com',
+        to: [`${customer.customer?.emailAddress}`],
+        subject: 'Paul & Tev Shine Time Appointment Confirmation',
+        react: EmailTemplate(),
+      });
 
-      // if (error) {
-      //   console.log(error);
-      //   return Response.json({ error }, { status: 500 });
-      // }
+      if (error) {
+        console.log(error);
+        return Response.json({ error }, { status: 500 });
+      }
 
-      // return Response.json(data);
+      return Response.json(data);
     }
 
     return new Response('Event not handled', { status: 200 });
