@@ -31,21 +31,17 @@ export async function POST(request: Request) {
 
     const body = JSON.parse(rawBody);
 
-    console.log(body);
-    console.log(body.data.object.booking);
-
     if (body?.type === 'booking.created') {
       const customer_id = body.data?.object?.booking?.customer_id;
 
       const customer = await client.customers.get({ customerId: customer_id });
-
-      console.log('📅 Customer:', customer);
+      const booking = body.data.object.booking;
 
       const { data, error } = await resend.emails.send({
         from: 'noreply@send.ptshinetime.com',
         to: [`${customer.customer?.emailAddress}`],
         subject: 'Paul & Tev Shine Time Appointment Confirmation',
-        react: EmailTemplate(),
+        react: EmailTemplate({ customer, booking }),
       });
 
       if (error) {

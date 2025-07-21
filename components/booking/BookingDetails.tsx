@@ -12,7 +12,7 @@ import {
 } from '@/lib/data/booking';
 import BookingConfirmationHeader from './confirmation/BookingConfirmationHeader';
 import CustomerInfo from './confirmation/CustomerInfo';
-
+import EmailTemplate from './EmailTemplate';
 dayjs.extend(duration);
 
 export default async function BookingDetails({ id }: { id: string }) {
@@ -30,7 +30,7 @@ export default async function BookingDetails({ id }: { id: string }) {
 
   const { serviceVariationId, durationMinutes } = appointmentSegments[0];
 
-  // CATALOG OBJECT INFO
+  // CATALOG RELATED OBJECT INFO
   const catalogRelatedObject =
     serviceVariationId && (await fetchCatalogRelatedObject(serviceVariationId));
 
@@ -47,6 +47,7 @@ export default async function BookingDetails({ id }: { id: string }) {
 
   const { name } = parsedRelatedObject.itemData;
 
+  // CATALOG OBJECT INFO
   const catalogObject = await fetchCatalogObject(serviceVariationId);
 
   const catalogObjectStringified =
