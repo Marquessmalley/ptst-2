@@ -69,8 +69,8 @@ const EmailTemplate = async ({
           Thank you, {givenName}
         </h1>
         <p className="text-center text-xs font-semibold text-gray-700 sm:text-base">
-          We're excited to make your vehicle shine with our detailing services.
-          Here are your boooking details:
+          We&apos;re excited to make your vehicle shine with our detailing
+          services. Here are your boooking details:
         </p>
       </div>
 
