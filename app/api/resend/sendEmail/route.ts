@@ -31,6 +31,8 @@ export async function POST(request: Request) {
 
     const body = JSON.parse(rawBody);
 
+    console.log(body);
+
     // if (body?.type === "booking.created") {
     //   const customer_id = body.data?.object?.booking?.customer_id;
 
