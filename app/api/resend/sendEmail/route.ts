@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       console.log('📅 Customer:', customer);
 
       const { data, error } = await resend.emails.send({
-        from: 'marquessmalley@gmail.com',
+        from: 'noreply@send.ptshinetime.com',
         to: [`${customer.customer?.emailAddress}`],
         subject: 'Paul & Tev Shine Time Appointment Confirmation',
         react: EmailTemplate(),
