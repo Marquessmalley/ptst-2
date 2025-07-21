@@ -37,6 +37,8 @@ export async function POST(request: Request) {
       const customer = await client.customers.get({ customerId: customer_id });
       const booking = body.data.object.booking;
 
+      console.log(customer);
+
       const { data, error } = await resend.emails.send({
         from: 'noreply@send.ptshinetime.com',
         to: [`${customer.customer?.emailAddress}`],
