@@ -86,8 +86,8 @@ const EmailTemplate = async ({
             color: '#374151',
           }}
         >
-          We're excited to make your vehicle shine with our detailing services.
-          Here are your booking details:
+          We&apos;re excited to make your vehicle shine with our detailing
+          services. Here are your booking details:
         </p>
       </div>
 
