@@ -33,27 +33,27 @@ export async function POST(request: Request) {
 
     console.log(body);
 
-    // if (body?.type === "booking.created") {
-    //   const customer_id = body.data?.object?.booking?.customer_id;
+    if (body?.type === 'booking.created') {
+      const customer_id = body.data?.object?.booking?.customer_id;
 
-    //   const customer = await client.customers.get({ customerId: customer_id });
+      const customer = await client.customers.get({ customerId: customer_id });
 
-    //   console.log("📅 Customer:", customer);
+      console.log('📅 Customer:', customer);
 
-    //   const { data, error } = await resend.emails.send({
-    //     from: "marquessmalley@gmail.com",
-    //     to: [`${customer.customer?.emailAddress}` || "msmalley@bizstream.com"],
-    //     subject: "Paul & Tev Shine Time Confirmation",
-    //     react: EmailTemplate(),
-    //   });
+      // const { data, error } = await resend.emails.send({
+      //   from: "marquessmalley@gmail.com",
+      //   to: [`${customer.customer?.emailAddress}` || "msmalley@bizstream.com"],
+      //   subject: "Paul & Tev Shine Time Confirmation",
+      //   react: EmailTemplate(),
+      // });
 
-    //   if (error) {
-    //     console.log(error);
-    //     return Response.json({ error }, { status: 500 });
-    //   }
+      // if (error) {
+      //   console.log(error);
+      //   return Response.json({ error }, { status: 500 });
+      // }
 
-    //   return Response.json(data);
-    // }
+      // return Response.json(data);
+    }
 
     return new Response('Event not handled', { status: 200 });
   } catch (err) {
