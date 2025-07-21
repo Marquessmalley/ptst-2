@@ -21,7 +21,7 @@ const EmailTemplate = async ({
   console.log(customer);
   const { givenName, familyName, emailAddress } = customer;
   const { addressLine1, locality, administrativeDistrictLevel1, postalCode } =
-    customer.customer.address;
+    customer.address;
 
   const { appointment_segments, start_at } = booking;
 
