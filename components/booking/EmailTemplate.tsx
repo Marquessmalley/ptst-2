@@ -21,7 +21,7 @@ const EmailTemplate = async ({
   console.log(customer);
   const { givenName, familyName, emailAddress } = customer;
   const { addressLine1, locality, administrativeDistrictLevel1, postalCode } =
-    customer.address;
+    customer.customer.address;
 
   const { appointment_segments, start_at } = booking;
 
@@ -145,14 +145,11 @@ const EmailTemplate = async ({
             <div className="my-4">
               <p className="text-xl font-normal text-gray-500">
                 Contact Information
-                <p className="text-lg font-bold text-gray-900">
-                  {givenName} {familyName}
-                </p>
-                <p className="text-lg font-bold text-gray-900">
-                  {' '}
-                  {emailAddress}
-                </p>
               </p>
+              <p className="text-lg font-bold text-gray-900">
+                {givenName} {familyName}
+              </p>
+              <p className="text-lg font-bold text-gray-900"> {emailAddress}</p>
             </div>
 
             <div className="my-4 rounded-xl border bg-white ring-1">

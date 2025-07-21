@@ -43,7 +43,7 @@ export async function POST(request: Request) {
         from: 'noreply@send.ptshinetime.com',
         to: [`${customer.customer?.emailAddress}`],
         subject: 'Paul & Tev Shine Time Appointment Confirmation',
-        react: EmailTemplate({ customer, booking }),
+        react: EmailTemplate({ customer: customer.customer, booking }),
       });
 
       if (error) {
