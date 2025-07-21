@@ -216,6 +216,55 @@ export default async function BookingDetails({ id }: { id: string }) {
           </span>
         </p>
       </div>
+      <EmailTemplate
+        customer={{
+          id: 'P8PPS3GNJ3S2MSTXFBQ0P8PYZR',
+          createdAt: '2025-07-21T16:19:28.869Z',
+          updatedAt: '2025-07-21T16:19:28Z',
+          givenName: 'Marques',
+          familyName: 'Smalley',
+          emailAddress: 'marquessmalley@gmail.com',
+          address: {
+            addressLine1: '1130 Watkins St Se',
+            locality: 'Grand Rapids',
+            administrativeDistrictLevel1: 'MI',
+            postalCode: '49507-1471',
+            country: 'US',
+          },
+          preferences: { emailUnsubscribed: false },
+          creationSource: 'THIRD_PARTY',
+          version: 'sd',
+        }}
+        booking={{
+          all_day: false,
+          appointment_segments: [
+            {
+              any_team_member: false,
+              duration_minutes: 60,
+              intermission_minutes: 0,
+              service_variation_client_id: 'NLWJSXNIBO3QUHDDG2E6KVKY',
+              service_variation_id: 'NLWJSXNIBO3QUHDDG2E6KVKY',
+              service_variation_version: 1751398491025,
+              team_member_id: 'TMtLnHz_8nF077sH',
+            },
+          ],
+          created_at: '2025-07-21T16:19:29Z',
+          creator_details: {
+            creator_type: 'TEAM_MEMBER',
+            team_member_id: 'TM2QOzwJy1ncnlMv',
+          },
+          customer_id: 'P8PPS3GNJ3S2MSTXFBQ0P8PYZR',
+          id: 'stgq7lmny7szmv',
+          location_id: 'LPXCQMSNKV7E6',
+          location_type: 'BUSINESS_LOCATION',
+          source: 'API',
+          start_at: '2025-07-26T16:00:00Z',
+          status: 'ACCEPTED',
+          transition_time_minutes: 0,
+          updated_at: '2025-07-21T16:19:29Z',
+          version: 0,
+        }}
+      />
     </div>
   );
 }
