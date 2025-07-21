@@ -36,3 +36,7 @@ export type BookingInfo = {
   selectedTime: string;
   userInfo: UserInfo;
 };
+
+export interface EmailTemplateProps {
+  givenName: string;
+}
