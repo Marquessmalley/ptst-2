@@ -6,6 +6,7 @@ import {
 import { replace } from '@/lib/utils/bigIntHandler';
 import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
 import { currencyFormatter } from '@/lib/utils/currencyFormatter';
+import Image from 'next/image';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
@@ -90,10 +91,10 @@ const EmailTemplate = async ({
 
       <div
         style={{
-          margin: 'auto',
-          width: '50%',
-          // marginLeft: '40px',
-          // marginRight: '40px',
+          // margin: 'auto',
+          // width: '50%',
+          marginLeft: '40px',
+          marginRight: '40px',
           marginTop: '40px',
           marginBottom: '40px',
           borderRadius: '16px',
@@ -110,25 +111,13 @@ const EmailTemplate = async ({
             alignItems: 'center',
           }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            view-box="0 0 24 24"
-            fill="currentColor"
-            style={{
-              // marginBottom: '8px',
-              marginRight: '8px',
-              width: '24px',
-              height: '24px',
-              color: '#38bdf8',
-            }}
-          >
-            <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
-            <path
-              fill-rule="evenodd"
-              d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
-              clip-rule="evenodd"
-            />
-          </svg>
+          <Image
+            src="/blue-calendar.png"
+            alt="blue-calendar"
+            height={28}
+            width={28}
+            style={{ marginRight: '8px' }}
+          />
           <h2
             style={{
               marginBottom: '8px',
@@ -318,6 +307,7 @@ const EmailTemplate = async ({
                   fontSize: '20px',
                   fontWeight: 'normal',
                   color: '#6b7280',
+                  margin: '1px',
                 }}
               >
                 Total Amount
@@ -327,6 +317,7 @@ const EmailTemplate = async ({
                   fontSize: '24px',
                   fontWeight: 'bold',
                   color: '#38bdf8',
+                  margin: '1px',
                 }}
               >
                 {catalogPrice}
@@ -336,6 +327,7 @@ const EmailTemplate = async ({
                   fontSize: '16px',
                   fontWeight: '600',
                   color: '#6b7280',
+                  margin: '1px',
                 }}
               >
                 Payment due on service date
@@ -345,80 +337,66 @@ const EmailTemplate = async ({
         </div>
       </div>
       <div>
-        <div
+        <table
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '24px',
-            margin: '16px 0',
+            margin: '16px auto',
           }}
+          width={'50%'}
         >
-          <button
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: '16px',
-              background: 'linear-gradient(to right, #38bdf8, #fdba74)',
-              padding: '8px',
-              fontSize: '18px',
-              fontWeight: 'bold',
-              color: '#ffffff',
-              border: 'none',
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              view-box="0 0 24 24"
-              fill="currentColor"
-              style={{
-                marginRight: '8px',
-                width: '24px',
-                height: '24px',
-                color: 'white',
-              }}
-            >
-              <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
-              <path
-                fill-rule="evenodd"
-                d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Add to Calendar
-          </button>
-          <button
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: '16px',
-              border: '2px solid #38bdf8',
-              padding: '8px',
-              fontSize: '18px',
-              fontWeight: 'bold',
-              color: '#38bdf8',
-              backgroundColor: 'white',
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              view-box="0 0 24 24"
-              fill="currentColor"
-              style={{
-                marginRight: '8px',
-                width: '24px',
-                height: '24px',
-                color: '#38bdf8',
-              }}
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Contact Support
-          </button>
-        </div>
+          <tbody>
+            <tr>
+              <td>
+                <button
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderRadius: '16px',
+                    background: 'linear-gradient(to right, #38bdf8, #fdba74)',
+                    padding: '8px',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    color: '#ffffff',
+                    border: 'none',
+                  }}
+                >
+                  <Image
+                    src="/white-calendar.png"
+                    alt="white-calendar"
+                    height={24}
+                    width={24}
+                    style={{ marginRight: '8px' }}
+                  />
+                  Add to Calendar
+                </button>
+              </td>
+
+              <td>
+                <button
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderRadius: '16px',
+                    border: '2px solid #38bdf8',
+                    padding: '8px',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    color: '#38bdf8',
+                    backgroundColor: 'white',
+                  }}
+                >
+                  <Image
+                    src="/blue-phone.png"
+                    alt="blue-phone"
+                    height={24}
+                    width={24}
+                    style={{ marginRight: '8px' }}
+                  />
+                  Contact Support
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
