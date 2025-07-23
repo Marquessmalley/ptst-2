@@ -90,10 +90,8 @@ const EmailTemplate = async ({
 
       <div
         style={{
-          // margin: 'auto',
-          // width: '50%',
-          marginLeft: '40px',
-          marginRight: '40px',
+          margin: 'auto',
+          width: '50%',
           marginTop: '40px',
           marginBottom: '40px',
           borderRadius: '16px',
