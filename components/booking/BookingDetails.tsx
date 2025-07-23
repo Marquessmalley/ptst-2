@@ -216,7 +216,7 @@ export default async function BookingDetails({ id }: { id: string }) {
           </span>
         </p>
       </div>
-      {/* <EmailTemplate
+      <EmailTemplate
         customer={{
           id: 'P8PPS3GNJ3S2MSTXFBQ0P8PYZR',
           createdAt: '2025-07-21T16:19:28.869Z',
@@ -264,7 +264,7 @@ export default async function BookingDetails({ id }: { id: string }) {
           updated_at: '2025-07-21T16:19:29Z',
           version: 0,
         }}
-      /> */}
+      />
     </div>
   );
 }

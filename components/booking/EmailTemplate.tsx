@@ -109,7 +109,7 @@ const EmailTemplate = async ({
           }}
         >
           <img
-            src="/blue-calendar.png"
+            src="https://smljausuvefbyhcf.public.blob.vercel-storage.com/blue-calendar.png"
             alt="blue-calendar"
             height={28}
             width={28}
@@ -338,7 +338,7 @@ const EmailTemplate = async ({
           style={{
             margin: '16px auto',
           }}
-          width={'50%'}
+          width={'30%'}
         >
           <tbody>
             <tr>
@@ -357,7 +357,7 @@ const EmailTemplate = async ({
                   }}
                 >
                   <img
-                    src="/white-calendar.png"
+                    src="https://smljausuvefbyhcf.public.blob.vercel-storage.com/white-calendar.png"
                     alt="white-calendar"
                     height={24}
                     width={24}
@@ -382,7 +382,7 @@ const EmailTemplate = async ({
                   }}
                 >
                   <img
-                    src="/blue-phone.png"
+                    src="https://smljausuvefbyhcf.public.blob.vercel-storage.com/blue-phone.png"
                     alt="blue-phone"
                     height={24}
                     width={24}
