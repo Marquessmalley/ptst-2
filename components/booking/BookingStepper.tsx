@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useStepper } from '@/hooks/useStepper';
 import { useBookingInfo } from '@/hooks/useBookingInfo';
 import dayjs from 'dayjs';
@@ -28,6 +28,10 @@ const BookingStepper = () => {
 
   const { step, setStep } = useStepper();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [step]);
 
   const fecthAvailabilities = async () => {
     const response = await fetch('api/square/searchAvailabilities', {
@@ -60,6 +64,7 @@ const BookingStepper = () => {
 
   // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
   const handleNext = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     switch (step) {
       case 0:
         if (vehicleTypeSelected(bookingInfo)) {
@@ -93,6 +98,7 @@ const BookingStepper = () => {
           }));
           fecthAvailabilities()
             .then((data) => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
               const formattedTime =
                 data.length > 0
                   ? data.map((date: any) => {
@@ -162,7 +168,7 @@ const BookingStepper = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <form className="p-2">
         <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-around">
           {step !== 0 && (

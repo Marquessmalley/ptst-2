@@ -89,6 +89,7 @@ const EmailTemplate = async ({
       </div>
 
       <div
+        className="xyz"
         style={{
           margin: 'auto',
           width: '50%',
@@ -111,13 +112,12 @@ const EmailTemplate = async ({
           <img
             src="https://smljausuvefbyhcf.public.blob.vercel-storage.com/blue-calendar.png"
             alt="blue-calendar"
-            height={28}
-            width={28}
+            height={26}
+            width={26}
             style={{ marginRight: '8px' }}
           />
           <h2
             style={{
-              marginBottom: '8px',
               whiteSpace: 'nowrap',
               fontSize: '24px',
               fontWeight: 'bold',

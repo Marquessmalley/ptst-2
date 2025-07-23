@@ -5,7 +5,7 @@ const Pricing: React.FC = () => {
   const specialPackages = detailMenu.slice(0, 3);
 
   return (
-    <div id="pricing" className="my-10 pt-8 sm:pt-24">
+    <div id="pricing" className="">
       {/* PRICE HEADER */}
       <div className="mx-auto mb-4 max-w-md sm:max-w-xl md:max-w-3xl lg:text-center">
         <div className="mx-4">

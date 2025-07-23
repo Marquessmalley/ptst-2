@@ -4,7 +4,7 @@ import { Banner, DemoButton, ServiceCard } from '@/components/ui';
 
 const Hero: React.FC = () => {
   return (
-    <section className="mx-auto grid h-full w-full max-w-screen-2xl">
+    <section className="mx-auto mb-32 mt-14 w-full max-w-screen-2xl sm:mb-96 sm:mt-32">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="my-5 ml-2 sm:my-10">
           <div data-testid="banner">
