@@ -6,7 +6,6 @@ import {
 import { replace } from '@/lib/utils/bigIntHandler';
 import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
 import { currencyFormatter } from '@/lib/utils/currencyFormatter';
-import Image from 'next/image';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
@@ -111,7 +110,7 @@ const EmailTemplate = async ({
             alignItems: 'center',
           }}
         >
-          <Image
+          <img
             src="/blue-calendar.png"
             alt="blue-calendar"
             height={28}
@@ -359,7 +358,7 @@ const EmailTemplate = async ({
                     border: 'none',
                   }}
                 >
-                  <Image
+                  <img
                     src="/white-calendar.png"
                     alt="white-calendar"
                     height={24}
@@ -384,7 +383,7 @@ const EmailTemplate = async ({
                     backgroundColor: 'white',
                   }}
                 >
-                  <Image
+                  <img
                     src="/blue-phone.png"
                     alt="blue-phone"
                     height={24}
