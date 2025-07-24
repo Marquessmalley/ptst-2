@@ -1,4 +1,3 @@
-'use client';
 import { useState, useEffect } from 'react';
 import { Calendar } from '@heroui/react';
 import { parseDate, today, getLocalTimeZone } from '@internationalized/date';

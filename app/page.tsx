@@ -1,4 +1,3 @@
-'use client';
 import { Hero, Pricing, Gallery, Faq, Contact } from '@/components/sections';
 
 export default function Page() {

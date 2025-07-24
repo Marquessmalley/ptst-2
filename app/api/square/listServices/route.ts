@@ -14,7 +14,10 @@ export async function GET(request: Request) {
     const json = JSON.stringify({ data }, replacer);
 
     return new Response(json, {
-      headers: { 'content-type': 'application/json' },
+      headers: {
+        'content-type': 'application/json',
+        'Cache-Control': 'public, max-age=2592000',
+      },
     });
   } catch (error) {
     console.log(error);

@@ -1,4 +1,3 @@
-'use client';
 import { useEffect, useState } from 'react';
 import { PackageCard } from '@/components/ui';
 import { useBookingInfo } from '@/hooks/useBookingInfo';
@@ -15,7 +14,7 @@ const SelectPackage = () => {
     const response = await fetch('/api/square/listServices', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json', // <- important
+        'Content-Type': 'application/json',
       },
     });
     const data = response.json();

@@ -12,7 +12,7 @@ import {
 } from '@/lib/data/booking';
 import BookingConfirmationHeader from './confirmation/BookingConfirmationHeader';
 import CustomerInfo from './confirmation/CustomerInfo';
-import EmailTemplate from './EmailTemplate';
+
 dayjs.extend(duration);
 
 export default async function BookingDetails({ id }: { id: string }) {

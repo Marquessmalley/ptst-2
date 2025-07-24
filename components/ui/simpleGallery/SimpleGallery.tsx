@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
