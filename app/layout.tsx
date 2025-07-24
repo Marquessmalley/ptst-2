@@ -29,7 +29,7 @@ export default function RootLayout({
           ) : (
             <div className="flex min-h-screen flex-col bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
               <Menu />
-              <main className="flex flex-grow items-center justify-center">
+              <main className="animate__animated animate__fadeIn animate__slow flex flex-grow items-center justify-center">
                 {children}
               </main>
               <Footer />

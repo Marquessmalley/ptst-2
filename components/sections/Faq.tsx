@@ -8,7 +8,7 @@ import { faq } from '@/lib/data/placeholder-data';
 
 const Faq: React.FC = () => {
   return (
-    <div id="faq" className="mb-10 w-full px-4 pt-10">
+    <div id="faq" className="mb-10 w-full px-4">
       <div className="mx-auto mb-5 grid max-w-7xl grid-cols-1">
         <h2 className="mb-4 text-xl font-extrabold text-slate-900/80 sm:text-4xl">
           Frequently asked questions

@@ -3,7 +3,7 @@ import { galleryImages } from '@/lib/data/placeholder-data';
 
 const Gallery: React.FC = () => {
   return (
-    <div id="gallery" className="my-10 pt-8 sm:pt-24">
+    <div id="gallery" className="mb-16 pt-8 sm:mb-32 sm:pt-24">
       {/* GALLERY HEADER */}
       <div className="mx-auto mb-4 max-w-md sm:max-w-xl md:max-w-3xl lg:text-center">
         <div className="mx-4">

@@ -1,9 +1,10 @@
 import { BookingStepper, StepperProgress } from '@/components/booking';
+import 'animate.css';
 
 const page = () => {
   return (
     <div>
-      <div className="flex items-start justify-center">
+      <div className="animate__animated animate__fadeIn animate__slow flex items-start justify-center">
         <div className="grid w-full max-w-5xl grid-cols-1 sm:gap-x-10 md:grid-cols-12">
           <div
             data-testid="stepperProgress"

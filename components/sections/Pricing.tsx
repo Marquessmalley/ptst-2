@@ -1,11 +1,15 @@
 import { detailMenu } from '@/lib/data/placeholder-data';
 import { PriceCard } from '@/components/ui';
+import 'animate.css';
 
 const Pricing: React.FC = () => {
   const specialPackages = detailMenu.slice(0, 3);
 
   return (
-    <div id="pricing" className="">
+    <div
+      id="pricing"
+      className="animate__animated animate__fadeIn animate__slow mb-24 sm:mb-32"
+    >
       {/* PRICE HEADER */}
       <div className="mx-auto mb-4 max-w-md sm:max-w-xl md:max-w-3xl lg:text-center">
         <div className="mx-4">
