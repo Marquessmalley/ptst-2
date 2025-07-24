@@ -143,7 +143,6 @@ const BookingStepper = () => {
           });
           createBooking()
             .then((data) => {
-              setIsLoading(false);
               const { id } = data.booking.booking;
               router.push(`/booking/confirmation/${id}`);
             })
