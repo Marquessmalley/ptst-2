@@ -136,19 +136,19 @@ const BookingStepper = () => {
         break;
       case 3:
         if (userInfoSubmitted(bookingInfo)) {
-          setIsLoading(true);
+          // setIsLoading(true);
           setError({
-            errorType: '',
-            description: '',
+            errorType: 'Booking Summary',
+            description: 'Will be accepting bookings soon!',
           });
-          createBooking()
-            .then((data) => {
-              const { id } = data.booking.booking;
-              router.push(`/booking/confirmation/${id}`);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          // createBooking()
+          //   .then((data) => {
+          //     const { id } = data.booking.booking;
+          //     router.push(`/booking/confirmation/${id}`);
+          //   })
+          // .catch((err) => {
+          //   console.log(err);
+          // });
         } else {
           setIsLoading(false);
           setError({
