@@ -3,6 +3,7 @@ import { PackageCard } from '@/components/ui';
 import { useBookingInfo } from '@/hooks/useBookingInfo';
 import PackageCardSkeleton from '@component/ui/skeletons/PackageCardSkeleton';
 import { vehicleBasedPricing } from '@/lib/utils/vehicleBasedPricing';
+import { listServices } from '@/lib/actions/sqaure';
 
 const SelectPackage = () => {
   const [services, setServices] = useState([1, 2, 3, 4, 5, 6]);
@@ -10,27 +11,18 @@ const SelectPackage = () => {
   const { bookingInfo, setBookingInfo } = useBookingInfo();
   const { selectedVehicle } = bookingInfo;
 
-  const fetchServices = async () => {
-    const response = await fetch('/api/square/listServices', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = response.json();
-    return data;
-  };
-
   useEffect(() => {
-    fetchServices()
-      .then((data) => {
-        // confiure data to only show vehicle prices based on selected vehicle
+    const fetchServices = async () => {
+      try {
+        const data = await listServices();
         setServices(vehicleBasedPricing(selectedVehicle, data));
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log(err);
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
   }, []);
 
   return (

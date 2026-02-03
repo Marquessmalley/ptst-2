@@ -1,3 +1,4 @@
+import { Square } from 'square';
 import { client } from '@/lib/api/sqaure';
 import { replace } from '@/lib/utils/bigIntHandler';
 
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
         locality: city,
         administrativeDistrictLevel1: state,
         postalCode: postalCode,
-        country: country.toUpperCase(),
+        country: country.toUpperCase() as Square.Country,
       },
     });
 

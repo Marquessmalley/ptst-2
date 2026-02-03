@@ -19,6 +19,7 @@ import { BookingInfo } from '@/lib/definitions/definitions';
 import { useRouter } from 'next/navigation';
 import ErrorAlert from '../ui/alert/ErrorAlert';
 import { Spinner } from '@heroui/react';
+import { searchAvailabilities, createBooking } from '@/lib/actions/sqaure';
 
 const BookingStepper = () => {
   const router = useRouter();
@@ -33,37 +34,8 @@ const BookingStepper = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [step]);
 
-  const fecthAvailabilities = async () => {
-    const response = await fetch('api/square/searchAvailabilities', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...bookingInfo,
-        selectedDate: `${dayjs()
-          .hour(9)
-          .minute(0)
-          .second(0)
-          .millisecond(0)
-          .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
-      }),
-    });
-
-    const data = response.json();
-    return data;
-  };
-
-  const createBooking = async () => {
-    const response = await fetch('/api/square/createBooking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bookingInfo),
-    });
-    const data = response.json();
-    return data;
-  };
-
   // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
-  const handleNext = () => {
+  const handleNext = async () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     switch (step) {
       case 0:
@@ -96,23 +68,29 @@ const BookingStepper = () => {
               .millisecond(0)
               .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
           }));
-          fecthAvailabilities()
-            .then((data) => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              const formattedTime =
-                data.length > 0
-                  ? data.map((date: any) => {
-                      return {
-                        ...date,
-                        startAt: formatTimeFromRFC3339(date.startAt),
-                      };
-                    })
-                  : [];
-              setAvailableDates(formattedTime);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          try {
+            const data = await searchAvailabilities(
+              bookingInfo,
+              `${dayjs()
+                .hour(9)
+                .minute(0)
+                .second(0)
+                .millisecond(0)
+                .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
+            );
+            const formattedTime =
+              data.length > 0
+                ? data.map((date: any) => {
+                    return {
+                      ...date,
+                      startAt: formatTimeFromRFC3339(date.startAt),
+                    };
+                  })
+                : [];
+            setAvailableDates(formattedTime);
+          } catch (err) {
+            console.log(err);
+          }
         } else {
           setError({
             errorType: 'Package Selection',
@@ -143,7 +121,7 @@ const BookingStepper = () => {
           });
           // createBooking()
           //   .then((data) => {
-          //     const { id } = data.booking.booking;
+          //     const { id } = data. booking.booking;
           //     router.push(`/booking/confirmation/${id}`);
           //   })
           // .catch((err) => {

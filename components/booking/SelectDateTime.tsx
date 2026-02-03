@@ -9,6 +9,7 @@ import TimeSlotsSkeleton from '../ui/skeletons/TimeSlotsSkeleton';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { searchAvailabilities } from '@/lib/actions/sqaure';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
@@ -94,47 +95,34 @@ const SelectDateTime = ({
     return `${day} ${date}`;
   };
 
-  const fecthAvailabilities = async () => {
-    setLoading(true);
-    const response = await fetch('api/square/searchAvailabilities', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookingInfo),
-    });
-
-    const data = response.json();
-
-    return data;
-  };
-
   useEffect(() => {
     if (availableDates.length > 0) {
       setLoading(false);
     }
 
-    fecthAvailabilities()
-      .then((data) => {
-        //FETCH LIST BOOKINGS AND SEE IF BOOKED SLOT === AVAILABILITY SLOT
-        //IF SO REMOVE THAT SLOT
-
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await searchAvailabilities(
+          bookingInfo,
+          bookingInfo.selectedDate,
+        );
         const formattedTime =
           data.length > 0
-            ? data.map((date: any) => {
-                return {
-                  ...date,
-                  startAt: formatTimeFromRFC3339(date.startAt),
-                };
-              })
+            ? data.map((date: any) => ({
+                ...date,
+                startAt: formatTimeFromRFC3339(date.startAt),
+              }))
             : [];
-
         setAvailableDates(formattedTime);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => setLoading(false));
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [selectedDayOnly]);
 
   return (
