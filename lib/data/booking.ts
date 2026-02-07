@@ -1,5 +1,5 @@
 'use server';
-import { client } from '@/lib/api/sqaure';
+import { client } from '@/lib/clients/sqaure';
 import { notFound } from 'next/navigation';
 
 export async function fetchBooking(id: string) {
