@@ -1,4 +1,4 @@
-import { detailMenu, services } from "@/lib/data/placeholder-data";
+import { detailMenu, services } from '@/lib/data/placeholder-data';
 
 const chatSystemPrompt = `
 You are the customer support assistant for Paul & Tev Shine Time, a family-owned
@@ -17,17 +17,17 @@ BUSINESS INFO:
 
 PACKAGES & PRICING:
 ${detailMenu
-  .map((pkg) => {
-    const included = [
-      ...(pkg.services.interior || []),
-      ...(pkg.services.exterior || []),
-    ].join(", ");
-    const pricing = Object.entries(pkg.vehicleType)
-      .map(([vehicle, info]) => `${vehicle}: $${info.price} (${info.estimatedTime})`)
-      .join(", ");
-    return `${pkg.packageName} — ${pricing}\n  Services: ${included}`;
-  })
-  .join("\n\n")}
+        .map((pkg) => {
+            const included = [
+                ...(pkg.services.interior || []),
+                ...(pkg.services.exterior || []),
+            ].join(", ");
+            const pricing = Object.entries(pkg.vehicleType)
+                .map(([vehicle, info]) => `${vehicle}: $${info.price} (${info.estimatedTime})`)
+                .join(", ");
+            return `${pkg.packageName} — ${pricing}\n  Services: ${included}`;
+        })
+        .join("\n\n")}
 
 RULES:
 - Only answer questions related to auto detailing and our business

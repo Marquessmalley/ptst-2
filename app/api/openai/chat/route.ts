@@ -1,4 +1,4 @@
-import openai from "@/lib/clients/openai";
+import openai from '@/lib/clients/openai';
 import chatSystemPrompt from "@/lib/prompts/chatSystemPrompt";
 
 export async function POST(request: Request) {
