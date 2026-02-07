@@ -6,8 +6,8 @@ export async function POST(request: Request) {
         const { messages } = await request.json();
 
         const response = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [{ role: "system", content: chatSystemPrompt }, ...messages],
+            model: 'gpt-4o-mini',
+            messages: [{ role: 'system', content: chatSystemPrompt }, ...messages],
             stream: true,
         });
 
@@ -26,12 +26,12 @@ export async function POST(request: Request) {
         });
 
         return new Response(stream, {
-            headers: { "Content-Type": "text/plain; charset=utf-8" },
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
         });
     } catch (error) {
-        console.error("Chat API error:", error);
+        console.error('Chat API error:', error);
         return Response.json(
-            { error: "Failed to generate response" },
+            { error: 'Failed to generate response' },
             { status: 500 }
         );
     }
