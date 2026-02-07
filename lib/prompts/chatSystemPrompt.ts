@@ -13,21 +13,24 @@ BUSINESS INFO:
 - Phone: (616) 226-4109
 - Email: ptshimetime@gmail.com
 - Service type: Mobile auto detailing (we come to you)
-- Services: ${services.map((service) => service.title).join(", ")}
+- Services: ${services.map((service) => service.title).join(', ')}
 
 PACKAGES & PRICING:
 ${detailMenu
-        .map((pkg) => {
-            const included = [
-                ...(pkg.services.interior || []),
-                ...(pkg.services.exterior || []),
-            ].join(", ");
-            const pricing = Object.entries(pkg.vehicleType)
-                .map(([vehicle, info]) => `${vehicle}: $${info.price} (${info.estimatedTime})`)
-                .join(", ");
-            return `${pkg.packageName} — ${pricing}\n  Services: ${included}`;
-        })
-        .join("\n\n")}
+  .map((pkg) => {
+    const included = [
+      ...(pkg.services.interior || []),
+      ...(pkg.services.exterior || []),
+    ].join(', ');
+    const pricing = Object.entries(pkg.vehicleType)
+      .map(
+        ([vehicle, info]) =>
+          `${vehicle}: $${info.price} (${info.estimatedTime})`,
+      )
+      .join(', ');
+    return `${pkg.packageName} — ${pricing}\n  Services: ${included}`;
+  })
+  .join('\n\n')}
 
 RULES:
 - Only answer questions related to auto detailing and our business
