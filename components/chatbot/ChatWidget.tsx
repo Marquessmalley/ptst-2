@@ -1,6 +1,6 @@
 'use client';
 
-import { MessageCircle, X } from 'lucide-react';
+import { Sparkles, X } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import ChatWindow from '@/components/chatbot/ChatWindow';
 
@@ -30,18 +30,24 @@ const ChatWidget = () => {
       )}
 
       {/* Floating action button */}
-      <button
-        type="button"
-        onClick={toggle}
-        className="fixed bottom-4 right-4 z-50 flex size-14 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-lg transition-all hover:from-sky-600 hover:to-sky-500 hover:shadow-xl active:scale-95"
-        aria-label={isOpen ? 'Close chat' : 'Open chat'}
-      >
-        {isOpen ? (
-          <X className="size-6" />
-        ) : (
-          <MessageCircle className="size-6" />
+      <div className="fixed bottom-4 right-4 z-50">
+        {/* Ping ring — only when closed */}
+        {!isOpen && (
+          <span className="absolute inset-0 animate-ping rounded-full bg-sky-400/40" />
         )}
-      </button>
+        <button
+          type="button"
+          onClick={toggle}
+          className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-lg transition-all hover:from-sky-600 hover:to-sky-500 hover:shadow-xl active:scale-95"
+          aria-label={isOpen ? 'Close chat' : 'Open chat'}
+        >
+          {isOpen ? (
+            <X className="size-6" />
+          ) : (
+            <Sparkles className="size-6 animate-sparkle" />
+          )}
+        </button>
+      </div>
     </>
   );
 };

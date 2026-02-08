@@ -82,11 +82,22 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
+  			},
+  			sparkle: {
+  				'0%, 100%': {
+  					transform: 'scale(1) rotate(0deg)',
+  					opacity: '1'
+  				},
+  				'50%': {
+  					transform: 'scale(1.15) rotate(8deg)',
+  					opacity: '0.85'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			sparkle: 'sparkle 2s ease-in-out infinite'
   		}
   	},
   	keyframes: {

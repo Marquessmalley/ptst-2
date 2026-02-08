@@ -27,8 +27,8 @@ const ChatWindow = () => {
       {
         id: 'welcome',
         role: 'assistant',
-        content: 'How can I assist you with today?',
-        parts: [{ type: 'text', text: 'What can I assist you with today?' }],
+        content: '',
+        parts: [{ type: 'text', text: 'How can I assist you with today?' }],
       },
     ],
   });
