@@ -1,6 +1,6 @@
-import OpenAI from 'openai';
+import { createOpenAI } from '@ai-sdk/openai';
 
-const openai = new OpenAI({
+const openai = createOpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 });
 

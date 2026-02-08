@@ -1,33 +1,21 @@
 import openai from '@/lib/clients/openai';
 import chatSystemPrompt from '@/lib/prompts/chatSystemPrompt';
+import { convertToModelMessages, streamText, UIMessage } from 'ai';
+
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
 
 export async function POST(request: Request) {
   try {
-    const { messages } = await request.json();
+    const { messages }: { messages: UIMessage[] } = await request.json();
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [{ role: 'system', content: chatSystemPrompt }, ...messages],
-      stream: true,
+    const result = streamText({
+      model: openai('gpt-4o-mini'),
+      messages: await convertToModelMessages(messages),
+      system: chatSystemPrompt,
     });
 
-    // Creates a Web Streams API ReadableStream. The start callback runs once when the stream is consumed.
-    // It uses controller to push data and close the stream.
-    const stream = new ReadableStream({
-      async start(controller) {
-        for await (const chunk of response) {
-          const text = chunk.choices[0]?.delta?.content;
-          if (text) {
-            controller.enqueue(new TextEncoder().encode(text));
-          }
-        }
-        controller.close();
-      },
-    });
-
-    return new Response(stream, {
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-    });
+    return result.toUIMessageStreamResponse();
   } catch (error) {
     console.error('Chat API error:', error);
     return Response.json(
