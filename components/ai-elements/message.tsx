@@ -124,7 +124,7 @@ const MessageBranchContext = createContext<MessageBranchContextType | null>(
   null,
 );
 
-const useMessageBranch = () => {
+const useMessageBranch = (): MessageBranchContextType => {
   const context = useContext(MessageBranchContext);
 
   if (!context) {

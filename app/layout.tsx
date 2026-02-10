@@ -21,20 +21,27 @@ export default function RootLayout({
     return () => clearTimeout(timer);
   }, []);
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin='anonymous'
+        />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap'
+          rel='stylesheet'
+        />
       </head>
       <body className="flex min-h-screen flex-col font-['Inter',sans-serif]">
         <HeroUIProvider>
           {isLoading ? (
             <SplashScreen />
           ) : (
-            <div className="flex min-h-screen flex-col bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40">
+            <div className='flex min-h-screen flex-col bg-gradient-to-br from-sky-300/40 via-slate-50 to-orange-300/40'>
               <Menu />
-              <main className="animate__animated animate__fadeIn animate__slow flex flex-grow items-center justify-center">
+              <main className='animate__animated animate__fadeIn animate__slow flex flex-grow items-center justify-center'>
                 {children}
               </main>
               <Footer />
