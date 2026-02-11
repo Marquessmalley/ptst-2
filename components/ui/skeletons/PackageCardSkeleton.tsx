@@ -4,7 +4,7 @@ import {
   CardBody,
   CardFooter,
   Skeleton,
-} from '@heroui/react';
+} from "@heroui/react";
 
 const PackageCardSkeleton = () => {
   return (

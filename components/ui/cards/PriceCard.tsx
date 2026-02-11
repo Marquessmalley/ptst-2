@@ -1,27 +1,27 @@
-import { DetailMenuItem } from '@/lib/definitions/definitions';
-import Image from 'next/image';
+import { DetailMenuItem } from "@/lib/definitions/definitions";
+import Image from "next/image";
 const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
   return (
     <div
       key={plan.id}
       className={
-        plan.packageName === 'Gold Package'
-          ? 'm-5 max-w-md cursor-pointer rounded-3xl border-2 border-orange-400 bg-slate-100 p-4 shadow transition duration-200 hover:scale-105 hover:transform hover:bg-slate-50'
-          : 'border-slate-30 m-5 max-w-md cursor-pointer rounded-3xl border bg-slate-100 p-4 shadow transition duration-200 hover:scale-105 hover:transform hover:bg-slate-50'
+        plan.packageName === "Gold Package"
+          ? "m-5 max-w-md cursor-pointer rounded-3xl border-2 border-orange-400 bg-slate-100 p-4 shadow transition duration-200 hover:scale-105 hover:transform hover:bg-slate-50"
+          : "border-slate-30 m-5 max-w-md cursor-pointer rounded-3xl border bg-slate-100 p-4 shadow transition duration-200 hover:scale-105 hover:transform hover:bg-slate-50"
       }
     >
       {/* CARD HEADER */}
       <div className="flex items-center">
         <div className="flex flex-1 items-center">
           <Image
-            src={'/wash.png'}
+            src={"/wash.png"}
             alt="car"
             width={12}
             height={12}
             className={
-              plan.packageName === 'Gold Package'
-                ? 'h-11 w-11 rounded-full border bg-orange-400 p-3 shadow sm:h-12 sm:w-12'
-                : 'h-11 w-11 rounded-full border bg-sky-400 p-3 shadow sm:h-12 sm:w-12'
+              plan.packageName === "Gold Package"
+                ? "h-11 w-11 rounded-full border bg-orange-400 p-3 shadow sm:h-12 sm:w-12"
+                : "h-11 w-11 rounded-full border bg-sky-400 p-3 shadow sm:h-12 sm:w-12"
             }
           />
           <p className="ml-4 text-sm font-semibold sm:text-xl">
@@ -50,9 +50,9 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
 
       <div
         className={
-          plan.packageName === 'Gold Package'
-            ? 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-r from-sky-400 to-orange-400 p-2 text-center shadow'
-            : 'mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-sky-400 p-2 text-center shadow'
+          plan.packageName === "Gold Package"
+            ? "mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-gradient-to-r from-sky-400 to-orange-400 p-2 text-center shadow"
+            : "mx-auto mb-10 mt-10 max-w-52 rounded-full border bg-sky-400 p-2 text-center shadow"
         }
       >
         <p className="text-sm font-bold text-white">
@@ -64,7 +64,7 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <p className="ml-2 text-xs font-semibold sm:text-base">
-            Interior includes:{' '}
+            Interior includes:{" "}
           </p>
           <ul className="flex flex-col">
             {plan.services.interior ? (
@@ -99,14 +99,14 @@ const PriceCard = ({ plan }: { plan: DetailMenuItem }) => {
         </div>
         <div>
           <p className="ml-2 text-xs font-semibold sm:text-base">
-            Exterior includes:{' '}
+            Exterior includes:{" "}
           </p>
           <ul className="flex flex-col">
             {plan.services.exterior ? (
               plan.services.exterior.map((service) => {
                 return (
                   <li key={service} className="mb-2 mt-2 flex">
-                    {plan.packageName === 'Gold Package' ? (
+                    {plan.packageName === "Gold Package" ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

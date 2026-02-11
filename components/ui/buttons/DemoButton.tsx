@@ -1,6 +1,6 @@
-'use client';
-import React, { useState, Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+"use client";
+import React, { useState, Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
 const DemoButton = () => {
   const [isOpen, setIsOpen] = useState(false);

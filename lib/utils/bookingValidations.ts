@@ -1,10 +1,10 @@
-import { BookingInfo } from '@/lib/definitions/definitions';
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 // FUNCTIONS THAT CHECK IF SELECTIONS ARE VALID
 export const vehicleTypeSelected = (bookingInfo: BookingInfo) => {
   const { selectedVehicle } = bookingInfo;
 
-  if (selectedVehicle === '') return false;
+  if (selectedVehicle === "") return false;
   return true;
 };
 export const packageSelected = (bookingInfo: BookingInfo) => {
@@ -14,14 +14,14 @@ export const packageSelected = (bookingInfo: BookingInfo) => {
 };
 export const dateTimeSelected = (bookingInfo: BookingInfo) => {
   const { selectedDate, selectedTime } = bookingInfo;
-  if (selectedDate === '' || selectedTime === '') return false;
+  if (selectedDate === "" || selectedTime === "") return false;
   return true;
 };
 
 export const userInfoSubmitted = (bookingInfo: BookingInfo) => {
   const { firstName, lastName, email, address } = bookingInfo.userInfo;
 
-  if (firstName === '' || lastName === '' || email === '' || address === '')
+  if (firstName === "" || lastName === "" || email === "" || address === "")
     return false;
   return true;
 };

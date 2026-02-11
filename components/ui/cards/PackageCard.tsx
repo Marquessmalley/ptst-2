@@ -1,16 +1,16 @@
-'use client';
-import { Card, CardBody, CardFooter, CardHeader } from '@heroui/react';
-import Image from 'next/image';
+"use client";
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/react";
+import Image from "next/image";
 import {
   Modal,
   ModalContent,
   ModalHeader,
   ModalBody,
   useDisclosure,
-} from '@heroui/react';
-import { useBookingInfo } from '@/hooks/useBookingInfo';
-import { currencyFormatter } from '@/lib/utils/currencyFormatter';
-import { durationFormatter } from '@/lib/utils/durationFormatter';
+} from "@heroui/react";
+import { useBookingInfo } from "@/hooks/useBookingInfo";
+import { currencyFormatter } from "@/lib/utils/currencyFormatter";
+import { durationFormatter } from "@/lib/utils/durationFormatter";
 
 const PackageCard = ({ item }: { item: any }) => {
   const { name, description } = item;
@@ -35,7 +35,7 @@ const PackageCard = ({ item }: { item: any }) => {
       },
     }));
   };
-  const serviceList = description.split('\n');
+  const serviceList = description.split("\n");
 
   return (
     <>
@@ -44,8 +44,8 @@ const PackageCard = ({ item }: { item: any }) => {
         shadow="lg"
         className={`whitespace- max-w-[300px] rounded-xl border py-4 shadow-lg ${
           selectedPackage.name === name
-            ? 'border-sky-500 !bg-slate-200'
-            : 'bg-slate-50'
+            ? "border-sky-500 !bg-slate-200"
+            : "bg-slate-50"
         }`}
       >
         <CardHeader className="overflow-visible py-2">
@@ -125,13 +125,13 @@ const PackageCard = ({ item }: { item: any }) => {
                 <div className="">
                   {serviceList.map((service: any) => (
                     <div key={service}>
-                      {(service.trim() === 'Interior:' ||
-                        service.trim() === 'Exterior:') && (
+                      {(service.trim() === "Interior:" ||
+                        service.trim() === "Exterior:") && (
                         <h3 className="text-lg font-bold sm:my-2">{service}</h3>
                       )}
 
-                      {service.trim() !== 'Interior:' &&
-                        service.trim() !== 'Exterior:' && (
+                      {service.trim() !== "Interior:" &&
+                        service.trim() !== "Exterior:" && (
                           <div
                             key={service}
                             className="flex items-center sm:my-1"

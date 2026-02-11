@@ -1,6 +1,6 @@
-'use client';
-import { createContext, useState } from 'react';
-import { BookingInfo } from '@/lib/definitions/definitions';
+"use client";
+import { createContext, useState } from "react";
+import { BookingInfo } from "@/lib/definitions/definitions";
 
 export type BookingContextType = {
   bookingInfo: BookingInfo;
@@ -17,20 +17,20 @@ export const BookingProvider = ({
   children: React.ReactNode;
 }) => {
   const [bookingInfo, setBookingInfo] = useState({
-    selectedVehicle: '',
+    selectedVehicle: "",
     selectedPackage: {},
-    selectedDate: '',
-    selectedTime: '',
+    selectedDate: "",
+    selectedTime: "",
     userInfo: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      address: '',
-      city: '',
-      state: '',
-      postalCode: '',
-      country: '',
-      additionalComments: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
+      additionalComments: "",
     },
   });
   return (

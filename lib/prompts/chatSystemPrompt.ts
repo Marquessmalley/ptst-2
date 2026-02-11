@@ -1,4 +1,4 @@
-import { detailMenu, services } from '@/lib/data/placeholder-data';
+import { detailMenu, services } from "@/lib/data/placeholder-data";
 
 const chatSystemPrompt = `
 You are the customer support assistant for Paul & Tev Shine Time, a family-owned
@@ -13,7 +13,7 @@ BUSINESS INFO:
 - Phone: (616) 226-4109
 - Email: ptshimetime@gmail.com
 - Service type: Mobile auto detailing (we come to you)
-- Services: ${services.map((service) => service.title).join(', ')}
+- Services: ${services.map((service) => service.title).join(", ")}
 
 PACKAGES & PRICING:
 ${detailMenu
@@ -21,16 +21,16 @@ ${detailMenu
     const included = [
       ...(pkg.services.interior || []),
       ...(pkg.services.exterior || []),
-    ].join(', ');
+    ].join(", ");
     const pricing = Object.entries(pkg.vehicleType)
       .map(
         ([vehicle, info]) =>
           `${vehicle}: $${info.price} (${info.estimatedTime})`,
       )
-      .join(', ');
+      .join(", ");
     return `${pkg.packageName} — ${pricing}\n  Services: ${included}`;
   })
-  .join('\n\n')}
+  .join("\n\n")}
 
 RULES:
 - Only answer questions related to auto detailing and our business

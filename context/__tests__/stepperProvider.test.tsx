@@ -19,7 +19,7 @@ describe("Stepper Provider Test", () => {
     const { getByText } = render(
       <StepperProvider>
         <DummyComponent />
-      </StepperProvider>
+      </StepperProvider>,
     );
 
     const step = getByText("0");
@@ -31,7 +31,7 @@ describe("Stepper Provider Test", () => {
     const { getByRole, getByTestId } = render(
       <StepperProvider>
         <DummyComponent />
-      </StepperProvider>
+      </StepperProvider>,
     );
 
     const incrementBtn = getByRole("button", { name: "Add" });

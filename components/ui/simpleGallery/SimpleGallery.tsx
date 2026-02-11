@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
-import Image from 'next/image';
+import { useEffect } from "react";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
+import Image from "next/image";
 const SimpleGallery = ({
   galleryID,
   images,
@@ -14,8 +14,8 @@ const SimpleGallery = ({
   useEffect(() => {
     let lightBox = new PhotoSwipeLightbox({
       gallery: `#${galleryID}`,
-      children: 'a',
-      pswpModule: () => import('photoswipe'),
+      children: "a",
+      pswpModule: () => import("photoswipe"),
     });
     lightBox.init();
 

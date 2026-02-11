@@ -1,10 +1,10 @@
-'use server';
+"use server";
 
-import { Square } from 'square';
-import { client } from '@/lib/clients/sqaure';
-import { replace } from '@/lib/utils/bigIntHandler';
-import { BookingInfo } from '@/lib/definitions/definitions';
-import removeUnavailableSlot from '@/lib/utils/removeUnavailableSlot';
+import { Square } from "square";
+import { client } from "@/lib/clients/sqaure";
+import { replace } from "@/lib/utils/bigIntHandler";
+import { BookingInfo } from "@/lib/definitions/definitions";
+import removeUnavailableSlot from "@/lib/utils/removeUnavailableSlot";
 
 export async function searchAvailabilities(
   bookingInfo: BookingInfo,
@@ -12,7 +12,7 @@ export async function searchAvailabilities(
 ) {
   const { teamMmebers, variationId, serviceDuration } =
     bookingInfo.selectedPackage;
-  const endAt = selectedDate.split('T')[0];
+  const endAt = selectedDate.split("T")[0];
 
   try {
     const memberAvailabilites = await client.bookings.searchAvailability({
@@ -50,21 +50,21 @@ export async function searchAvailabilities(
   } catch (error) {
     console.log(error);
     return Response.json({
-      error: 'There was a error fetching the availabilites.',
+      error: "There was a error fetching the availabilites.",
     });
   }
 }
 
 export async function listServices() {
   try {
-    const serviceList = await client.catalog.list({ types: 'ITEM' });
+    const serviceList = await client.catalog.list({ types: "ITEM" });
     const { data } = serviceList;
 
     // Handle BigInt serialization and return plain data
     return JSON.parse(JSON.stringify({ data }, replace));
   } catch (error) {
     console.log(error);
-    return Response.json({ error: 'There was a error fetching the services.' });
+    return Response.json({ error: "There was a error fetching the services." });
   }
 }
 
@@ -113,7 +113,7 @@ export async function createBooking(
           },
         ],
         locationId: process.env.SQUARE_LOCATION_ID,
-        locationType: 'BUSINESS_LOCATION',
+        locationType: "BUSINESS_LOCATION",
         customerId: customer.customer?.id,
         startAt: `${selectedDate}`,
       },
@@ -121,6 +121,6 @@ export async function createBooking(
 
     return JSON.parse(JSON.stringify({ booking }, replace));
   } catch (err) {
-    console.log('The error: ', err);
+    console.log("The error: ", err);
   }
 }

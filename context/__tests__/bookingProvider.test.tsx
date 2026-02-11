@@ -28,7 +28,7 @@ describe("Booking Provider test", () => {
     const { getByTestId } = render(
       <BookingProvider>
         <DummyComponent />
-      </BookingProvider>
+      </BookingProvider>,
     );
     const selectedVehicle = getByTestId("selectedVehicle");
 
@@ -39,7 +39,7 @@ describe("Booking Provider test", () => {
     const { getByTestId, getByRole } = render(
       <BookingProvider>
         <DummyComponent />
-      </BookingProvider>
+      </BookingProvider>,
     );
 
     const btn = getByRole("button", { name: "Add Vehicle" });
