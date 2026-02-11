@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { services } from '@/lib/data/placeholder-data';
-import { Banner, DemoButton, ServiceCard } from '@/components/ui';
+import Link from "next/link";
+import { services } from "@/lib/data/placeholder-data";
+import { Banner, DemoButton, ServiceCard } from "@/components/ui";
 
 const Hero: React.FC = () => {
   return (
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="w-sm mt-8 flex">
             <Link
-              href={'/booking'}
+              href={"/booking"}
               className="mr-4 flex cursor-pointer items-center rounded-xl border bg-orange-400 px-3 py-2 text-xs font-bold text-white transition duration-200 hover:bg-orange-500/90 sm:mr-8 sm:px-6 sm:pb-3 sm:pt-2 sm:text-xl"
             >
               <svg

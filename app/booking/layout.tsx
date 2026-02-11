@@ -1,5 +1,5 @@
-import StepperProvider from '@/context/StepperContext';
-import { BookingProvider } from '@/context/BookingContext';
+import StepperProvider from "@/context/StepperContext";
+import { BookingProvider } from "@/context/BookingContext";
 
 const BookingLayout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Sparkles, X } from 'lucide-react';
-import { useState, useCallback } from 'react';
-import ChatWindow from '@/components/chatbot/ChatWindow';
+import { Sparkles, X } from "lucide-react";
+import { useState, useCallback } from "react";
+import ChatWindow from "@/components/chatbot/ChatWindow";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ const ChatWidget = () => {
           type="button"
           onClick={toggle}
           className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-lg transition-all hover:from-sky-600 hover:to-sky-500 hover:shadow-xl active:scale-95"
-          aria-label={isOpen ? 'Close chat' : 'Open chat'}
+          aria-label={isOpen ? "Close chat" : "Open chat"}
         >
           {isOpen ? (
             <X className="size-6" />

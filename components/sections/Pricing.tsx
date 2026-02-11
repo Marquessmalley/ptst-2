@@ -1,6 +1,6 @@
-import { detailMenu } from '@/lib/data/placeholder-data';
-import { PriceCard } from '@/components/ui';
-import 'animate.css';
+import { detailMenu } from "@/lib/data/placeholder-data";
+import { PriceCard } from "@/components/ui";
+import "animate.css";
 
 const Pricing: React.FC = () => {
   const specialPackages = detailMenu.slice(0, 3);
@@ -18,12 +18,12 @@ const Pricing: React.FC = () => {
           </p>
           <p className="my-4 text-center text-sm font-normal text-gray-700 sm:text-lg lg:text-justify">
             Whether you&apos;re looking for a basic clean or a comprehensive
-            detailing service, our pricing is transparent and competitive.{' '}
+            detailing service, our pricing is transparent and competitive.{" "}
             <span
               // href="/prices"
               className="inline-flex items-center justify-center font-bold text-sky-400"
             >
-              Check out our prices{' '}
+              Check out our prices{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

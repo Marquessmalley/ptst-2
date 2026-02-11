@@ -2,9 +2,9 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-} from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { faq } from '@/lib/data/placeholder-data';
+} from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { faq } from "@/lib/data/placeholder-data";
 
 const Faq: React.FC = () => {
   return (

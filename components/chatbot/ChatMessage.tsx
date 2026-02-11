@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
 import {
   Message,
   MessageContent,
   MessageResponse,
-} from '@/components/ai-elements/message';
-import { Sparkles } from 'lucide-react';
-import type { UIMessage } from 'ai';
+} from "@/components/ai-elements/message";
+import { Sparkles } from "lucide-react";
+import type { UIMessage } from "ai";
 
 interface ChatMessageProps {
   message: UIMessage;
@@ -15,8 +15,8 @@ interface ChatMessageProps {
 const ChatMessage = ({ message }: ChatMessageProps) => (
   <Message from={message.role}>
     {message.parts.map((part, i) => {
-      if (part.type === 'text') {
-        return message.role === 'assistant' ? (
+      if (part.type === "text") {
+        return message.role === "assistant" ? (
           <div key={i} className="flex items-start gap-2.5">
             <div className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-orange-300">
               <Sparkles className="size-3.5 text-white" />

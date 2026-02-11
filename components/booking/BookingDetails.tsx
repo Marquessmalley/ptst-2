@@ -1,17 +1,17 @@
-import { Divider } from '@heroui/react';
-import Image from 'next/image';
-import { replace } from '@/lib/utils/bigIntHandler';
-import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
-import { currencyFormatter } from '@/lib/utils/currencyFormatter';
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
+import { Divider } from "@heroui/react";
+import Image from "next/image";
+import { replace } from "@/lib/utils/bigIntHandler";
+import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
+import { currencyFormatter } from "@/lib/utils/currencyFormatter";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 import {
   fetchBooking,
   fetchCatalogObject,
   fetchCatalogRelatedObject,
-} from '@/lib/data/booking';
-import BookingConfirmationHeader from './confirmation/BookingConfirmationHeader';
-import CustomerInfo from './confirmation/CustomerInfo';
+} from "@/lib/data/booking";
+import BookingConfirmationHeader from "./confirmation/BookingConfirmationHeader";
+import CustomerInfo from "./confirmation/CustomerInfo";
 
 dayjs.extend(duration);
 
@@ -20,13 +20,13 @@ export default async function BookingDetails({ id }: { id: string }) {
   const bookingData = await fetchBooking(id);
 
   if (!bookingData) {
-    throw new Error('Booking data is missing');
+    throw new Error("Booking data is missing");
   }
 
   const { status, customerId, startAt, appointmentSegments } = bookingData;
 
   if (!appointmentSegments)
-    throw new Error('Appointment is missing in the booking data.');
+    throw new Error("Appointment is missing in the booking data.");
 
   const { serviceVariationId, durationMinutes } = appointmentSegments[0];
 
@@ -35,7 +35,7 @@ export default async function BookingDetails({ id }: { id: string }) {
     serviceVariationId && (await fetchCatalogRelatedObject(serviceVariationId));
 
   if (!catalogRelatedObject)
-    throw new Error('Catalog related object is missing');
+    throw new Error("Catalog related object is missing");
 
   const { relatedObjects } = catalogRelatedObject;
 
@@ -74,7 +74,7 @@ export default async function BookingDetails({ id }: { id: string }) {
               Booking Summary
             </h3>
             <p className="whitespace-nowrap text-xs font-normal text-gray-700 sm:text-base">
-              Booking ID: #{id}{' '}
+              Booking ID: #{id}{" "}
             </p>
           </div>
 
@@ -186,8 +186,8 @@ export default async function BookingDetails({ id }: { id: string }) {
                 <p className="ml-2 text-xs font-normal text-gray-700">
                   {durationMinutes &&
                     dayjs
-                      .duration(durationMinutes, 'minutes')
-                      .format('H[h] m[min]')}
+                      .duration(durationMinutes, "minutes")
+                      .format("H[h] m[min]")}
                 </p>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default async function BookingDetails({ id }: { id: string }) {
       </div>
       <div className="my-4 flex justify-center">
         <p className="text-center text-xs font-normal text-gray-900 sm:text-sm">
-          If you have any questions, please contact us at{' '}
+          If you have any questions, please contact us at{" "}
           <span className="font-bold text-sky-400">
             paultevshinetime@gmail.com
           </span>

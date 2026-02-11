@@ -1,4 +1,4 @@
-import { fetchCustomer } from '@/lib/data/booking';
+import { fetchCustomer } from "@/lib/data/booking";
 
 export default async function CustomerInfo({
   customerId,
@@ -6,7 +6,7 @@ export default async function CustomerInfo({
   customerId: string;
 }) {
   const customerData = await fetchCustomer(customerId);
-  if (!customerData) throw new Error('Customer data is missing');
+  if (!customerData) throw new Error("Customer data is missing");
   const { givenName, familyName, emailAddress, address } = customerData;
   return (
     <div className="mx-6 my-2">
@@ -86,7 +86,7 @@ export default async function CustomerInfo({
             {address?.addressLine1}
           </p>
           <p className="ml-2 text-xs font-normal text-gray-900">
-            {address?.locality}, {address?.administrativeDistrictLevel1},{' '}
+            {address?.locality}, {address?.administrativeDistrictLevel1},{" "}
             {address?.postalCode}
           </p>
         </div>

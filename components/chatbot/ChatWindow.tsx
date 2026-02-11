@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { useChat } from '@ai-sdk/react';
-import type { PromptInputMessage } from '@/components/ai-elements/prompt-input';
-import { DefaultChatTransport } from 'ai';
+import { useChat } from "@ai-sdk/react";
+import type { PromptInputMessage } from "@/components/ai-elements/prompt-input";
+import { DefaultChatTransport } from "ai";
 import {
   Conversation,
   ConversationContent,
   ConversationScrollButton,
-} from '@/components/ai-elements/conversation';
+} from "@/components/ai-elements/conversation";
 import {
   PromptInput,
   PromptInputBody,
   PromptInputSubmit,
-} from '@/components/ai-elements/prompt-input';
-import ChatMessage from '@/components/chatbot/ChatMessage';
-import { useCallback, useMemo, useState } from 'react';
+} from "@/components/ai-elements/prompt-input";
+import ChatMessage from "@/components/chatbot/ChatMessage";
+import { useCallback, useMemo, useState } from "react";
 
 const ChatWindow = () => {
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>("");
 
   const { messages, sendMessage, status, stop } = useChat({
     transport: new DefaultChatTransport({
-      api: '/api/openai/chat',
+      api: "/api/openai/chat",
     }),
     messages: [
       {
-        id: 'welcome',
-        role: 'assistant',
-        content: '',
-        parts: [{ type: 'text', text: 'How can I assist you with today?' }],
+        id: "welcome",
+        role: "assistant",
+        content: "",
+        parts: [{ type: "text", text: "How can I assist you with today?" }],
       },
     ],
   });
@@ -44,12 +44,12 @@ const ChatWindow = () => {
     e.preventDefault();
     if (text.trim()) {
       sendMessage({ text });
-      setText('');
+      setText("");
     }
   };
 
   const isSubmitDisabled = useMemo(
-    () => !(text.trim() || status) || status === 'streaming',
+    () => !(text.trim() || status) || status === "streaming",
     [text, status],
   );
 
@@ -78,10 +78,10 @@ const ChatWindow = () => {
               onChange={handleTextChange}
               value={text}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
+                if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
                   if (text.trim() && !isSubmitDisabled) {
-                    const form = e.currentTarget.closest('form');
+                    const form = e.currentTarget.closest("form");
                     form?.requestSubmit();
                   }
                 }

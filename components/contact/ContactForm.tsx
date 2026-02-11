@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@heroicons/react/16/solid';
+import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
 const ContactForm = () => {
   return (
@@ -100,7 +100,7 @@ const ContactForm = () => {
               name="message"
               rows={4}
               className="block w-full rounded-md border bg-transparent px-3.5 py-2 text-base text-gray-900 outline-gray-300 placeholder:text-gray-400 focus:border-none focus:ring-2 focus:ring-sky-400"
-              defaultValue={''}
+              defaultValue={""}
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ const ContactForm = () => {
             htmlFor="agree-to-policies"
             className="text-sm/6 text-gray-600"
           >
-            By selecting this, you agree to our{' '}
+            By selecting this, you agree to our{" "}
             <a
               href="#"
               className="whitespace-nowrap font-semibold text-indigo-600"

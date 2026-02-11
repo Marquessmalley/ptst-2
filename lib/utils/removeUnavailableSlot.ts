@@ -10,7 +10,7 @@ const removeUnavailableSlot = (
   const durationMs = Number(serviceDuration);
 
   if (isNaN(durationMs)) {
-    throw new Error('Invalid serviceDuration');
+    throw new Error("Invalid serviceDuration");
   }
 
   // Looping through available slots

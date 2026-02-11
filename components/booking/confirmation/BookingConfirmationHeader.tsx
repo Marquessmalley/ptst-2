@@ -1,4 +1,4 @@
-import { fetchBooking } from '@/lib/data/booking';
+import { fetchBooking } from "@/lib/data/booking";
 
 export default async function BookingConfirmationHeader({
   id,
@@ -6,13 +6,13 @@ export default async function BookingConfirmationHeader({
   id: string;
 }) {
   const bookingData = await fetchBooking(id);
-  if (!bookingData) throw new Error('Booking data is missing');
+  if (!bookingData) throw new Error("Booking data is missing");
   const { status, customerId, startAt, appointmentSegments } = bookingData;
   return (
     <div className="mb-10 grid grid-cols-1 place-items-center">
       <div className="my-2 flex items-center">
         <h2 className="text-xl font-bold text-gray-700 sm:text-4xl">
-          Appointment{' '}
+          Appointment{" "}
           {status &&
             status
               .charAt(0)

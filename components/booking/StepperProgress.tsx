@@ -1,6 +1,6 @@
-'use client';
-import { bookingSteps } from '@/lib/data/placeholder-data';
-import { useStepper } from '@/hooks/useStepper';
+"use client";
+import { bookingSteps } from "@/lib/data/placeholder-data";
+import { useStepper } from "@/hooks/useStepper";
 
 const StepperProgress = () => {
   const { step } = useStepper();
@@ -13,8 +13,8 @@ const StepperProgress = () => {
             <span
               className={`mr-2 rounded-full text-center ${
                 step === index
-                  ? 'text-md bg-sky-400 px-3 py-1 text-white sm:px-3 sm:py-1 sm:text-sm'
-                  : 'hidden bg-gray-300 text-gray-400 sm:block sm:px-3 sm:py-1 sm:text-sm'
+                  ? "text-md bg-sky-400 px-3 py-1 text-white sm:px-3 sm:py-1 sm:text-sm"
+                  : "hidden bg-gray-300 text-gray-400 sm:block sm:px-3 sm:py-1 sm:text-sm"
               }`}
             >
               {index + 1}
@@ -23,8 +23,8 @@ const StepperProgress = () => {
             <p
               className={`font-bold sm:text-sm ${
                 step === index
-                  ? 'text-xl text-sky-400 sm:block sm:text-2xl'
-                  : 'hidden text-gray-300 sm:block'
+                  ? "text-xl text-sky-400 sm:block sm:text-2xl"
+                  : "hidden text-gray-300 sm:block"
               }`}
             >
               {item}
