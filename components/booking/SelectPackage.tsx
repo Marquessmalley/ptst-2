@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { PackageCard } from "@/components/ui";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import PackageCardSkeleton from "@component/ui/skeletons/PackageCardSkeleton";
-import { vehicleBasedPricing } from "@/lib/utils/vehicleBasedPricing";
-import { listServices } from "@/lib/actions/sqaure";
+import { useEffect, useState } from 'react';
+import { PackageCard } from '@/components/ui';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import PackageCardSkeleton from '@component/ui/skeletons/PackageCardSkeleton';
+import { vehicleBasedPricing } from '@/lib/utils/vehicleBasedPricing';
+import { listServices } from '@/lib/actions/sqaure';
 
 const SelectPackage = () => {
   const [services, setServices] = useState([1, 2, 3, 4, 5, 6]);
