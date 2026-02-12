@@ -1,11 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import { AddressAutofill } from "@mapbox/search-js-react";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import { Input, Divider, Textarea } from "@heroui/react";
-import { currencyFormatter } from "@/lib/utils/currencyFormatter";
-import { durationFormatter } from "@/lib/utils/durationFormatter";
-import { BookingInfo } from "@/lib/definitions/definitions";
+import React from 'react';
+import Image from 'next/image';
+import { AddressAutofill } from '@mapbox/search-js-react';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import { Input, Divider, Textarea } from '@heroui/react';
+import { currencyFormatter } from '@/lib/utils/currencyFormatter';
+import { durationFormatter } from '@/lib/utils/durationFormatter';
+import { BookingInfo } from '@/lib/definitions/definitions';
 
 const BookingSummary = () => {
   const { bookingInfo, setBookingInfo } = useBookingInfo();
@@ -40,11 +40,11 @@ const BookingSummary = () => {
             type="text"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
 
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
           <Input
@@ -56,10 +56,10 @@ const BookingSummary = () => {
             type="text"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
         </div>
@@ -75,10 +75,10 @@ const BookingSummary = () => {
             type="email"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
         </div>
@@ -97,10 +97,10 @@ const BookingSummary = () => {
               type="text"
               onChange={handleUserForm}
               classNames={{
-                label: "!text-default-700 text-sm font-medium",
+                label: '!text-default-700 text-sm font-medium',
                 inputWrapper:
-                  "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                input: "border-none focus:ring-0",
+                  'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                input: 'border-none focus:ring-0',
               }}
             />
             <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-4 lg:grid-cols-2">
@@ -114,11 +114,11 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
 
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
               <Input
@@ -131,10 +131,10 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
             </div>
@@ -149,11 +149,11 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
 
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
               <Input
@@ -166,10 +166,10 @@ const BookingSummary = () => {
                 type="text"
                 onChange={handleUserForm}
                 classNames={{
-                  label: "!text-default-700 text-sm font-medium",
+                  label: '!text-default-700 text-sm font-medium',
                   inputWrapper:
-                    "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-                  input: "border-none focus:ring-0",
+                    'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+                  input: 'border-none focus:ring-0',
                 }}
               />
             </div>
@@ -182,10 +182,10 @@ const BookingSummary = () => {
             placeholder="Enter any additional comments"
             onChange={handleUserForm}
             classNames={{
-              label: "!text-default-700 text-sm font-medium",
+              label: '!text-default-700 text-sm font-medium',
               inputWrapper:
-                "bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200",
-              input: "border-none focus:ring-0",
+                'bg-default-200 data-[hover=true]:bg-default-300 min-h-9 h-9 group-data-[focus=true]:bg-default-200',
+              input: 'border-none focus:ring-0',
             }}
           />
         </div>
@@ -196,19 +196,19 @@ const BookingSummary = () => {
         </h2>
         <Divider className="my-4" />
         <div className="mb-8 grid grid-cols-2 items-center">
-          <p className="text-small text-default-500">Appointment Date</p>
-          <p className="text-right text-small font-semibold text-default-800">
+          <p className="text-default-500 text-small">Appointment Date</p>
+          <p className="text-right font-semibold text-default-800 text-small">
             {new Date(selectedDate).toDateString()}
           </p>
         </div>
         <div className="mb-8 grid grid-cols-2 items-center">
-          <p className="text-small text-default-500">Appointment Time</p>
-          <p className="text-right text-small font-semibold text-default-800">
+          <p className="text-default-500 text-small">Appointment Time</p>
+          <p className="text-right font-semibold text-default-800 text-small">
             {selectedTime}
           </p>
         </div>
         <div className="mb-8 grid grid-cols-2 items-center gap-x-4">
-          <p className="text-small text-default-500">Vehicle Type</p>
+          <p className="text-default-500 text-small">Vehicle Type</p>
           <div className="ml-7 flex w-full justify-end">
             <Image
               src={`/vehicles/${selectedVehicle}.png`}
@@ -219,21 +219,21 @@ const BookingSummary = () => {
           </div>
         </div>
         <div className="mb-8 grid grid-cols-2 items-center gap-x-4">
-          <p className="text-small text-default-500">Service</p>
-          <p className="text-right text-small font-semibold text-default-800">
+          <p className="text-default-500 text-small">Service</p>
+          <p className="text-right font-semibold text-default-800 text-small">
             {name}
           </p>
         </div>
         <div className="mb-8 grid grid-cols-2 items-center gap-x-4">
-          <p className="text-small text-default-500">Estimated Time</p>
-          <p className="text-right text-small font-semibold text-default-800">
+          <p className="text-default-500 text-small">Estimated Time</p>
+          <p className="text-right font-semibold text-default-800 text-small">
             {durationFormatter(serviceDuration)}
           </p>
         </div>
         <Divider className="my-4" />
         <div className="mb-4 grid grid-cols-2 items-center gap-x-4">
-          <p className="text-small text-default-500">Estimated Price</p>
-          <p className="text-right text-small font-semibold text-sky-500">
+          <p className="text-default-500 text-small">Estimated Price</p>
+          <p className="text-right font-semibold text-sky-500 text-small">
             {currencyFormatter(price)}
           </p>
         </div>

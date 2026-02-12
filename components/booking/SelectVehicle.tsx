@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import VehicleImageSkeleton from "../ui/skeletons/VehicleImageSkeleton";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import VehicleImageSkeleton from '../ui/skeletons/VehicleImageSkeleton';
 
 const SelectVehicle = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -23,7 +23,7 @@ const SelectVehicle = () => {
 
   return (
     <div className="p-4">
-      {selectedVehicle !== "" && !loading ? (
+      {selectedVehicle !== '' && !loading ? (
         <>
           <div className="my-2 flex items-center justify-center rounded-lg p-10">
             <Image

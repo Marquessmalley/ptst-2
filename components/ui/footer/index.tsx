@@ -120,7 +120,7 @@ const Footer = () => {
       </div>
       <footer className="flex justify-center border-t border-b-slate-300 py-4 dark:border-t-slate-700">
         <p className="text-xs font-semibold sm:text-sm">
-          Developed by{" "}
+          Developed by{' '}
           <a
             href="https://marquessmalley.netlify.app/"
             className="bg-gradient-to-r from-amber-500 to-pink-500 bg-clip-text text-transparent"

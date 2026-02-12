@@ -1,4 +1,4 @@
-import { BookingStepper, StepperProgress } from "@/components/booking";
+import { BookingStepper, StepperProgress } from '@/components/booking';
 
 const page = () => {
   return (

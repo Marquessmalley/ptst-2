@@ -1,5 +1,5 @@
-import SimpleGallery from "@/components/ui/simpleGallery/SimpleGallery";
-import { galleryImages } from "@/lib/data/placeholder-data";
+import SimpleGallery from '@/components/ui/simpleGallery/SimpleGallery';
+import { galleryImages } from '@/lib/data/placeholder-data';
 
 const Gallery: React.FC = () => {
   return (

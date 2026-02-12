@@ -1,54 +1,54 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useStepper } from "@/hooks/useStepper";
-import { useBookingInfo } from "@/hooks/useBookingInfo";
-import dayjs from "dayjs";
-import SelectVehicle from "./SelectVehicle";
-import SelectPackage from "./SelectPackage";
-import SelectDateTime from "./SelectDateTime";
-import BookingSummary from "./BookingSummary";
-import DisclaimerBanner from "@/components/ui/banner/DisclaimerBanner";
+'use client';
+import { useState, useEffect } from 'react';
+import { useStepper } from '@/hooks/useStepper';
+import { useBookingInfo } from '@/hooks/useBookingInfo';
+import dayjs from 'dayjs';
+import SelectVehicle from './SelectVehicle';
+import SelectPackage from './SelectPackage';
+import SelectDateTime from './SelectDateTime';
+import BookingSummary from './BookingSummary';
+import DisclaimerBanner from '@/components/ui/banner/DisclaimerBanner';
 import {
   vehicleTypeSelected,
   packageSelected,
   dateTimeSelected,
   userInfoSubmitted,
-} from "@/lib/utils/bookingValidations";
-import { formatTimeFromRFC3339 } from "@/lib/utils/formatRFC3339";
-import { BookingInfo } from "@/lib/definitions/definitions";
-import { useRouter } from "next/navigation";
-import ErrorAlert from "../ui/alert/ErrorAlert";
-import { Spinner } from "@heroui/react";
-import { searchAvailabilities, createBooking } from "@/lib/actions/sqaure";
+} from '@/lib/utils/bookingValidations';
+import { formatTimeFromRFC3339 } from '@/lib/utils/formatRFC3339';
+import { BookingInfo } from '@/lib/definitions/definitions';
+import { useRouter } from 'next/navigation';
+import ErrorAlert from '../ui/alert/ErrorAlert';
+import { Spinner } from '@heroui/react';
+import { searchAvailabilities, createBooking } from '@/lib/actions/sqaure';
 
 const BookingStepper = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [availableDates, setAvailableDates] = useState([]);
-  const [error, setError] = useState({ errorType: "", description: "" });
+  const [error, setError] = useState({ errorType: '', description: '' });
 
   const { step, setStep } = useStepper();
   const { bookingInfo, setBookingInfo } = useBookingInfo();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [step]);
 
   // FUNCTION THAT CHECKS WHETHER TO GO TO THE NEXT STEP
   const handleNext = async () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     switch (step) {
       case 0:
         if (vehicleTypeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
           setError({
-            errorType: "",
-            description: "",
+            errorType: '',
+            description: '',
           });
         } else {
           setError({
-            errorType: "Vehicle Selection",
-            description: "Please select a vehicle!",
+            errorType: 'Vehicle Selection',
+            description: 'Please select a vehicle!',
           });
         }
         break;
@@ -56,8 +56,8 @@ const BookingStepper = () => {
         if (packageSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
           setError({
-            errorType: "",
-            description: "",
+            errorType: '',
+            description: '',
           });
           setBookingInfo((prevState: BookingInfo) => ({
             ...prevState,
@@ -66,7 +66,7 @@ const BookingStepper = () => {
               .minute(0)
               .second(0)
               .millisecond(0)
-              .format("YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
+              .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
           }));
           try {
             const data = await searchAvailabilities(
@@ -76,7 +76,7 @@ const BookingStepper = () => {
                 .minute(0)
                 .second(0)
                 .millisecond(0)
-                .format("YYYY-MM-DDTHH:mm:ss.SSS")}Z`,
+                .format('YYYY-MM-DDTHH:mm:ss.SSS')}Z`,
             );
             const formattedTime =
               data.length > 0
@@ -93,8 +93,8 @@ const BookingStepper = () => {
           }
         } else {
           setError({
-            errorType: "Package Selection",
-            description: "Please select a package!",
+            errorType: 'Package Selection',
+            description: 'Please select a package!',
           });
         }
         break;
@@ -102,13 +102,13 @@ const BookingStepper = () => {
         if (dateTimeSelected(bookingInfo)) {
           setStep((prevState: number) => prevState + 1);
           setError({
-            errorType: "",
-            description: "",
+            errorType: '',
+            description: '',
           });
         } else {
           setError({
-            errorType: "Date & Time Selection",
-            description: "Please select a date & time!",
+            errorType: 'Date & Time Selection',
+            description: 'Please select a date & time!',
           });
         }
         break;
@@ -116,8 +116,8 @@ const BookingStepper = () => {
         if (userInfoSubmitted(bookingInfo)) {
           // setIsLoading(true);
           setError({
-            errorType: "Booking Summary",
-            description: "Will be accepting bookings soon!",
+            errorType: 'Booking Summary',
+            description: 'Will be accepting bookings soon!',
           });
           // createBooking()
           //   .then((data) => {
@@ -130,8 +130,8 @@ const BookingStepper = () => {
         } else {
           setIsLoading(false);
           setError({
-            errorType: "Booking Summary",
-            description: "Please fill out the required fields!",
+            errorType: 'Booking Summary',
+            description: 'Please fill out the required fields!',
           });
         }
         break;
@@ -177,7 +177,7 @@ const BookingStepper = () => {
         </div>
         {step === 0 && (
           <div data-testid="selectVehicle">
-            {error.errorType === "Vehicle Selection" && (
+            {error.errorType === 'Vehicle Selection' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}
@@ -188,7 +188,7 @@ const BookingStepper = () => {
         )}
         {step === 1 && (
           <div>
-            {error.errorType === "Package Selection" && (
+            {error.errorType === 'Package Selection' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}
@@ -199,7 +199,7 @@ const BookingStepper = () => {
         )}
         {step === 2 && (
           <div>
-            {error.errorType === "Date & Time Selection" && (
+            {error.errorType === 'Date & Time Selection' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}
@@ -213,7 +213,7 @@ const BookingStepper = () => {
         )}
         {step === 3 && (
           <div>
-            {error.errorType === "Booking Summary" && (
+            {error.errorType === 'Booking Summary' && (
               <ErrorAlert
                 errorType={error.errorType}
                 errorDescription={error.description}
@@ -235,8 +235,8 @@ const BookingStepper = () => {
                 variant="dots"
                 size="md"
                 classNames={{
-                  base: "flex",
-                  dots: "bg-sky-400",
+                  base: 'flex',
+                  dots: 'bg-sky-400',
                 }}
               />
             ) : step == 3 ? (

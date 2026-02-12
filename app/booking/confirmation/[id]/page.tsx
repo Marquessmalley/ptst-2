@@ -1,6 +1,6 @@
-import { Suspense } from "react";
-import BookingDetails from "@/components/booking/BookingDetails";
-import BookingDetailsSkeleton from "@/components/ui/skeletons/BookingDetailsSkeleton";
+import { Suspense } from 'react';
+import BookingDetails from '@/components/booking/BookingDetails';
+import BookingDetailsSkeleton from '@/components/ui/skeletons/BookingDetailsSkeleton';
 
 export default async function ConfirmationDetails({
   params,

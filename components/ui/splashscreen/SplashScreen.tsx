@@ -1,6 +1,6 @@
-"use client";
-import "animate.css";
-import Image from "next/image";
+'use client';
+import 'animate.css';
+import Image from 'next/image';
 
 const SplashScreen = () => {
   return (

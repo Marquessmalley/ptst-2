@@ -1,4 +1,4 @@
-import ContactForm from "../contact/ContactForm";
+import ContactForm from '../contact/ContactForm';
 
 const Contact: React.FC = () => {
   return (

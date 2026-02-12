@@ -1,6 +1,6 @@
-"use client"; // Error boundaries must be Client Components
+'use client'; // Error boundaries must be Client Components
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function Error({
   error,
@@ -21,7 +21,7 @@ export default function Error({
           Something went wrong!
         </h2>
         <p className="mb-6 text-sm text-gray-700">
-          {error.message || "An unexpected error occurred. Please try again."}
+          {error.message || 'An unexpected error occurred. Please try again.'}
         </p>
         <button
           onClick={() => reset()}

@@ -1,10 +1,10 @@
-"use client";
-import "@/components/ui/global.css";
-import { HeroUIProvider } from "@heroui/react";
-import SplashScreen from "@/components/ui/splashscreen/SplashScreen";
-import { useState, useEffect } from "react";
-import Menu from "@/components/ui/navbar/Menu";
-import Footer from "@/components/ui/footer";
+'use client';
+import '@/components/ui/global.css';
+import { HeroUIProvider } from '@heroui/react';
+import SplashScreen from '@/components/ui/splashscreen/SplashScreen';
+import { useState, useEffect } from 'react';
+import Menu from '@/components/ui/navbar/Menu';
+import Footer from '@/components/ui/footer';
 
 export default function RootLayout({
   children,

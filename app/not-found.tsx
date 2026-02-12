@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 export default function NotFound() {
   return (
     <div className="flex flex-1 items-center justify-center">
@@ -10,7 +10,7 @@ export default function NotFound() {
             href="/"
             className="flex items-center justify-center whitespace-nowrap rounded-2xl bg-sky-500 px-2 py-2 text-xs font-bold text-white duration-200 hover:bg-sky-400 sm:px-4 sm:py-3"
           >
-            Return Home{" "}
+            Return Home{' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
