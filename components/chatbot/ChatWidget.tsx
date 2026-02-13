@@ -35,7 +35,7 @@ const ChatWidget = () => {
       document.body.style.overflow = '';
     };
   }, [isOpen, isMobile]);
-
+  console.log(isOpen, isMobile);
   return (
     <>
       {/* Chat panel */}
@@ -62,6 +62,20 @@ const ChatWidget = () => {
         )}
 
         {!isMobile && (
+          <button
+            type="button"
+            onClick={toggle}
+            className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-lg transition-all hover:from-sky-600 hover:to-sky-500 hover:shadow-xl active:scale-95"
+            aria-label={isOpen ? 'Close chat' : 'Open chat'}
+          >
+            {isOpen ? (
+              <X className="size-6" />
+            ) : (
+              <Sparkles className="size-6 animate-sparkle" />
+            )}
+          </button>
+        )}
+        {isMobile && !isOpen && (
           <button
             type="button"
             onClick={toggle}
