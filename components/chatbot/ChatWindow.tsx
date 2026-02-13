@@ -73,7 +73,7 @@ const ChatWindow = () => {
         >
           <PromptInputBody>
             <textarea
-              className="max-h-32 min-h-[48px] flex-1 resize-none border-0 bg-transparent px-4 py-3.5 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-0"
+              className="max-h-32 min-h-[48px] flex-1 resize-none border-0 bg-transparent px-4 py-3.5 text-base sm:text-sm placeholder:text-slate-400 focus:outline-none focus:ring-0"
               placeholder="Ask us anything..."
               onChange={handleTextChange}
               value={text}
