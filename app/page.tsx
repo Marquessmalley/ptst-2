@@ -1,5 +1,6 @@
 import { type Metadata } from 'next';
 import { Hero, Pricing, Gallery, Faq, Contact } from '@/components/sections';
+import Chatbot from '@/components/chatbot/chatbot';
 
 export const metadata: Metadata = {
   title: 'Paul & Tev Shine Time',
@@ -33,6 +34,7 @@ export default function Page() {
       <Gallery />
       <Faq />
       <Contact />
+      <Chatbot />
     </div>
   );
 }

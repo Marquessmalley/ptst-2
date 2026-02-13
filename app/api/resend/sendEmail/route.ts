@@ -1,5 +1,5 @@
-import { resend } from '@/lib/api/resend';
-import { client } from '@/lib/api/sqaure';
+import { resend } from '@/lib/clients/resend';
+import { client } from '@/lib/clients/sqaure';
 import { WebhooksHelper } from 'square';
 import EmailTemplate from '@/components/booking/EmailTemplate';
 

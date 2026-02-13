@@ -86,7 +86,7 @@ const Footer = () => {
             <li>
               <a
                 href="/about"
-                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100 sm:text-sm"
               >
                 About
               </a>
@@ -94,7 +94,7 @@ const Footer = () => {
             <li>
               <a
                 href="https://main--ptshinetime.netlify.app/prices"
-                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100 sm:text-sm"
               >
                 Pricing
               </a>
@@ -102,7 +102,7 @@ const Footer = () => {
             <li>
               <a
                 href="https://main--ptshinetime.netlify.app/contact"
-                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100 sm:text-sm"
               >
                 Contact
               </a>
@@ -110,7 +110,7 @@ const Footer = () => {
             <li>
               <a
                 href="https://main--ptshinetime.netlify.app/#faq"
-                className="text-xs font-medium transition duration-200 hover:text-gray-600 sm:text-sm dark:text-slate-200 dark:hover:text-slate-100"
+                className="text-xs font-medium transition duration-200 hover:text-gray-600 dark:text-slate-200 dark:hover:text-slate-100 sm:text-sm"
               >
                 FAQ
               </a>

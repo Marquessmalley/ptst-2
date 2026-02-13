@@ -1,5 +1,5 @@
 import { Square } from 'square';
-import { client } from '@/lib/api/sqaure';
+import { client } from '@/lib/clients/sqaure';
 import { replace } from '@/lib/utils/bigIntHandler';
 
 export async function POST(request: Request) {
