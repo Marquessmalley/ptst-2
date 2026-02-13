@@ -1,15 +1,40 @@
 'use client';
 
 import { Sparkles, X } from 'lucide-react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import ChatWindow from '@/components/chatbot/ChatWindow';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggle = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 640px)');
+    setIsMobile(mql.matches);
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+    mql.addEventListener('change', handleMediaChange);
+    return () => {
+      mql.removeEventListener('change', handleMediaChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, isMobile]);
 
   return (
     <>
@@ -35,18 +60,21 @@ const ChatWidget = () => {
         {!isOpen && (
           <span className="absolute inset-0 animate-ping rounded-full bg-sky-400/40" />
         )}
-        <button
-          type="button"
-          onClick={toggle}
-          className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-lg transition-all hover:from-sky-600 hover:to-sky-500 hover:shadow-xl active:scale-95"
-          aria-label={isOpen ? 'Close chat' : 'Open chat'}
-        >
-          {isOpen ? (
-            <X className="size-6" />
-          ) : (
-            <Sparkles className="size-6 animate-sparkle" />
-          )}
-        </button>
+
+        {!isMobile && (
+          <button
+            type="button"
+            onClick={toggle}
+            className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-lg transition-all hover:from-sky-600 hover:to-sky-500 hover:shadow-xl active:scale-95"
+            aria-label={isOpen ? 'Close chat' : 'Open chat'}
+          >
+            {isOpen ? (
+              <X className="size-6" />
+            ) : (
+              <Sparkles className="size-6 animate-sparkle" />
+            )}
+          </button>
+        )}
       </div>
     </>
   );
