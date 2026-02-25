@@ -27,6 +27,14 @@ const SelectPackage = () => {
 
   return (
     <div>
+      <div className="mb-4 flex justify-end">
+        <button
+          type="button"
+          className="rounded-full border border-sky-500 px-4 py-1.5 text-xs font-semibold text-sky-600 transition hover:bg-sky-50 sm:text-sm"
+        >
+          Help me choose
+        </button>
+      </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {loading ? (
           <>

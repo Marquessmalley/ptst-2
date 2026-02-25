@@ -175,7 +175,7 @@ Response (streamed):
 
 ### Overview
 
-A guided recommendation flow embedded inside the booking wizard at Step 1 (Select Package). When a customer is unsure which package to choose, they can click "Help me choose" to answer 3 short questions. The AI analyzes their responses and recommends 1-2 packages with an explanation of why each fits their needs. Selecting a recommendation pre-fills the package selection in the booking context.
+A guided recommendation flow embedded inside the booking wizard at Step 2 (Select Package). When a customer is unsure which package to choose, they can click "Help me choose" to answer 3 short questions. The AI analyzes their responses and recommends 1-2 packages with an explanation of why each fits their needs. Selecting a recommendation pre-fills the package selection in the booking context.
 
 ### Value
 
@@ -189,8 +189,8 @@ A guided recommendation flow embedded inside the booking wizard at Step 1 (Selec
 **The recommender IS:**
 
 - A short, structured questionnaire (3 questions) followed by an AI-generated recommendation
-- Available only inside the booking wizard at Step 1 (Select Package)
-- Aware of the customer's already-selected vehicle type from Step 0
+- Available only inside the booking wizard at Step 2 (Select Package)
+- Aware of the customer's already-selected vehicle type from Step 1
 
 **The recommender IS NOT:**
 
@@ -210,7 +210,7 @@ A guided recommendation flow embedded inside the booking wizard at Step 1 (Selec
 
 **Additional context (automatic):**
 
-- Vehicle type (already selected in Step 0, pulled from `BookingContext`)
+- Vehicle type (already selected in Step 1, pulled from `BookingContext`)
 - Vehicle-specific pricing for each package
 
 **AI prompt structure:**
@@ -248,8 +248,8 @@ Respond in JSON format:
 ### User Flow
 
 ```
-1. Customer completes Step 0 (Select Vehicle) — e.g., selects "Truck"
-2. Customer arrives at Step 1 (Select Package)
+1. Customer completes Step 1 (Select Vehicle) — e.g., selects "Truck"
+2. Customer arrives at Step 2 (Select Package)
 3. Sees the 6 package cards AND a "Help me choose" button
 4. Clicks "Help me choose"
 5. A modal or inline panel appears with 3 multiple-choice questions
@@ -270,7 +270,7 @@ Respond in JSON format:
 10. Customer clicks "Select This Package"
 11. BookingContext updates with the selected package
 12. Recommender closes, package card is highlighted as selected
-13. Customer proceeds to Step 2 (Select Date & Time)
+13. Customer proceeds to Step 3 (Select Date & Time)
 ```
 
 ### Component Breakdown
@@ -368,13 +368,13 @@ Response:
 │  │        └── ChatWindow → ChatMessage                                   │
 │  │                                                                       │
 │  Booking Flow (app/booking/)                                             │
-│  ├── Step 0: SelectVehicle                                               │
-│  ├── Step 1: SelectPackage                                               │
+│  ├── Step 1: SelectVehicle                                               │
+│  ├── Step 2: SelectPackage                                               │
 │  │        └── [NEW] "Help me choose" → RecommenderModal                  │
 │  │              ├── RecommenderQuiz (3 questions)                         │
 │  │              └── RecommenderResults (AI recommendations)              │
-│  ├── Step 2: SelectDateTime                                              │
-│  └── Step 3: BookingSummary                                              │
+│  ├── Step 3: SelectDateTime                                              │
+│  └── Step 4: BookingSummary                                              │
 └──────────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
@@ -494,7 +494,7 @@ This single key is all that's needed. The model name (`gpt-4o-mini`) and configu
 
 | | Chatbot | Recommender |
 |---|---|---|
-| **Location** | Floating widget, all pages | Inside booking wizard, Step 1 |
+| **Location** | Floating widget, all pages | Inside booking wizard, Step 2 |
 | **Interaction** | Free-form conversation | Structured 3-question quiz |
 | **AI response** | Streamed text | Single JSON response |
 | **Actions** | None — read-only | Pre-fills package selection in BookingContext |

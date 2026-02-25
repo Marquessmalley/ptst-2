@@ -6,6 +6,7 @@ import { replace } from '@/lib/utils/bigIntHandler';
 import { BookingInfo } from '@/lib/definitions/definitions';
 import removeUnavailableSlot from '@/lib/utils/removeUnavailableSlot';
 
+// Move this to lib/data/booking.ts bc it only reads data, no mutation
 export async function searchAvailabilities(
   bookingInfo: BookingInfo,
   selectedDate: string,
@@ -55,6 +56,7 @@ export async function searchAvailabilities(
   }
 }
 
+// Move this to lib/data/booking.ts bc it only reads data, no mutation
 export async function listServices() {
   try {
     const serviceList = await client.catalog.list({ types: 'ITEM' });
@@ -68,6 +70,7 @@ export async function listServices() {
   }
 }
 
+// Keep this because it's the only action that mutates data
 export async function createBooking(
   bookingInfo: BookingInfo,
   selectedDate: string,

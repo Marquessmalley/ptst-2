@@ -1,0 +1,29 @@
+---
+description: Core coding standards for the project
+alwaysApply: true
+---
+
+# Coding Standards
+
+## Scaffolding Only
+
+When creating new features, components, or modules:
+
+- **Only scaffold** — create the files, folders, and basic structure (exports, types, empty function signatures)
+- **Do NOT implement** the internal logic unless explicitly asked to
+- This applies to components, utilities, hooks, API routes, server actions, and any new code
+
+```tsx
+// ✅ Scaffold — create the file with the shell, export, and props type
+export default function RecommenderModal({ open, onClose }: RecommenderModalProps) {
+  // TODO: implement
+  return null;
+}
+
+// ❌ Don't — fill in full implementation without being asked
+export default function RecommenderModal({ open, onClose }: RecommenderModalProps) {
+  const [step, setStep] = useState<'quiz' | 'loading' | 'results'>('quiz');
+  const [answers, setAnswers] = useState({});
+  // ... full implementation ...
+}
+```
