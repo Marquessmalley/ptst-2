@@ -9,7 +9,10 @@ const vehicleLabels: Record<VehicleType, string> = {
   'suv-3-rows': 'SUV (3 rows)',
 };
 
-const vehicleKeyMap: Record<VehicleType, keyof (typeof detailMenu)[0]['vehicleType']> = {
+const vehicleKeyMap: Record<
+  VehicleType,
+  keyof (typeof detailMenu)[0]['vehicleType']
+> = {
   sedan: 'sedan',
   truck: 'truck',
   'suv-2-rows': 'suvTwoRows',
