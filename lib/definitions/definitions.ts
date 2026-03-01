@@ -36,3 +36,10 @@ export type BookingInfo = {
   selectedTime: string;
   userInfo: UserInfo;
 };
+
+
+export type QuizAnswers = {
+  lastDetail: string;
+  mainConcern: string;
+  budget: string;
+};
