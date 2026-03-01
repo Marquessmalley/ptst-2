@@ -37,7 +37,6 @@ export type BookingInfo = {
   userInfo: UserInfo;
 };
 
-
 export type QuizAnswers = {
   lastDetail: string;
   mainConcern: string;
